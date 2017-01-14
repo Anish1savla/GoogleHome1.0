@@ -1,0 +1,1 @@
+java -cp C:\Workspace\TrialRunGH\bin;C:\Workspace\TrialRunGH\lib/* HueGoogleHome
