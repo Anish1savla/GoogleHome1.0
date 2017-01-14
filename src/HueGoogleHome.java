@@ -129,7 +129,7 @@ public class HueGoogleHome
     
     tc.turnoffalllights(bridge, driver);
     
-    tc.turnONHueColorLamp1(bridge, driver);
+    //tc.turnONHueColorLamp1(bridge, driver);
     
     tc.SetBrightnessTo100(bridge, driver);
     
