@@ -166,7 +166,7 @@ public class HBCheckAllLightsGreen
   {
     String htmlChangeColorGreenString = 
     
-    "<td style=\"border:1px solid black;border-collapse:collapse\">\n" + "3" + "</td>\n" + 
+    "<td style=\"border:1px solid black;border-collapse:collapse\">\n" + "4" + "</td>\n" + 
     "<td style=\"border:1px solid black;border-collapse:collapse\">\n" + "Turn Lights Green" + "</td>\n" + 
     "<td style=\"border:1px solid black;border-collapse:collapse\">\n" + "All lights Present on Bridge should Turn Green" + "</td>\n" + 
     "<td style=\"border:1px solid black;border-collapse:collapse\">\n" + results + "</td>\n" + 

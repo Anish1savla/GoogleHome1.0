@@ -37,11 +37,11 @@ public class selTurnONAll
     driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
     driver.findElement(By.xpath("//*[@id='Email']")).click();
     driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-    driver.findElement(By.xpath("//*[@id='Email']")).sendKeys(new CharSequence[] { "anish1savla@gmail.com" });
+    driver.findElement(By.xpath("//*[@id='Email']")).sendKeys(new CharSequence[] { "HueGHAutomation@gmail.com" });
     driver.manage().timeouts().implicitlyWait(1L, TimeUnit.SECONDS);
     driver.findElement(By.id("next")).click();
     driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-    driver.findElement(By.xpath("//*[@id='Passwd']")).sendKeys(new CharSequence[] { "tracks@22" });
+    driver.findElement(By.xpath("//*[@id='Passwd']")).sendKeys(new CharSequence[] { "HueAutomation" });
     driver.findElement(By.xpath("//*[@id='PersistentCookie']")).click();
     driver.findElement(By.id("signIn")).click();
     

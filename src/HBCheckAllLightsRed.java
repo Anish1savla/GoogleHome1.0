@@ -129,7 +129,7 @@ public class HBCheckAllLightsRed
   public String createHTMLReport(String results, String status, String remarks)
   {
     String htmlChangeColorRedString = 
-      "<tr>\n<td style=\"border:1px solid black;border-collapse:collapse\">\n2</td>"
+      "<tr>\n<td style=\"border:1px solid black;border-collapse:collapse\">\n3</td>"
       + "\n<td style=\"border:1px solid black;border-collapse:collapse\">\nTurn All Lights RED</td>\n"
       + "<td style=\"border:1px solid black;border-collapse:collapse\">\nAll lights Present on Bridge should Turn Red</td>\n"
       + "<td style=\"border:1px solid black;border-collapse:collapse\">\n" + 

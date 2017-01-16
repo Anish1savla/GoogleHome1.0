@@ -43,7 +43,7 @@ public class SendEmailForReport {
 		try{
 			InternetAddress from = new InternetAddress("HueGHAutomation@gmail.com");
 			message.setSubject("Google home daily test report");
-			message.addRecipients(Message.RecipientType.TO, InternetAddress.parse("anish.savla@philips.com"));
+			message.addRecipients(Message.RecipientType.TO, InternetAddress.parse("DL-QAG-US@Philips.com"));
 			
 			Multipart multipart = new MimeMultipart("alternative");
 			
@@ -51,7 +51,7 @@ public class SendEmailForReport {
 			messageBodyPart.setText("Google home body part");
 			
 			messageBodyPart = new MimeBodyPart();
-			String htmlMessage = "Google Home HTML Text";
+			String htmlMessage = "Google Home Test Report";
 			messageBodyPart.setContent(htmlMessage,"text/html");
 			
 			System.out.println("Subject and BodyPart is set");
