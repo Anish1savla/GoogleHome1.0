@@ -11,7 +11,7 @@ public class selTurnOFFAllLights
   public String selTurnOFFAllLight1(PHBridge bridge, WebDriver driver)
     throws FindFailed, InterruptedException
   {
-    Pattern commandLineImage = new Pattern("C:\\Users\\310235474\\Desktop\\eclipse\\CommandLineImage.PNG");
+    Pattern commandLineImage = new Pattern("CommandLineImage.PNG");
     
     Screen turnOFFAllLightsTestScreen = new Screen();
     turnOFFAllLightsTestScreen.mouseMove(commandLineImage);

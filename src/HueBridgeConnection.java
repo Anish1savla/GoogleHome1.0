@@ -18,7 +18,7 @@ public class HueBridgeConnection
   public String lastknownUserName = "lastusername";
   public String lastKnownIPAddress = "lastIPAddress";
   
-  public void connectToBridgeWithIp(String ipAddress,  ConnectCallback connectCallback)
+  public void connectToBridgeWithIp(String ipAddress, String userNameStored, ConnectCallback connectCallback)
   {
     this.phHueSDK = PHHueSDK.create();
     phHueSDK.getNotificationManager().registerSDKListener(this.listener);
@@ -26,11 +26,11 @@ public class HueBridgeConnection
     this.connectCallback = connectCallback;
     
     System.out.println("Inside Hue bridge connection and IP address is:"+ipAddress);
-    //System.out.println("Inside Hue bridge connection and username is:"+userNameStored);
+    System.out.println("Inside Hue bridge conection and username is:"+userNameStored);
     PHAccessPoint accessPoint = new PHAccessPoint();
     
     accessPoint.setIpAddress(ipAddress);
-    //accessPoint.setUsername(userNameStored);
+    accessPoint.setUsername(userNameStored);
     //System.out.println("Access Point is :"+accessPoint.getUsername());
     phHueSDK.connect(accessPoint);
 	//System.out.println("Before push link");

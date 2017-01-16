@@ -18,6 +18,9 @@ public class SendEmailForReport {
 
 	public void sendEmail() throws InterruptedException {
 		// TODO Auto-generated method stub
+		
+		System.out.println("Sending Email now");
+		
 		String filename = null;
 		String host = "smtp.gmail.com";
 		String user = "HueGHAutomation@gmail.com";
@@ -51,26 +54,30 @@ public class SendEmailForReport {
 			String htmlMessage = "Google Home HTML Text";
 			messageBodyPart.setContent(htmlMessage,"text/html");
 			
+			System.out.println("Subject and BodyPart is set");
+			
 			multipart.addBodyPart(messageBodyPart);
 			
 			messageBodyPart = new MimeBodyPart();
-			File OldFile = new File("C:\\Users\\310235474\\Desktop\\eclipse\\GHHue\\");
+			File OldFile = new File("C:\\Users\\310235474\\git\\GoogleHome1.0\\");
 			File[] oldFiles = OldFile.listFiles();
-			File[] arrayOfFile1;
-			int j = (arrayOfFile1 = oldFiles).length;
-		    for (int i = 0; i < j; i++)
+			
+			
+		    for (int i = 0; i < oldFiles.length; i++)
 		    {
-		      File oldF = arrayOfFile1[i];
-		      if (oldF.getName().substring(0, 6).contains("Report")) {
-		    	  filename = oldF.getName();
-		    	  System.out.println(filename);
+		      
+		      if (oldFiles[i].getName().contains("Report")) {
+		    	  filename = oldFiles[i].getName();
+		    	  break;
+		    	  
 		      }
 		      else{
 		    	  filename="No File";
 		      }
+		      //System.out.println(filename);
 		    }
 			
-			String finalFilename = "C:\\Users\\310235474\\Desktop\\eclipse\\GHHue\\"+filename;
+			String finalFilename = "C:\\Users\\310235474\\git\\GoogleHome1.0\\"+filename;
 			System.out.println("Final File name:"+finalFilename);
 			DataSource source = new FileDataSource(finalFilename);
 			messageBodyPart.setDataHandler(new DataHandler(source));
@@ -83,11 +90,12 @@ public class SendEmailForReport {
 			TimeUnit.SECONDS.sleep(3);
 			transport.connect("smtp.gmail.com","HueGHAutomation@gmail.com","HueAutomation");
 			TimeUnit.SECONDS.sleep(3);
+			System.out.println(transport.isConnected());
 			System.out.println("Transport:"+transport.toString());
 			transport.sendMessage(message, message.getAllRecipients());
+			
 			System.out.println("message sent");
 			transport.close();
-			
 			return;
 		}catch (AddressException e) {
 	        // TODO Auto-generated catch block

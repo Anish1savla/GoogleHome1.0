@@ -12,7 +12,7 @@ public class selSetBrightnessTo100
   public <HBSetAllBrightessTo100> String SetBrightnessTo100(PHBridge bridge, WebDriver driver)
     throws FindFailed, InterruptedException
   {
-    Pattern commandLineImage = new Pattern("C:\\Users\\310235474\\Desktop\\eclipse\\CommandLineImage.PNG");
+    Pattern commandLineImage = new Pattern("CommandLineImage.PNG");
     
     Screen setBrightness100 = new Screen();
     setBrightness100.mouseMove(commandLineImage);

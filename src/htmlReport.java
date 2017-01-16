@@ -16,7 +16,7 @@ public class htmlReport
     throws IOException
   {
 	  
-	  //System.out.println("Inside Create Report");
+	  System.out.println("Inside Create HTML Report");
     if (turnONAll == null)
     {
       turnONAll = "Turn ON All Lights";
@@ -55,7 +55,7 @@ public class htmlReport
     {
       this.finalHTMLReportString += changeColorGreen;
     }
-    /*
+    
     if (setBrightness100 == null)
     {
       setBrightness100 = "Set Brightness for All Lights to 100%";
@@ -74,28 +74,43 @@ public class htmlReport
     {
       this.finalHTMLReportString += turnONhueColorLamp1;
     }
-    */
+    
     this.reportHeader = "<!DOCTYPE html>\n<html>\n<head>\n<title>GoogleHome-Hue Daily Report</title>\n</head>\n<body bgcolor=\"#E6E6FA\">\n<h1>\n<center>\nGoogle Home - Philips Hue Daily Test Report</center>\n</h1>\n<h2>\n<center>\nLocal Integration</center>\n</h2>\n\n";
     
-    //System.out.println("Creating Report HTML file");
+    System.out.println("Creating Report HTML file");
     
-    File ArchiveFolder = new File("C:\\Users\\310235474\\Desktop\\eclipse\\GHHue\\Archive");
-    File OldFile = new File("C:\\Users\\310235474\\Desktop\\eclipse\\GHHue\\");
+    File ArchiveFolder = new File("C:\\Users\\310235474\\git\\GoogleHome1.0\\Archive");
+    //System.out.println(ArchiveFolder);
+    
+    File OldFile = new File("C:\\Users\\310235474\\git\\GoogleHome1.0\\");
+    //System.out.println(OldFile.listFiles());
     File[] oldFiles = OldFile.listFiles();
-    File[] arrayOfFile1;
-    int j = (arrayOfFile1 = oldFiles).length;
-    for (int i = 0; i < j; i++)
+    //File[] arrayOfFile1;
+    //int j = (arrayOfFile1 = oldFiles).length;
+    //System.out.println("J is :"+j);
+    for (int i = 0; i < oldFiles.length; i++)
     {
-      File oldF = arrayOfFile1[i];
+    	
+    	if(oldFiles[i].getName().contains("Report")){
+    		System.out.println("File:"+oldFiles[i].getName());
+    		oldFiles[i].renameTo(new File(ArchiveFolder + "\\" + oldFiles[i].getName()));
+    	}
+    
+      /*
+      System.out.println(j);
+      
+      System.out.println(oldF);
+      System.out.println(oldF.getName().substring(0,6));
       if (oldF.getName().substring(0, 6).contains("Report")) {
         oldF.renameTo(new File(ArchiveFolder + "\\" + oldF.getName()));
-      }
+      }*/
     }
+    //System.out.println("For Loop is complete");
     Date date = new Date();
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMDDYY HH-mm-ss");
     String curDate = dateFormat.format(date);
-    
-    File f = new File("C:\\Users\\310235474\\Desktop\\eclipse\\GHHue\\Report " + curDate + ".html");
+    System.out.println("Date is Set for Report");
+    File f = new File("C:\\Users\\310235474\\git\\GoogleHome1.0\\Report " + curDate + ".html");
     f.createNewFile();
     try
     {
@@ -104,6 +119,7 @@ public class htmlReport
       bf.write(this.finalHTMLReportString);
       bf.write(this.reportNotes);
       bf.close();
+      
       System.out.println(f.exists());
     }
     catch (IOException ioe)

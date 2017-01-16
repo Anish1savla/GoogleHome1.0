@@ -12,7 +12,7 @@ public class selTurnONHueColorLampOne
   public String selTurnONHueColorLamp1(PHBridge bridge, WebDriver driver)
     throws FindFailed, InterruptedException
   {
-    Pattern commandLineImage = new Pattern("C:\\Users\\310235474\\Desktop\\eclipse\\CommandLineImage.PNG");
+    Pattern commandLineImage = new Pattern("CommandLineImage.PNG");
     
     Screen turnONHueColorLamp1 = new Screen();
     turnONHueColorLamp1.mouseMove(commandLineImage);

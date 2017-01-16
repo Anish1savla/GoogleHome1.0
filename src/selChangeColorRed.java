@@ -14,7 +14,7 @@ public class selChangeColorRed
     throws FindFailed, InterruptedException
   {
     System.out.println("Inside selenium change red color");
-    Pattern commandLineImage = new Pattern("C:\\Users\\310235474\\Desktop\\eclipse\\CommandLineImage.PNG");
+    Pattern commandLineImage = new Pattern("CommandLineImage.PNG");
     
     Screen turnOFFAllLightsTestScreen = new Screen();
     turnOFFAllLightsTestScreen.mouseMove(commandLineImage);

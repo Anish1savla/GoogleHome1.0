@@ -23,7 +23,7 @@ public class selTurnONAll
     Screen screen = new Screen();
     TimeUnit.SECONDS.sleep(1);
     
-    Pattern image1 = new Pattern("C:\\Users\\310235474\\Desktop\\eclipse\\Start.PNG");
+    Pattern image1 = new Pattern("Start.PNG");
     //wait(30);
     
     //wait(30);
@@ -47,7 +47,7 @@ public class selTurnONAll
     
     driver.switchTo().window(winHandleBefore);
     
-    Pattern commandLineImage = new Pattern("C:\\Users\\310235474\\Desktop\\eclipse\\CommandLineImage.PNG");
+    Pattern commandLineImage = new Pattern("CommandLineImage.PNG");
     
     Screen turnOnAllLightsTestScreen = new Screen();
     driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);

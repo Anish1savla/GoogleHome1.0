@@ -31,7 +31,7 @@ public class HueGoogleHome
       System.out.println("Inside onConnected and about to start test");
       try
       {
-        System.setProperty("webdriver.chrome.driver", "C:/Users/310235474/Desktop/eclipse/chromedriver_win32/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         
         HueGoogleHome.startTests(bridge, driver);
@@ -60,9 +60,9 @@ public class HueGoogleHome
     {
     	
       HueBridgeConnection bh = new HueBridgeConnection();
-      File BridgeConnectionFile = new File("C:\\Users\\310235474\\Desktop\\eclipse\\GHHue\\BridgeProperty.txt");
+      File BridgeConnectionFile = new File("BridgeProperty.txt");
       if (BridgeConnectionFile.exists()==true){
-    	  BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\310235474\\Desktop\\eclipse\\GHHue\\BridgeProperty.txt"));
+    	  BufferedReader br = new BufferedReader(new FileReader("BridgeProperty.txt"));
     	  String userNamefromText;
     	  int CounterExecution=0;
     	  while ((userNamefromText = br.readLine()) != null)
@@ -82,9 +82,9 @@ public class HueGoogleHome
             CounterExecution++;
             System.out.println(CounterExecution+": Counter Execution");
           }
-    	  bh.connectToBridgeWithIp(ipAddressStored,connectCallback);
+    	  bh.connectToBridgeWithIp(ipAddressStored,userNameStored,connectCallback);
       }else {
-    	  bh.connectToBridgeWithIp("192.168.1.3", connectCallback);
+    	  bh.connectToBridgeWithIp("192.168.1.3"," ", connectCallback);
     	    TimeUnit.SECONDS.sleep(5);
     	   // System.out.println("Hue Bridge connection is done");
       }
@@ -129,12 +129,14 @@ public class HueGoogleHome
     
     tc.turnoffalllights(bridge, driver);
     
-    //tc.turnONHueColorLamp1(bridge, driver);
+    tc.turnONHueColorLamp1(bridge, driver);
     
     tc.SetBrightnessTo100(bridge, driver);
     
-    //tc.turnoffalllights(bridge, driver);
+    tc.turnoffalllights(bridge, driver);
    
+    System.out.println("Calling HTML Report create now");
+    
     tc.createHTMLReport();
     
     driver.close();
