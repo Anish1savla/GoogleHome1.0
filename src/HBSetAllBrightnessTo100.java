@@ -128,10 +128,11 @@ public class HBSetAllBrightnessTo100
   public String createHTMLReport(String results, String status, String remarks)
   {
     String htmlSetBrightness100 = 
-      "<tr>\n<td style=\"border:1px solid black;border-collapse:collapse\">\n5</td>\n<td style=\"border:1px solid black;border-collapse:collapse\">\nSet Brightness For All Lights To 100%</td>\n<td style=\"border:1px solid black;border-collapse:collapse\">\nBrightness for All Lights should be set to 100%</td>\n<td style=\"border:1px solid black;border-collapse:collapse\">\n" + 
-      
-status + "</td>\n" + 
-      "<td style=\"border:1px solid black;border-collapse:collapse\">\n" + results + "</td>\n" + 
+      "<tr>\n<td style=\"border:1px solid black;border-collapse:collapse\">\n5</td>\n"
+      + "<td style=\"border:1px solid black;border-collapse:collapse\">\nSet Brightness For All Lights To 100%</td>\n"
+      + "<td style=\"border:1px solid black;border-collapse:collapse\">\nBrightness for All Lights should be set to 100%</td>\n"
+      + "<td style=\"border:1px solid black;border-collapse:collapse\">\n" + results  + "</td>\n" + 
+      "<td style=\"border:1px solid black;border-collapse:collapse\">\n" + status + "</td>\n" + 
       "<td style=\"border:1px solid black;border-collapse:collapse\">\n" + remarks + "</td>\n" + "</tr>\n";
     
     return htmlSetBrightness100;
