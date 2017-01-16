@@ -56,7 +56,7 @@ public class HueBridgeConnection
       String lastConnectedUsername = bridge.getResourceCache().getBridgeConfiguration().getUsername();
       String lastConnectedipAddress = bridge.getResourceCache().getBridgeConfiguration().getIpAddress();
       
-      File PropertyFile = new File("C:\\Users\\310235474\\Desktop\\eclipse\\GHHue\\BridgeProperty.txt");
+      File PropertyFile = new File("C:\\Users\\310235474\\git\\GoogleHome1.0\\BridgeProperty.txt");
       try
       {
         PropertyFile.createNewFile();
