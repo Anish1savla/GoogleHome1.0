@@ -99,23 +99,23 @@ public class HBSetAllBrightnessTo100
     }
     else if ((!FalselightList.isEmpty()) && (!nonDimmingLights.isEmpty()) && (nonReachablelightList.isEmpty()))
     {
-      this.Status = "FAIL";
-      this.results = ("Brightness for lights: " + FalselightList.toString() + " are not 100%. ");
+      this.results = "FAIL";
+      this.Status = ("Brightness for lights: " + FalselightList.toString() + " are not 100%. ");
       this.Remarks = 
         ("Brightness Level :" + FalseLightListHash.toString() + nonDimmingLights.toString() + ": Lights are Not Dimming Lights.");
       this.sendtoHTMLsetBrightness100 = createHTMLReport(this.Status, this.results, this.Remarks);
     }
     else if ((!FalselightList.isEmpty()) && (nonDimmingLights.isEmpty()) && (!nonReachablelightList.isEmpty()))
     {
-      this.Status = "FAIL";
-      this.results = ("Brightness for lights: " + FalselightList.toString() + " are not 100%. ");
+      this.results = "FAIL";
+      this.Status = ("Brightness for lights: " + FalselightList.toString() + " are not 100%. ");
       this.Remarks = ("Brightness Level :" + FalseLightListHash.toString() + nonReachablelightList.toString() + ": Lights are Not Reachable.");
       this.sendtoHTMLsetBrightness100 = createHTMLReport(this.Status, this.results, this.Remarks);
     }
     else if ((!FalselightList.isEmpty()) && (!nonDimmingLights.isEmpty()) && (!nonReachablelightList.isEmpty()))
     {
-      this.Status = "FAIL";
-      this.results = ("Brightness for lights: " + FalselightList.toString() + " are not 100%. ");
+      this.results = "FAIL";
+      this.Status = ("Brightness for lights: " + FalselightList.toString() + " are not 100%. ");
       this.Remarks = 
         ("Brightness Level :" + FalseLightListHash.toString() + nonReachablelightList.toString() + ": Lights are Not Reachable." + nonDimmingLights.toString() + ": Lights are Non Dimmable Lights.");
       this.sendtoHTMLsetBrightness100 = createHTMLReport(this.Status, this.results, this.Remarks);
