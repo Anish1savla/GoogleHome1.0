@@ -134,6 +134,8 @@ public class HueGoogleHome
     tc.SetBrightnessTo100(bridge, driver);
     
     tc.turnoffalllights(bridge, driver);
+    
+    tc.turnoffalllights(bridge, driver);
    
     System.out.println("Calling HTML Report create now");
     
