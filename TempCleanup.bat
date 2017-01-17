@@ -1,6 +1,3 @@
-cd C:\Users\310235474\AppData\Local
- rmdir /S /Q Temp
-
 del C:\Windows\Prefetch\*.* /Q
 
 del C:\Windows\Temp\*.* /Q
