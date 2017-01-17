@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>GoogleHome-Hue Daily Report</title>
+</head>
+<body bgcolor="#E6E6FA">
+<h1>
+<center>
+Google Home - Philips Hue Daily Test Report</center>
+</h1>
+<h2>
+<center>
+Local Integration</center>
+</h2>
+
+<center>
+<table width="80%" style="border:1px solid black;border-collapse:collapse">
+<tr>
+<th style="border:1px solid black;border-collapse:collapse">
+Test ID</th>
+<th style="border:1px solid black;border-collapse:collapse">
+Test Command Name</th>
+<th style="border:1px solid black;border-collapse:collapse">
+Expected Results</th>
+<th style="border:1px solid black;border-collapse:collapse">
+Actual Results</th>
+<th style="border:1px solid black;border-collapse:collapse">
+Status</th>
+<th style="border:1px solid black;border-collapse:collapse">
+Remarks</th>
+</tr>
+<tr>
+<td style="border:1px solid black;border-collapse:collapse"><font face="Verdana">
+1</td>
+</font>
+<td style="border:1px solid black;border-collapse:collapse"><font face="Verdana">
+TurnONAllLights</td>
+</font>
+<td style="border:1px solid black;border-collapse:collapse">
+All lights Present on Bridge should Turn ON</td>
+<td style="border:1px solid black;border-collapse:collapse">
+[night lamp]: Lights are Still OFF</td>
+<td style="border:1px solid black;border-collapse:collapse">
+FAIL</td>
+<td style="border:1px solid black;border-collapse:collapse">
+Please check Network Connection, Hue Bridge connection in Google Home and Light Status Manually[Hue color lamp 7, lamp 2, Hue color lamp 8, First light, MB1, Light One]:Lights are not reachable</td>
+</tr>
+<tr>
+<td style="border:1px solid black;border-collapse:collapse">
+2</td>
+<td style="border:1px solid black;border-collapse:collapse">
+TurnOFFAllLights</td>
+<td style="border:1px solid black;border-collapse:collapse">
+All lights Present on Bridge should Turn OFF</td>
+<td style="border:1px solid black;border-collapse:collapse">
+All lights are OFF.However few lights are Not Reachable.</td>
+<td style="border:1px solid black;border-collapse:collapse">
+PASS</td>
+<td style="border:1px solid black;border-collapse:collapse">
+[Hue color lamp 7, Hue color lamp 8, MB1, Light One]: Lights are not reachable. Please check your Hue Bridge and Lights Settings</td>
+</tr>
+<tr>
+<td style="border:1px solid black;border-collapse:collapse">
+3</td>
+<td style="border:1px solid black;border-collapse:collapse">
+Turn All Lights RED</td>
+<td style="border:1px solid black;border-collapse:collapse">
+All lights Present on Bridge should Turn Red</td>
+<td style="border:1px solid black;border-collapse:collapse">
+All lights turned RED. However few lights are Not Reachable.</td>
+<td style="border:1px solid black;border-collapse:collapse">
+PASS</td>
+<td style="border:1px solid black;border-collapse:collapse">
+[Hue color lamp 7, Hue color lamp 8, First light, MB1, Light One] : Lights are not reachable, please check Hue Bridge and Lights Settings.[night lamp, white light]: Are Not Color Lights</td>
+</tr>
+<td style="border:1px solid black;border-collapse:collapse">
+4</td>
+<td style="border:1px solid black;border-collapse:collapse">
+Turn Lights Green</td>
+<td style="border:1px solid black;border-collapse:collapse">
+All lights Present on Bridge should Turn Green</td>
+<td style="border:1px solid black;border-collapse:collapse">
+[First light]: Lights didn't Turn GREEN</td>
+<td style="border:1px solid black;border-collapse:collapse">
+FAIL</td>
+<td style="border:1px solid black;border-collapse:collapse">
+Please check Network Connection, Hue Bridge connection in Google Home and Light Color Status Manually. [Hue color lamp 7, lamp 2, Hue color lamp 8, MB1, Light One]:Lights are not reachable</td>
+</tr>
+<tr>
+<td style="border:1px solid black;border-collapse:collapse">
+5</td>
+<td style="border:1px solid black;border-collapse:collapse">
+Set Brightness For All Lights To 100%</td>
+<td style="border:1px solid black;border-collapse:collapse">
+Brightness for All Lights should be set to 100%</td>
+<td style="border:1px solid black;border-collapse:collapse">
+Brightness for All Lights is 100%.</td>
+<td style="border:1px solid black;border-collapse:collapse">
+PASS</td>
+<td style="border:1px solid black;border-collapse:collapse">
+[Hue color lamp 7, Hue color lamp 8, MB1, Light One]: Lights are Not Reachable</td>
+</tr>
+<tr>
+<td style="border:1px solid black;border-collapse:collapse">
+6</td>
+<td style="border:1px solid black;border-collapse:collapse">
+Turn ON Hue color Lamp 1</td>
+<td style="border:1px solid black;border-collapse:collapse">
+Hue Color Lamp 1 Should Turn ON</td>
+<td style="border:1px solid black;border-collapse:collapse">
+Hue Color Lamp 1 Turned ON</td>
+<td style="border:1px solid black;border-collapse:collapse">
+PASS</td>
+<td style="border:1px solid black;border-collapse:collapse">
+[Hue color lamp 7, lamp 2, Hue color lamp 8, MB1, Light One]: Are Non Reachable Lights.</td>
+</tr>
+</table>
+</center>
+<h3>
+Test Cases Not Executed-
