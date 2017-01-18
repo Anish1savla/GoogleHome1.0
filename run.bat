@@ -1,1 +1,1 @@
-java -cp C:\Users\310235474\git\GoogleHome1.0\bin;C:\Users\310235474\git\GoogleHome1.0\lib/* HueGoogleHome
+java -cp C:\Users\310235474\git\GoogleHome1.0\bin;C:\Users\310235474\git\GoogleHome1.0\lib/* HueGoogleHome1
