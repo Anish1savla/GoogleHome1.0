@@ -3,6 +3,8 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Pattern;
 import org.sikuli.script.Screen;
@@ -16,6 +18,12 @@ public class selTurnONAll
   public String seleniumTestToTurnAllLightsON(PHBridge bridge, WebDriver driver)
     throws FindFailed, IOException, InterruptedException
   {
+	  
+	  DesiredCapabilities capabilities=DesiredCapabilities.chrome();
+	  capabilities.setCapability(CapabilityType.ForSeleniumServer.ENSURING_CLEAN_SESSION,true);
+	  
+	  
+	  driver.manage().deleteAllCookies();
     driver.get("https://developers.google.com/actions/tools/web-simulator");
     
     driver.manage().window().maximize();
