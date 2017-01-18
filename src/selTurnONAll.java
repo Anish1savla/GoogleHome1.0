@@ -3,6 +3,8 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Pattern;
 import org.sikuli.script.Screen;
@@ -16,6 +18,12 @@ public class selTurnONAll
   public String seleniumTestToTurnAllLightsON(PHBridge bridge, WebDriver driver)
     throws FindFailed, IOException, InterruptedException
   {
+	  
+	  DesiredCapabilities capabilities=DesiredCapabilities.chrome();
+	  capabilities.setCapability(CapabilityType.ForSeleniumServer.ENSURING_CLEAN_SESSION,true);
+	  
+	  
+	  driver.manage().deleteAllCookies();
     driver.get("https://developers.google.com/actions/tools/web-simulator");
     
     driver.manage().window().maximize();
@@ -37,11 +45,11 @@ public class selTurnONAll
     driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
     driver.findElement(By.xpath("//*[@id='Email']")).click();
     driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-    driver.findElement(By.xpath("//*[@id='Email']")).sendKeys(new CharSequence[] { "anish1savla@gmail.com" });
+    driver.findElement(By.xpath("//*[@id='Email']")).sendKeys(new CharSequence[] { "HueGHAutomation@gmail.com" });
     driver.manage().timeouts().implicitlyWait(1L, TimeUnit.SECONDS);
     driver.findElement(By.id("next")).click();
     driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-    driver.findElement(By.xpath("//*[@id='Passwd']")).sendKeys(new CharSequence[] { "tracks@22" });
+    driver.findElement(By.xpath("//*[@id='Passwd']")).sendKeys(new CharSequence[] { "HueAutomation" });
     driver.findElement(By.xpath("//*[@id='PersistentCookie']")).click();
     driver.findElement(By.id("signIn")).click();
     
