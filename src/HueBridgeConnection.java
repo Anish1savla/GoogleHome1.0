@@ -26,7 +26,7 @@ public class HueBridgeConnection
     this.connectCallback = connectCallback;
     
     System.out.println("Inside Hue bridge connection and IP address is:"+ipAddress);
-   System.out.println("Inside Hue bridge conection and username is:"+userNameStored);
+    System.out.println("Inside Hue bridge conection and username is:"+userNameStored);
     PHAccessPoint accessPoint = new PHAccessPoint();
     
     accessPoint.setIpAddress(ipAddress);

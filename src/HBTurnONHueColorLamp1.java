@@ -16,7 +16,7 @@ public class HBTurnONHueColorLamp1
   public String Remarks;
   public String sendTohtml;
   public int HueColorLampOneCounter;
-  
+  public String HueColorLampName = "Hue Color lamp 20";
   public String HBTurnONhueColorLampOne(PHBridge bridge)
     throws InterruptedException
   {
@@ -37,13 +37,14 @@ public class HBTurnONHueColorLamp1
       System.out.println(lightName);
       
       Boolean lightStatus = lightState.isOn();
-      
+      Boolean HCL1 = lightName.contains(HueColorLampName);
+      System.out.println("HCL1:"+HCL1);
       Boolean lightReachable = lightState.isReachable();
       if ((lightName.equals("Hue Color Lamp 1")) && (lightReachable.booleanValue()) && (lightStatus.booleanValue()))
       {
         TrueLights.add(lights.getName());
         this.noHueColorLamp1Counter++;
-        System.out.println(noHueColorLamp1);
+        System.out.println(noHueColorLamp1Counter);
       }
       else if ((lightName.equals("Hue Color Lamp 1")) && (lightReachable.booleanValue()) && (!lightStatus.booleanValue()))
       {
@@ -59,13 +60,8 @@ public class HBTurnONHueColorLamp1
       }
     }
     System.out.println(noHueColorLamp1Counter);
-    if(noHueColorLamp1Counter==0){
-        this.results = "FAIL";
-        this.Status = "Hue Bridge Doesn't have Hue Color Lamp 1";
-        this.Remarks = ("Please make sure Hue Color Lamp 1 is present on Hue Bridge."+nonReachableLights.toString() + ": Are Non Reachable Lights.");
-        this.sendTohtml = createHTMLReport(this.Status, this.results, this.Remarks);
-    }
-    else if ((FalseLights.isEmpty()) && (nonReachableHuecolorLamp1.isEmpty()))
+    
+    if ((FalseLights.isEmpty()) && (nonReachableHuecolorLamp1.isEmpty()))
     {
       this.results = "PASS";
       this.Status = "Hue Color Lamp 1 Turned ON";
@@ -85,6 +81,11 @@ public class HBTurnONHueColorLamp1
       this.Status = "Hue Color Lamp 1 is Not Reachable";
       this.Remarks = (nonReachableLights.toString() + ": Are Non Reachable Lights.");
       this.sendTohtml = createHTMLReport(this.Status, this.results, this.Remarks);
+    }else if(noHueColorLamp1Counter==0){
+        this.results = "FAIL";
+        this.Status = "Hue Bridge Doesn't have Hue Color Lamp 1";
+        this.Remarks = ("Please make sure Hue Color Lamp 1 is present on Hue Bridge."+nonReachableLights.toString() + ": Are Non Reachable Lights.");
+        this.sendTohtml = createHTMLReport(this.Status, this.results, this.Remarks);
     }
     
 

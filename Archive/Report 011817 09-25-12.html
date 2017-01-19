@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>GoogleHome-Hue Daily Report</title>
+</head>
+<body bgcolor="#E6E6FA">
+<h1>
+<center>
+Google Home - Philips Hue Daily Test Report</center>
+</h1>
+<h2>
+<center>
+Local Integration</center>
+</h2>
+
+<center>
+<table width="80%" style="border:1px solid black;border-collapse:collapse">
+<tr>
+<th style="border:1px solid black;border-collapse:collapse">
+Test ID</th>
+<th style="border:1px solid black;border-collapse:collapse">
+Test Command Name</th>
+<th style="border:1px solid black;border-collapse:collapse">
+Expected Results</th>
+<th style="border:1px solid black;border-collapse:collapse">
+Actual Results</th>
+<th style="border:1px solid black;border-collapse:collapse">
+Status</th>
+<th style="border:1px solid black;border-collapse:collapse">
+Remarks</th>
+</tr>
+<tr>
+<td style="border:1px solid black;border-collapse:collapse"><font face="Verdana">
+1</td>
+</font>
+<td style="border:1px solid black;border-collapse:collapse"><font face="Verdana">
+TurnONAllLights</td>
+</font>
+<td style="border:1px solid black;border-collapse:collapse">
+All lights Present on Bridge should Turn ON</td>
+<td style="border:1px solid black;border-collapse:collapse">
+[Hue lightstrip plus 1]: Lights are Still OFF</td>
+<td style="border:1px solid black;border-collapse:collapse">
+FAIL</td>
+<td style="border:1px solid black;border-collapse:collapse">
+Please check Network Connection, Hue Bridge connection in Google Home and Light Status Manually[Hue lightstrip plus 3, Hue color lamp 14]:Lights are not reachable</td>
+</tr>
+<tr>
+<td style="border:1px solid black;border-collapse:collapse">
+6</td>
+<td style="border:1px solid black;border-collapse:collapse">
+Turn ON Hue color Lamp 1</td>
+<td style="border:1px solid black;border-collapse:collapse">
+Hue Color Lamp 1 Should Turn ON</td>
+<td style="border:1px solid black;border-collapse:collapse">
+Hue Bridge Doesn't have Hue Color Lamp 1</td>
+<td style="border:1px solid black;border-collapse:collapse">
+FAIL</td>
+<td style="border:1px solid black;border-collapse:collapse">
+Please make sure Hue Color Lamp 1 is present on Hue Bridge.[Hue color lamp 14]: Are Non Reachable Lights.</td>
+</tr>
+</table>
+</center>
+<h3>
+Test Cases Not Executed-
+<h5>Turn OFF All Lights</h5>
+<h5>Turn All Lights Red</h5>
+<h5>Turn All Lights Green</h5>
+<h5>Set Brightness for All Lights to 100%</h5>
