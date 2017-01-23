@@ -22,7 +22,7 @@ public class selTurnONAll
 	  DesiredCapabilities capabilities=DesiredCapabilities.chrome();
 	  capabilities.setCapability(CapabilityType.ForSeleniumServer.ENSURING_CLEAN_SESSION,true);
 	  
-	  
+	 /* 
 	  driver.manage().deleteAllCookies();
     driver.get("https://developers.google.com/actions/tools/web-simulator");
     
@@ -54,14 +54,14 @@ public class selTurnONAll
     driver.findElement(By.id("signIn")).click();
     
     driver.switchTo().window(winHandleBefore);
-    
+    */
     Pattern commandLineImage = new Pattern("CommandLineImage.PNG");
     
     Screen turnOnAllLightsTestScreen = new Screen();
     driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
     turnOnAllLightsTestScreen.mouseMove(commandLineImage);
     turnOnAllLightsTestScreen.click();
-    turnOnAllLightsTestScreen.type("turn on all lights");
+    turnOnAllLightsTestScreen.type("Turn on the lights");
     turnOnAllLightsTestScreen.type("\n");
     
     HBcheckAllLightsON hbturnonalllights = new HBcheckAllLightsON();
