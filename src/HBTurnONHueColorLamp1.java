@@ -97,11 +97,12 @@ public class HBTurnONHueColorLamp1
   {
     System.out.println("htmlResults: " + htmlResults + " htmlStatus: " + htmlStatus + " htmlRemarks :" + htmlRemarks);
     String htmlString1 = 
-      "<tr>\n<td style=\"border:1px solid black;border-collapse:collapse\">\n6</td>\n<td style=\"border:1px solid black;border-collapse:collapse\">\nTurn ON Hue color Lamp 1</td>\n<td style=\"border:1px solid black;border-collapse:collapse\">\nHue Color Lamp 1 Should Turn ON</td>\n<td style=\"border:1px solid black;border-collapse:collapse\">\n" + 
-      
-      htmlResults + "</td>\n" + 
-      "<td style=\"border:1px solid black;border-collapse:collapse\">\n" + htmlStatus + "</td>\n" + 
-      "<td style=\"border:1px solid black;border-collapse:collapse\">\n" + htmlRemarks + "</td>\n" + "</tr>\n";
+      "<tr>\n<td style=\"border:1px solid black;border-collapse:collapse\">\n6</td>\n"
+      + "<td style=\"border:1px solid black;border-collapse:collapse\">\nTurn ON Hue color Lamp 1</td>\n"
+      + "<td style=\"border:1px solid black;border-collapse:collapse\">\nHue Color Lamp 1 Should Turn ON</td>\n"
+      + "<td style=\"border:1px solid black;border-collapse:collapse\">\n" +htmlResults + "</td>\n" 
+      + "<td style=\"border:1px solid black;border-collapse:collapse\">\n" + htmlStatus + "</td>\n" 
+      +"<td style=\"border:1px solid black;border-collapse:collapse\">\n" + htmlRemarks + "</td>\n" + "</tr>\n";
     
     return htmlString1;
   }
