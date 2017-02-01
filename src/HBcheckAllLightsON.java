@@ -75,9 +75,15 @@ public class HBcheckAllLightsON
   
   public String createHTMLReport(String resultString, String statusString, String resultRemarks)
   {
-    String htmlString = "<center>\n<table width=\"80%\" style=\"border:1px solid black;border-collapse:collapse\">\n<tr>\n<th style=\"border:1px solid black;border-collapse:collapse\">\nTest ID</th>\n<th style=\"border:1px solid black;border-collapse:collapse\">\nTest Command Name</th>\n<th style=\"border:1px solid black;border-collapse:collapse\">\nExpected Results</th>\n<th style=\"border:1px solid black;border-collapse:collapse\">\nActual Results</th>\n<th style=\"border:1px solid black;border-collapse:collapse\">\nStatus</th>\n<th style=\"border:1px solid black;border-collapse:collapse\">\nRemarks</th>\n</tr>\n";
+    /*String htmlString = "<center>\n<table width=\"80%\" style=\"border:1px solid black;border-collapse:collapse\">\n"
+    		+ "<tr>\n<th style=\"border:1px solid black;border-collapse:collapse\">\nTest ID</th>\n"
+    		+ "<th style=\"border:1px solid black;border-collapse:collapse\">\nTest Command Name</th>\n"
+    		+ "<th style=\"border:1px solid black;border-collapse:collapse\">\nExpected Results</th>\n"
+    		+ "<th style=\"border:1px solid black;border-collapse:collapse\">\nActual Results</th>\n"
+    		+ "<th style=\"border:1px solid black;border-collapse:collapse\">\nStatus</th>\n"
+    		+ "<th style=\"border:1px solid black;border-collapse:collapse\">\nRemarks</th>\n</tr>\n";*/
     
-    String htmlString1 = htmlString + 
+    String htmlString1 = //htmlString + 
       "<tr>\n" + 
       "<td style=\"border:1px solid black;border-collapse:collapse\"><font face=\"Verdana\">\n" + "1" + "</td>\n"+"</font>\n" + 
       "<td style=\"border:1px solid black;border-collapse:collapse\"><font face=\"Verdana\">\n" + "TurnONAllLights" + "</td>\n" +"</font>\n" + 
