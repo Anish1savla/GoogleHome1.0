@@ -155,24 +155,28 @@ public class HueGoogleHome
     System.out.println("Inside start Test");
     TestCases tc = new TestCases();
     
-    //tc.turnonalllights(bridge, driver);
+    tc.turnonalllights(bridge, driver);
+    
+    tc.turnOFFHueColorLamp1(bridge, driver);
     
     tc.turnoffalllights(bridge, driver);
     
-    //tc.changeColorToRed(bridge, driver);
+    tc.changeColorToRed(bridge, driver);
     
-   // tc.changeColorGreen(bridge, driver);
+    tc.changeColorGreen(bridge, driver);
     
     
-    //tc.turnoffalllights(bridge, driver);
+    tc.turnoffalllights(bridge, driver);
     
-    //tc.turnONHueColorLamp1(bridge, driver);
+    tc.turnONHueColorLamp1(bridge, driver);
     
-    //tc.SetBrightnessTo100(bridge, driver);
+    tc.SetBrightnessTo100(bridge, driver);
     
-    //tc.turnoffalllights(bridge,s driver);
+    tc.DimAllLights(bridge,driver);
     
-    //tc.turnoffalllights(bridge, driver);
+    tc.turnoffalllights(bridge, driver);
+    
+    tc.turnoffalllights(bridge, driver);
    
     System.out.println("Calling HTML Report create now");
     

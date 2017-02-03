@@ -16,6 +16,8 @@ public class TestCases
   public String setBrightness100;
   public String nullString = "";
   public String turnONhueColorLamp1;
+  public String turnOFFhueColorLamp1;
+  public String DimAll;
   //htmlReport hr = new htmlReport();
   
   public void turnonalllights(PHBridge bridge, WebDriver driver)
@@ -61,12 +63,33 @@ public class TestCases
     //System.out.println("turnONHueColorLamp1:" + this.turnONhueColorLamp1);
   }
   
+  
+  public void turnOFFHueColorLamp1(PHBridge bridge, WebDriver driver)
+    throws FindFailed, InterruptedException
+  {
+    selTurnOFFHueColorLampOne stoffhcl1 = new selTurnOFFHueColorLampOne();
+    this.turnOFFhueColorLamp1 = stoffhcl1.selTurnOFFHueColorLamp1(bridge, driver);
+    System.out.println("turnOFFHueColorLamp1 in Test Case:" + this.turnOFFhueColorLamp1);
+  }
+  
+  
+  public void DimAllLights(PHBridge bridge, WebDriver driver)
+		    throws FindFailed, InterruptedException
+		  {
+		    HBDimAllLights hbdimall = new HBDimAllLights();
+		    this.DimAll = hbdimall.HBDimLights(bridge,driver);
+		    //System.out.println("turnOFFHueColorLamp1 in Test Case:" + this.DimAll);
+		  }
+		  
+  
   public void createHTMLReport()
     throws IOException
   {
     htmlReport hr = new htmlReport();
-    hr.createHTMLReport(this.turnONAll, this.turnOFFAll, this.changeColorRed, this.changeColorGreen, this.setBrightness100, this.turnONhueColorLamp1);
+    hr.createHTMLReport(this.turnONAll, this.turnOFFAll, this.changeColorRed, this.changeColorGreen, 
+    		this.setBrightness100, this.turnONhueColorLamp1,this.turnOFFhueColorLamp1,DimAll);
   }
+
 
 
 }

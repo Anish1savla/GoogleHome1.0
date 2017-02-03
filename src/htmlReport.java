@@ -12,7 +12,8 @@ public class htmlReport
   String finalHTMLReportString = "";
   String reportNotes = "</table>\n</center>\n<h3>\nTest Cases Not Executed-\n";
   
-  public void createHTMLReport(String turnONAll, String turnOFFAll, String changeColorRed, String changeColorGreen, String setBrightness100, String turnONhueColorLamp1)
+  public void createHTMLReport(String turnONAll, String turnOFFAll, String changeColorRed, String changeColorGreen, 
+		  String setBrightness100, String turnONhueColorLamp1, String turnOFFhueColorLamp1,String DimAll)
     throws IOException
   {
 	  
@@ -74,8 +75,41 @@ public class htmlReport
     {
       this.finalHTMLReportString += turnONhueColorLamp1;
     }
+    if (turnOFFhueColorLamp1 == null)
+    {
+    	System.out.println("In html report:"+turnOFFhueColorLamp1);
+      turnOFFhueColorLamp1 = "Turn OFF Hue Color Lamp 1";
+      this.reportNotes = (this.reportNotes + "<h5>" + turnOFFhueColorLamp1 + "</h5>\n");
+    }
+    else
+    {
+    	System.out.println("In html report ELSE:"+turnOFFhueColorLamp1);
+      this.finalHTMLReportString += turnOFFhueColorLamp1;
+    }
     
-    this.reportHeader = "<!DOCTYPE html>\n<html>\n<head>\n<title>GoogleHome-Hue Daily Report</title>\n</head>\n<body bgcolor=\"#E6E6FA\">\n<h1>\n<center>\nGoogle Home - Philips Hue Daily Test Report</center>\n</h1>\n<h2>\n<center>\nLocal Integration</center>\n</h2>\n\n";
+    if (DimAll == null)
+    {
+    	System.out.println("In html report:"+DimAll);
+    	DimAll = "Dim All Lights";
+      this.reportNotes = (this.reportNotes + "<h5>" + DimAll + "</h5>\n");
+    }
+    else
+    {
+    	System.out.println("In html report ELSE:"+DimAll);
+      this.finalHTMLReportString += DimAll;
+    }
+    
+    
+    this.reportHeader = "<!DOCTYPE html>\n<html>\n<head>\n<title>GoogleHome-Hue Daily Report</title>\n</head>\n"
+    		+ "<body bgcolor=\"#E6E6FA\">\n<h1>\n<center>\nGoogle Home - Philips Hue Daily Test Report</center>\n</h1>\n"
+    		+ "<h2>\n<center>\nLocal Integration</center>\n</h2>\n\n"
+    		+"<center>\n<table width=\"80%\" style=\"border:1px solid black;border-collapse:collapse\">\n"
+    		+ "<tr>\n<th style=\"border:1px solid black;border-collapse:collapse\">\nTest ID</th>\n"
+    		+ "<th style=\"border:1px solid black;border-collapse:collapse\">\nTest Command Name</th>\n"
+    		+ "<th style=\"border:1px solid black;border-collapse:collapse\">\nExpected Results</th>\n"
+    		+ "<th style=\"border:1px solid black;border-collapse:collapse\">\nActual Results</th>\n"
+    		+ "<th style=\"border:1px solid black;border-collapse:collapse\">\nStatus</th>\n"
+    		+ "<th style=\"border:1px solid black;border-collapse:collapse\">\nRemarks</th>\n</tr>\n";
     
     System.out.println("Creating Report HTML file");
     

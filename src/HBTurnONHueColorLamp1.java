@@ -20,7 +20,7 @@ public class HBTurnONHueColorLamp1
   public String HBTurnONhueColorLampOne(PHBridge bridge)
     throws InterruptedException
   {
-    System.out.println("/***************************Inside Hue Bridge Turn ON Hue Color Lamp 1 class*********************************/");
+    //System.out.println("/***************************Inside Hue Bridge Turn ON Hue Color Lamp 1 class*********************************/");
     TimeUnit.SECONDS.sleep(30);
     PHBridgeResourcesCache cache = bridge.getResourceCache();
     List<PHLight> allLights = cache.getAllLights();
@@ -34,17 +34,17 @@ public class HBTurnONHueColorLamp1
       PHLightState lightState = lights.getLastKnownLightState();
       
       String lightName = lights.getName();
-      System.out.println(lightName);
+      //System.out.println(lightName);
       
       Boolean lightStatus = lightState.isOn();
       Boolean HCL1 = lightName.contains(HueColorLampName);
-      System.out.println("HCL1:"+HCL1);
+      //System.out.println("HCL1:"+HCL1);
       Boolean lightReachable = lightState.isReachable();
       if ((lightName.equals("Hue Color Lamp 1")) && (lightReachable.booleanValue()) && (lightStatus.booleanValue()))
       {
         TrueLights.add(lights.getName());
         this.noHueColorLamp1Counter++;
-        System.out.println(noHueColorLamp1Counter);
+        //System.out.println(noHueColorLamp1Counter);
       }
       else if ((lightName.equals("Hue Color Lamp 1")) && (lightReachable.booleanValue()) && (!lightStatus.booleanValue()))
       {
@@ -59,13 +59,17 @@ public class HBTurnONHueColorLamp1
         nonReachableLights.add(lights.getName());
       }
     }
-    System.out.println(noHueColorLamp1Counter);
+    //System.out.println(noHueColorLamp1Counter);
     
     if ((FalseLights.isEmpty()) && (nonReachableHuecolorLamp1.isEmpty()))
     {
       this.results = "PASS";
       this.Status = "Hue Color Lamp 1 Turned ON";
+      if(nonReachableLights.isEmpty()==false){
       this.Remarks = (nonReachableLights.toString() + ": Are Non Reachable Lights.");
+      }else{
+    	  Remarks=" ";
+      }
       this.sendTohtml = createHTMLReport(this.Status, this.results, this.Remarks);
     }
     else if (!FalseLights.isEmpty())
@@ -95,7 +99,7 @@ public class HBTurnONHueColorLamp1
   
   public String createHTMLReport(String htmlResults, String htmlStatus, String htmlRemarks)
   {
-    System.out.println("htmlResults: " + htmlResults + " htmlStatus: " + htmlStatus + " htmlRemarks :" + htmlRemarks);
+    //System.out.println("htmlResults: " + htmlResults + " htmlStatus: " + htmlStatus + " htmlRemarks :" + htmlRemarks);
     String htmlString1 = 
       "<tr>\n<td style=\"border:1px solid black;border-collapse:collapse\">\n6</td>\n"
       + "<td style=\"border:1px solid black;border-collapse:collapse\">\nTurn ON Hue color Lamp 1</td>\n"
