@@ -145,8 +145,8 @@ public class HBDimAllLights {
 	    	Results = "PASS";
 	    	Status = "All lights are Dimmed by 60% of Current Brightness Level";
 	    	if(nonReachableLights.isEmpty()==true){
-	    		Remarks = " ";
-	    		//Remarks= "Old Brightness level of lights : "+OldBrightness.toString()+"New Brightness level of lights: "+NewBrightness.toString();
+	    		//Remarks = " ";
+	    		Remarks= "Old Brightness level of lights : "+OldBrightness.toString()+"\n"+"New Brightness level of lights: "+NewBrightness.toString();
 	    		//System.out.println("Remarks:"+Remarks);
 	    	}else {
 	    	Remarks = nonReachableLights.toString()+": Are non Reachable Light.";
@@ -156,7 +156,7 @@ public class HBDimAllLights {
 	    else if(FalseLights.isEmpty()==false){
 	    		Results="FAIL";
 	    		Status= "Dimming Level of lights : "+FalseLights.toString()+" is incorrect";
-	    		Remarks= "Old Brightness level of lights : "+OldBrightness.toString()+"\nNew Brightness level of lights: "+NewBrightness.toString();
+	    		Remarks= "Old Brightness level of lights : "+OldBrightness.toString()+"\n"+"New Brightness level of lights: "+NewBrightness.toString();
 	    		sendTohtml=createHTMLReport(Results,Status,Remarks);
 	    	}
 	     

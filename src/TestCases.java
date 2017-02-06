@@ -1,3 +1,4 @@
+
 import java.io.IOException;
 
 import org.openqa.selenium.WebDriver;
@@ -18,6 +19,9 @@ public class TestCases
   public String turnONhueColorLamp1;
   public String turnOFFhueColorLamp1;
   public String DimAll;
+  public String DimHueGo2;
+  public String BrightenAllLights;
+  public String Brighteness10Percent;
   //htmlReport hr = new htmlReport();
   
   public void turnonalllights(PHBridge bridge, WebDriver driver)
@@ -80,15 +84,32 @@ public class TestCases
 		    this.DimAll = hbdimall.HBDimLights(bridge,driver);
 		    //System.out.println("turnOFFHueColorLamp1 in Test Case:" + this.DimAll);
 		  }
-		  
+
+  public void DimHueGo2(PHBridge bridge, WebDriver driver)
+		  throws FindFailed, InterruptedException{
+	  HBDimHueGo2 hbdhg2 = new HBDimHueGo2();
+	  DimHueGo2 = hbdhg2.DimHueGo2(bridge,driver);
+  }
   
+  public void BrightenAllLights(PHBridge bridge, WebDriver driver)
+		  throws FindFailed, InterruptedException{
+	  HBBrightenAllLights hbball = new HBBrightenAllLights();
+	  BrightenAllLights = hbball.BrightenAllLights(bridge, driver);
+  }  
+
+  public void SetBrightness10Percent(PHBridge bridge, WebDriver driver)
+		  throws FindFailed, InterruptedException{
+	  selSetBrightness10Percent sb10p = new selSetBrightness10Percent();
+	  Brighteness10Percent = sb10p.SetBrightness10Percent(bridge,driver);
+  }  
   public void createHTMLReport()
     throws IOException
   {
     htmlReport hr = new htmlReport();
     hr.createHTMLReport(this.turnONAll, this.turnOFFAll, this.changeColorRed, this.changeColorGreen, 
-    		this.setBrightness100, this.turnONhueColorLamp1,this.turnOFFhueColorLamp1,DimAll);
+    		this.setBrightness100, this.turnONhueColorLamp1,this.turnOFFhueColorLamp1,DimAll,DimHueGo2,Brighteness10Percent);
   }
+
 
 
 

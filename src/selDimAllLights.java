@@ -19,5 +19,6 @@ public class selDimAllLights {
 	    turnONHueColorLamp1.type("Dim The Lights");
 	    turnONHueColorLamp1.type("\n");
 	    	
+	   
 	}
 }

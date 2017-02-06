@@ -55,14 +55,17 @@ public class HueGoogleHome
   private static void initializeHue(ConnectCallback connectCallback)
     throws InterruptedException
   {
-/*    
-    */
+	  
+	  
     try
     {
     	
       HueBridgeConnection bh = new HueBridgeConnection();
       File BridgeConnectionFile = new File("BridgeProperty.txt");
-      if (BridgeConnectionFile.exists()==true){
+       
+      
+       if (BridgeConnectionFile.exists()==true){
+       
     	  BufferedReader br = new BufferedReader(new FileReader("BridgeProperty.txt"));
     	  String userNamefromText;
     	  int CounterExecution=0;
@@ -90,24 +93,9 @@ public class HueGoogleHome
     	   // System.out.println("Hue Bridge connection is done");
       }
       
-      
-      /*
-      if (((userNameStored == null) || (userNameStored == "")) && ((ipAddressStored == null) || (ipAddressStored == "")))
-      {
-        System.out.println("Sending New IP and NULL User");
-        bh.connectToBridgeWithIp("192.168.1.7", null, connectCallback);
-        TimeUnit.SECONDS.sleep(3);
-        System.out.println("Hue Bridge connection is done");
-      }
-      else
-      {
-        System.out.println("Sending store ip and user");
-        System.out.println("IP Send :" + ipAddressStored);
-        System.out.println("UserName Send :" + userNameStored);
-        
-      }*/
     }
-    catch (IOException localIOException) {
+      
+        catch (IOException localIOException) {
     	
     }
   }
@@ -155,22 +143,27 @@ public class HueGoogleHome
     System.out.println("Inside start Test");
     TestCases tc = new TestCases();
     
+    
+    
     tc.turnonalllights(bridge, driver);
+    
+    tc.SetBrightness10Percent(bridge,driver);
     
     tc.turnOFFHueColorLamp1(bridge, driver);
     
-    tc.turnoffalllights(bridge, driver);
+    //tc.turnoffalllights(bridge, driver);
     
     tc.changeColorToRed(bridge, driver);
     
     tc.changeColorGreen(bridge, driver);
-    
     
     tc.turnoffalllights(bridge, driver);
     
     tc.turnONHueColorLamp1(bridge, driver);
     
     tc.SetBrightnessTo100(bridge, driver);
+    
+    tc.DimHueGo2(bridge,driver);
     
     tc.DimAllLights(bridge,driver);
     
@@ -184,15 +177,11 @@ public class HueGoogleHome
     
     driver.close();
   
-    
     SendEmailForReport sendEmail = new SendEmailForReport();
     sendEmail.sendEmail();
     
     System.exit(0);
     
-  }  
-  	
- 
-    //TimeUnit.SECONDS.sleep(3);
+  }
    
 }
