@@ -13,7 +13,7 @@ public class htmlReport
   String reportNotes = "</table>\n</center>\n<h3>\nTest Cases Not Executed-\n";
   
   public void createHTMLReport(String turnONAll, String turnOFFAll, String changeColorRed, String changeColorGreen, 
-		  String setBrightness100, String turnONhueColorLamp1, String turnOFFhueColorLamp1,String DimAll)
+		  String setBrightness100, String turnONhueColorLamp1, String turnOFFhueColorLamp1,String DimAll, String DimHueGo2, String BrightenAllLights)
     throws IOException
   {
 	  
@@ -97,6 +97,30 @@ public class htmlReport
     {
     	System.out.println("In html report ELSE:"+DimAll);
       this.finalHTMLReportString += DimAll;
+    }
+    
+    if (DimHueGo2 == null)
+    {
+    	System.out.println("In html report:"+DimHueGo2);
+    	DimHueGo2 = "Dim Hue Go 2";
+      this.reportNotes = (this.reportNotes + "<h5>" + DimHueGo2 + "</h5>\n");
+    }
+    else
+    {
+    	System.out.println("In html report ELSE:"+DimHueGo2);
+      this.finalHTMLReportString += DimHueGo2;
+    }
+    
+    if (BrightenAllLights == null)
+    {
+    	System.out.println("In html report:"+BrightenAllLights);
+    	DimHueGo2 = "Brighten All Lights";
+      this.reportNotes = (this.reportNotes + "<h5>" + BrightenAllLights + "</h5>\n");
+    }
+    else
+    {
+    	System.out.println("In html report ELSE:"+BrightenAllLights);
+      this.finalHTMLReportString += BrightenAllLights;
     }
     
     
