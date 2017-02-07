@@ -18,7 +18,7 @@ public class selSetBrightnessTo100
     setBrightness100.mouseMove(commandLineImage);
     setBrightness100.click();
     
-    setBrightness100.type("Set Brightness for all lights to 100%");
+    setBrightness100.type("Set the lights to 100%");
     setBrightness100.type("\n");
     
     HBSetAllBrightnessTo100 hbsetbright100 = new HBSetAllBrightnessTo100();
