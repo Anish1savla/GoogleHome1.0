@@ -21,7 +21,7 @@ public class selSetBrightness10Percent {
 		    setBrightness10Percent.type("Set the lights to 10%");
 		    setBrightness10Percent.type("\n");
 		    
-		    HBSetBrightness10Percent hbsetbrightness10percent = new HBSetBrightness10Percent();
+		    HBSetBrightnessTo10Percent hbsetbrightness10percent = new HBSetBrightnessTo10Percent();
 		    SetBrightnessto10 = hbsetbrightness10percent.SetBrightness10Percent(bridge,driver);
 		    
 		    //System.out.println("In Turn off hue color lamp one in Selenium:"+SetBrightnessto10);
