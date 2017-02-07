@@ -95,45 +95,33 @@ public class HBDimAllLights {
 	    }
 	    
 	    for (Entry<String, Integer> key : OldBrightness.entrySet()){
-	    	//System.out.println("Old Key  Is:"+key.getKey());
-	    	//System.out.println("Old Value Is:"+key.getValue());
-	    	 //TimeUnit.SECONDS.sleep(2);
+	    	
 	    	for(Entry<String, Integer> NewKey : NewBrightness.entrySet()){
-	    		 //TimeUnit.SECONDS.sleep(2);
+	    	
 	    		currentOldLightName = key.getKey();
 	    		currentNewLightName = NewKey.getKey();
-	    		//System.out.println("New Key Is:"+currentNewLightName);
-	    		//System.out.println("Old Key Is:"+currentOldLightName);
 	    		Boolean x=currentNewLightName.contains(currentOldLightName);
-	    		//System.out.println("Equal or not:"+x);
-	    		
-	    		//System.out.println("In Non Reachable Light list? "+nonReachableLights.contains(currentNewLightName));
 	    		
 	    		if(x==true && nonReachableLights.contains(currentNewLightName)==false){
-	    			//System.out.println("Inside IF Statement");
-	    			//System.out.println("Key Value is same as new key");
-	    			//System.out.println("Old Brightness is:"+key.getValue());
-	    			//System.out.println("New Brightness is:"+NewKey.getValue());
+	    			
 	    			floatvalueofbrightness=key.getValue();
-	    			//System.out.println("floatvalueofbrightness is :"+floatvalueofbrightness);
+	    	
 	    			SixtyPercentBrightnessValue = (floatvalueofbrightness*60)/100;
-	    			//System.out.println("SixtyPercentBrightnessValue is:"+SixtyPercentBrightnessValue);
+	    	
 	    			
 	    			NewCalculatedBrightness = key.getValue()-SixtyPercentBrightnessValue;
-	    			//System.out.println("NewCalculatedBrightness is :"+NewCalculatedBrightness);
+	    	
 	    			
 	    			MaxRange = (int) (NewCalculatedBrightness+1);
 	    			MinRange = (int) (NewCalculatedBrightness-1);
 	    			
-	    			//System.out.println("MaxRange is:"+MaxRange+"\nMinRange is:"+MinRange);
+	    	
 	    			
 	    			
 	    			if(NewCalculatedBrightness>=MinRange && NewCalculatedBrightness<=MaxRange){
 	    				//System.out.println("New Calculated Value is matching");
 	    				TrueLights.add(currentNewLightName);
 	    			}else{
-	    				//System.out.println("New Calcualted value is:"+NewCalculatedBrightness);
-	    				//System.out.println("New Brightness Value is:"+NewKey.getValue());
 	    				FalseLights.add(currentNewLightName);
 	    			}
 	    		}
