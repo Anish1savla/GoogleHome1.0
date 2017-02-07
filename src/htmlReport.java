@@ -13,11 +13,14 @@ public class htmlReport
   String reportNotes = "</table>\n</center>\n<h3>\nTest Cases Not Executed-\n";
   
   public void createHTMLReport(String turnONAll, String turnOFFAll, String changeColorRed, String changeColorGreen, 
-		  String setBrightness100, String turnONhueColorLamp1, String turnOFFhueColorLamp1,String DimAll, String DimHueGo2, String BrightenAllLights)
+		  String setBrightness100, String turnONhueColorLamp1, String turnOFFhueColorLamp1,String DimAll, String DimHueGo2, 
+		  String SetBrighteness10Percent,String BrightenAllLightsBy10P)
     throws IOException
   {
 	  
 	  System.out.println("Inside Create HTML Report");
+	  
+	/*Turn ON All Lights*/  
     if (turnONAll == null)
     {
       turnONAll = "Turn ON All Lights";
@@ -27,6 +30,8 @@ public class htmlReport
     {
       this.finalHTMLReportString += turnONAll;
     }
+    
+    /* Turn OFF All Lights */
     if (turnOFFAll == null)
     {
       turnOFFAll = "Turn OFF All Lights";
@@ -37,6 +42,7 @@ public class htmlReport
       this.finalHTMLReportString += turnOFFAll;
     }
     
+    /* Turn Color Red for All Lights */
     if (changeColorRed == null)
     {
       changeColorRed = "Turn All Lights Red";
@@ -47,6 +53,7 @@ public class htmlReport
       this.finalHTMLReportString += changeColorRed;
     }
     
+    /* Turn Color Green for All Lights */
     if (changeColorGreen == null)
     {
       changeColorGreen = "Turn All Lights Green";
@@ -57,6 +64,7 @@ public class htmlReport
       this.finalHTMLReportString += changeColorGreen;
     }
     
+    /* Set all Lights to 100% */
     if (setBrightness100 == null)
     {
       setBrightness100 = "Set Brightness for All Lights to 100%";
@@ -66,6 +74,7 @@ public class htmlReport
     {
       this.finalHTMLReportString += setBrightness100;
     }
+    /* Turn ON Hue Color Lamp 1 */
     if (turnONhueColorLamp1 == null)
     {
       turnONhueColorLamp1 = "Turn ON Hue Color Lamp 1";
@@ -75,6 +84,8 @@ public class htmlReport
     {
       this.finalHTMLReportString += turnONhueColorLamp1;
     }
+    
+    /* Turn OFF Hue Color Lamp 1 */
     if (turnOFFhueColorLamp1 == null)
     {
     	System.out.println("In html report:"+turnOFFhueColorLamp1);
@@ -87,6 +98,7 @@ public class htmlReport
       this.finalHTMLReportString += turnOFFhueColorLamp1;
     }
     
+    /* Dim All Lights */
     if (DimAll == null)
     {
     	System.out.println("In html report:"+DimAll);
@@ -99,6 +111,7 @@ public class htmlReport
       this.finalHTMLReportString += DimAll;
     }
     
+    /* Dim Hue Go 2 */
     if (DimHueGo2 == null)
     {
     	System.out.println("In html report:"+DimHueGo2);
@@ -111,16 +124,30 @@ public class htmlReport
       this.finalHTMLReportString += DimHueGo2;
     }
     
-    if (BrightenAllLights == null)
+    /* Set All Lights to 10% */
+    if (SetBrighteness10Percent == null)
     {
-    	System.out.println("In html report:"+BrightenAllLights);
+    	System.out.println("In html report:"+SetBrighteness10Percent);
     	DimHueGo2 = "Brighten All Lights";
-      this.reportNotes = (this.reportNotes + "<h5>" + BrightenAllLights + "</h5>\n");
+      this.reportNotes = (this.reportNotes + "<h5>" + SetBrighteness10Percent + "</h5>\n");
     }
     else
     {
-    	System.out.println("In html report ELSE:"+BrightenAllLights);
-      this.finalHTMLReportString += BrightenAllLights;
+    	System.out.println("In html report ELSE:"+SetBrighteness10Percent);
+      this.finalHTMLReportString += SetBrighteness10Percent;
+    }
+    
+    /* Brighten All Lights By 10% */
+    if (BrightenAllLightsBy10P == null)
+    {
+    	System.out.println("In html report:"+BrightenAllLightsBy10P);
+    	DimHueGo2 = "Brighten All Lights by 10%";
+      this.reportNotes = (this.reportNotes + "<h5>" + BrightenAllLightsBy10P + "</h5>\n");
+    }
+    else
+    {
+    	System.out.println("In html report ELSE:"+BrightenAllLightsBy10P);
+      this.finalHTMLReportString += BrightenAllLightsBy10P;
     }
     
     
