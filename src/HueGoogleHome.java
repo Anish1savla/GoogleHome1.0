@@ -145,31 +145,33 @@ public class HueGoogleHome
     
     
     
-    tc.turnonalllights(bridge, driver);
+    //tc.turnonalllights(bridge, driver);
     
-    tc.SetBrightness10Percent(bridge,driver);
+    //tc.SetBrightnessTo10Percent(bridge,driver);
     
-    tc.turnOFFHueColorLamp1(bridge, driver);
+    //tc.turnOFFHueColorLamp1(bridge, driver);
     
     //tc.turnoffalllights(bridge, driver);
     
-    tc.changeColorToRed(bridge, driver);
+    //tc.changeColorToRed(bridge, driver);
     
-    tc.changeColorGreen(bridge, driver);
+    //tc.changeColorGreen(bridge, driver);
     
-    tc.turnoffalllights(bridge, driver);
+    //tc.turnoffalllights(bridge, driver);
     
-    tc.turnONHueColorLamp1(bridge, driver);
+    //tc.turnONHueColorLamp1(bridge, driver);
     
-    tc.SetBrightnessTo100(bridge, driver);
+    //tc.SetBrightnessTo100(bridge, driver);
     
-    tc.DimHueGo2(bridge,driver);
+    //tc.DimHueGo2(bridge,driver);
     
-    tc.DimAllLights(bridge,driver);
+    //tc.DimAllLights(bridge,driver);
     
-    tc.turnoffalllights(bridge, driver);
+    //tc.turnoffalllights(bridge, driver);
     
-    tc.turnoffalllights(bridge, driver);
+    //tc.turnoffalllights(bridge, driver);
+    
+    tc.BrightenAllLightsBy10P(bridge,driver);
    
     System.out.println("Calling HTML Report create now");
     
