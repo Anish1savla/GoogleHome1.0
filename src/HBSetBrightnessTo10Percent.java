@@ -61,7 +61,7 @@ public class HBSetBrightnessTo10Percent {
 		    	//System.out.println("Light Name: "+lights.getName()+"Light Brightness: "+CurrentLightBrightness);
 		    }
 		 
-		 if(NewFalseBrightness.isEmpty()==false){
+		 if(NewFalseBrightness.isEmpty()==true){
 			 Status="PASS";
 			 Results="Brightness for all lights set to 10%";
 			 if(nonReachableLights.isEmpty()==true){
@@ -92,9 +92,10 @@ public class HBSetBrightnessTo10Percent {
 			      "<tr>\n<td style=\"border:1px solid black;border-collapse:collapse\">\n10</td>\n"
 			      + "<td style=\"border:1px solid black;border-collapse:collapse\">\nSet the lights to 10%</td>\n"
 			      + "<td style=\"border:1px solid black;border-collapse:collapse\">\nAll Lights Brightness should be set to 10%.</td>\n"
-			      + "<td style=\"border:1px solid black;border-collapse:collapse\">\n" +htmlStatus + "</td>\n" 
-			      + "<td style=\"border:1px solid black;border-collapse:collapse\">\n" + htmlResults + "</td>\n" 
+			      + "<td style=\"border:1px solid black;border-collapse:collapse\">\n" +htmlResults  + "</td>\n" 
+			      + "<td style=\"border:1px solid black;border-collapse:collapse\">\n" + htmlStatus+ "</td>\n" 
 			      +"<td style=\"border:1px solid black;border-collapse:collapse\">\n" + htmlRemarks + "</td>\n" + "</tr>\n";
-				return htmlString1;
+		
+		 return htmlString1;
 	}
 }

@@ -128,7 +128,7 @@ public class htmlReport
     if (SetBrighteness10Percent == null)
     {
     	System.out.println("In html report:"+SetBrighteness10Percent);
-    	DimHueGo2 = "Brighten All Lights";
+    	DimHueGo2 = "Set Brightness for All lights to 10%";
       this.reportNotes = (this.reportNotes + "<h5>" + SetBrighteness10Percent + "</h5>\n");
     }
     else
