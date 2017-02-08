@@ -1,5 +1,7 @@
 
+
 import com.philips.lighting.model.PHBridge;
+
 import org.openqa.selenium.WebDriver;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Pattern;
@@ -21,8 +23,8 @@ public class selSetBrightnessTo100
     setBrightness100.type("Set the lights to 100%");
     setBrightness100.type("\n");
     
-    HBSetAllBrightnessTo100 hbsetbright100 = new HBSetAllBrightnessTo100();
-    return this.HBsetBright100 = hbsetbright100.HBSetBrightnessTo100Percent(bridge);
+    HBSetAllBrightnessTo100 hbtlsb = new HBSetAllBrightnessTo100();
+    return this.HBsetBright100 = hbtlsb.HBSetBrightnessTo100Percent(bridge);
   }
 
 
