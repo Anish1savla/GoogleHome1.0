@@ -171,7 +171,9 @@ public class HueGoogleHome
     
     //tc.turnoffalllights(bridge, driver);
     
-    tc.BrightenAllLightsBy10P(bridge,driver);
+    //tc.BrightenAllLightsBy10P(bridge,driver);
+    
+    tc.TurnLightStripBlue(bridge,driver);
    
     System.out.println("Calling HTML Report create now");
     

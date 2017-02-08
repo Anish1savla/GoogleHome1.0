@@ -22,6 +22,7 @@ public class TestCases
   public String DimHueGo2;
   public String BrightenAllLightsBy10P;
   public String SetBrighteness10Percent;
+  public String TurnLightStripBlue;
   //htmlReport hr = new htmlReport();
   
   public void turnonalllights(PHBridge bridge, WebDriver driver)
@@ -104,6 +105,13 @@ public class TestCases
 	  BrightenAllLightsBy10P = hbball.BrightenAllLights(bridge, driver);
   }  
 
+  public void TurnLightStripBlue(PHBridge bridge, WebDriver driver)
+		  throws FindFailed, InterruptedException{
+	  selTurnHueLightStripBlue stlb = new selTurnHueLightStripBlue();
+	  TurnLightStripBlue = stlb.TurnHueLightStripBlue(bridge,driver);
+  }  
+
+  
   
   public void createHTMLReport()
     throws IOException
@@ -111,7 +119,7 @@ public class TestCases
     htmlReport hr = new htmlReport();
     hr.createHTMLReport(this.turnONAll, this.turnOFFAll, this.changeColorRed, this.changeColorGreen, 
     		this.setBrightness100, this.turnONhueColorLamp1,this.turnOFFhueColorLamp1,DimAll,DimHueGo2,
-    		SetBrighteness10Percent,BrightenAllLightsBy10P);
+    		SetBrighteness10Percent,BrightenAllLightsBy10P,TurnLightStripBlue);
   }
 
 

@@ -14,7 +14,7 @@ public class htmlReport
   
   public void createHTMLReport(String turnONAll, String turnOFFAll, String changeColorRed, String changeColorGreen, 
 		  String setBrightness100, String turnONhueColorLamp1, String turnOFFhueColorLamp1,String DimAll, String DimHueGo2, 
-		  String SetBrighteness10Percent,String BrightenAllLightsBy10P)
+		  String SetBrighteness10Percent,String BrightenAllLightsBy10P, String TurnLightStripBlue)
     throws IOException
   {
 	  
@@ -148,6 +148,19 @@ public class htmlReport
     {
     	System.out.println("In html report ELSE:"+BrightenAllLightsBy10P);
       this.finalHTMLReportString += BrightenAllLightsBy10P;
+    }
+    
+    /* Turn Hue LightStrip Plus 1 Blue*/
+    if (TurnLightStripBlue == null)
+    {
+    	System.out.println("In html report:"+TurnLightStripBlue);
+    	DimHueGo2 = "Turn Hue LightStrip Plus 1 Blue";
+      this.reportNotes = (this.reportNotes + "<h5>" + TurnLightStripBlue + "</h5>\n");
+    }
+    else
+    {
+    	System.out.println("In html report ELSE:"+TurnLightStripBlue);
+      this.finalHTMLReportString += TurnLightStripBlue;
     }
     
     
