@@ -47,6 +47,8 @@ public class HBcheckAllLightsON
         }
       }
     }
+    
+    
     if (lightList.isEmpty())
     {
       this.Status = "PASS";
