@@ -143,15 +143,20 @@ public class HueGoogleHome
     System.out.println("Inside start Test");
     TestCases tc = new TestCases();
     
+    selTurnOFFDummy std = new selTurnOFFDummy();
+    
+    selBrightness100PDummy b100pd = new selBrightness100PDummy();
     
     
     tc.turnonalllights(bridge, driver);
     
     tc.SetBrightnessTo10Percent(bridge,driver);
     
+    b100pd.selBrightnessTo100PDummy();
+    
     tc.turnOFFHueColorLamp1(bridge, driver);
     
-    tc.turnoffalllights(bridge, driver);
+    //tc.turnoffalllights(bridge, driver);
     
     tc.changeColorToRed(bridge, driver);
     
@@ -171,9 +176,15 @@ public class HueGoogleHome
     
     tc.BrightenAllLightsBy10P(bridge,driver);
     
-    tc.turnoffalllights(bridge, driver);
     
-    tc.turnoffalllights(bridge, driver);
+    b100pd.selBrightnessTo100PDummy();
+    
+    tc.DimAllLightsBy20P(bridge,driver);
+    
+    std.SelTurnOFFALLDummy();
+    
+    std.SelTurnOFFALLDummy();
+    
     
    
     System.out.println("Calling HTML Report create now");
