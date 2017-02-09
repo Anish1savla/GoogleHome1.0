@@ -129,8 +129,8 @@ public class HBBrightenAllLightsBy10P {
 			      "<tr>\n<td style=\"border:1px solid black;border-collapse:collapse\">\n11</td>\n"
 			      + "<td style=\"border:1px solid black;border-collapse:collapse\">\n Brighten All Lights By 10%</td>\n"
 			      + "<td style=\"border:1px solid black;border-collapse:collapse\">\n All Lights Should be Brighten by 10% of current Brightness Level.</td>\n"
-			      + "<td style=\"border:1px solid black;border-collapse:collapse\">\n" +htmlStatus + "</td>\n" 
-			      + "<td style=\"border:1px solid black;border-collapse:collapse\">\n" + htmlResults + "</td>\n" 
+			      + "<td style=\"border:1px solid black;border-collapse:collapse\">\n" +htmlResults + "</td>\n" 
+			      + "<td style=\"border:1px solid black;border-collapse:collapse\">\n" +htmlStatus  + "</td>\n" 
 			      +"<td style=\"border:1px solid black;border-collapse:collapse\">\n" + htmlRemarks + "</td>\n" + "</tr>\n";
 		return htmlFinalResults;
 	}
