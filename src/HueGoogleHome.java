@@ -152,12 +152,8 @@ public class HueGoogleHome
     
     tc.SetBrightnessTo10Percent(bridge,driver);
     
-    b100pd.selBrightnessTo100PDummy();
-    
     tc.turnOFFHueColorLamp1(bridge, driver);
-    
-    //tc.turnoffalllights(bridge, driver);
-    
+         
     tc.changeColorToRed(bridge, driver);
     
     tc.changeColorGreen(bridge, driver);
@@ -175,17 +171,14 @@ public class HueGoogleHome
     tc.DimAllLights(bridge,driver);
     
     tc.BrightenAllLightsBy10P(bridge,driver);
-    
-    
+        
     b100pd.selBrightnessTo100PDummy();
     
     tc.DimAllLightsBy20P(bridge,driver);
+          
+    tc.DimHueColorLamp6By30P(bridge,driver);
     
     std.SelTurnOFFALLDummy();
-    
-    std.SelTurnOFFALLDummy();
-    
-    
    
     System.out.println("Calling HTML Report create now");
     

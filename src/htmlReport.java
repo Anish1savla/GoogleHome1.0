@@ -14,11 +14,12 @@ public class htmlReport
   
   public void createHTMLReport(String turnONAll, String turnOFFAll, String changeColorRed, String changeColorGreen, 
 		  String setBrightness100, String turnONhueColorLamp1, String turnOFFhueColorLamp1,String DimAll, String DimHueGo2, 
-		  String SetBrighteness10Percent,String BrightenAllLightsBy10P, String TurnLightStripBlue,String DimAllLightsBy20P)
+		  String SetBrighteness10Percent,String BrightenAllLightsBy10P, String TurnLightStripBlue,String DimAllLightsBy20P,
+		  String DimHueColorLamp6By30P)
     throws IOException
   {
 	  
-	  System.out.println("Inside Create HTML Report");
+	  //System.out.println("Inside Create HTML Report");
 	  
 	/*Turn ON All Lights*/  
     if (turnONAll == null)
@@ -172,11 +173,24 @@ public class htmlReport
     }
     else
     {
-    	System.out.println("In html report ELSE:"+DimAllLightsBy20P);
+    	//System.out.println("In html report ELSE:"+DimAllLightsBy20P);
       this.finalHTMLReportString += DimAllLightsBy20P;
     }
     
+    /* Dim Hue Coloe Lamp 6 By 30% */
     
+    
+    if (DimHueColorLamp6By30P == null)
+    {
+    	//System.out.println("In html report:"+DimHueColorLamp6By30P);
+    	DimHueGo2 = "Dim Hue Color Lamp 6 By 30%";
+      this.reportNotes = (this.reportNotes + "<h5>" + DimHueColorLamp6By30P + "</h5>\n");
+    }
+    else
+    {
+    	//System.out.println("In html report ELSE:"+DimHueColorLamp6By30P);
+      this.finalHTMLReportString += DimHueColorLamp6By30P;
+    }
     
     this.reportHeader = "<!DOCTYPE html>\n<html>\n<head>\n<title>GoogleHome-Hue Daily Report</title>\n</head>\n"
     		+ "<body bgcolor=\"#E6E6FA\">\n<h1>\n<center>\nGoogle Home - Philips Hue Daily Test Report</center>\n</h1>\n"

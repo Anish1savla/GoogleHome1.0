@@ -24,6 +24,7 @@ public class TestCases
   public String SetBrighteness10Percent;
   public String TurnLightStripBlue;
   public String DimAllLightsBy20P;
+  public String DimHueColorLamp6By30P;
   //htmlReport hr = new htmlReport();
   
   public void turnonalllights(PHBridge bridge, WebDriver driver)
@@ -118,14 +119,19 @@ public class TestCases
 	  DimAllLightsBy20P=dlb20p.DimAllLightsBy20Percent(bridge,driver);
   }  
 
-  
+  public void DimHueColorLamp6By30P(PHBridge bridge,WebDriver driver)
+  	throws FindFailed,InterruptedException{
+	  HBDimHueColorLamp6By30P dcl630p = new HBDimHueColorLamp6By30P();
+	  DimHueColorLamp6By30P=dcl630p.DimHueColorLamp6By30P(bridge,driver);
+	  
+  }
   public void createHTMLReport()
     throws IOException
   {
     htmlReport hr = new htmlReport();
     hr.createHTMLReport(this.turnONAll, this.turnOFFAll, this.changeColorRed, this.changeColorGreen, 
     		this.setBrightness100, this.turnONhueColorLamp1,this.turnOFFhueColorLamp1,DimAll,DimHueGo2,
-    		SetBrighteness10Percent,BrightenAllLightsBy10P,TurnLightStripBlue,DimAllLightsBy20P);
+    		SetBrighteness10Percent,BrightenAllLightsBy10P,TurnLightStripBlue,DimAllLightsBy20P,DimHueColorLamp6By30P);
   }
 
 
