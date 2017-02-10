@@ -177,6 +177,10 @@ public class HueGoogleHome
     tc.DimAllLightsBy20P(bridge,driver);
           
     tc.DimHueColorLamp6By30P(bridge,driver);
+       
+    tc.BrightenWhiteLampBy20P(bridge,driver);
+    
+    std.SelTurnOFFALLDummy();
     
     std.SelTurnOFFALLDummy();
    

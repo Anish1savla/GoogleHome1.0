@@ -125,9 +125,9 @@ public class HBDimHueColorLamp6By30P {
 	    	Status="FAIL";
 	    	Results="Hue Color Lamp 6 is Dimmed By 30%. However some other lights also changed Brightness Level.";
 	    	if(nonReachableLights.isEmpty()==true){
-	    		Remarks="Old Brightness Value:"+OldBrightnessValue.toString()+". New Brightness Value:"+NewBrightnessValue.toString();
+	    		Remarks="Brightness changed for:"+NonLamp6FalseLights.toString()+" Lights.";
 	      	}else{
-	      		Remarks="Old Brightness Value:"+OldBrightnessValue.toString()+". New Brightness Value:"+NewBrightnessValue.toString()
+	      		Remarks="Brightness changed for:"+NonLamp6FalseLights.toString()+" Lights."
 	      		+"Non Reachable Lights:"+nonReachableLights.toString();
 	      	}
 	    	sendToHTML=createHTMLReport(Status,Results,Remarks);

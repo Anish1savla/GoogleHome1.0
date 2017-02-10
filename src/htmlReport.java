@@ -15,7 +15,7 @@ public class htmlReport
   public void createHTMLReport(String turnONAll, String turnOFFAll, String changeColorRed, String changeColorGreen, 
 		  String setBrightness100, String turnONhueColorLamp1, String turnOFFhueColorLamp1,String DimAll, String DimHueGo2, 
 		  String SetBrighteness10Percent,String BrightenAllLightsBy10P, String TurnLightStripBlue,String DimAllLightsBy20P,
-		  String DimHueColorLamp6By30P)
+		  String DimHueColorLamp6By30P,String BrightenWhiteLampBy20P)
     throws IOException
   {
 	  
@@ -190,6 +190,20 @@ public class htmlReport
     {
     	//System.out.println("In html report ELSE:"+DimHueColorLamp6By30P);
       this.finalHTMLReportString += DimHueColorLamp6By30P;
+    }
+    
+    /* Brighten White Lamp By 20% */
+      
+    if (BrightenWhiteLampBy20P == null)
+    {
+    	//System.out.println("In html report:"+DimHueColorLamp6By30P);
+    	DimHueGo2 = "Brighten White Lamp By 20%";
+      this.reportNotes = (this.reportNotes + "<h5>" + BrightenWhiteLampBy20P + "</h5>\n");
+    }
+    else
+    {
+    	//System.out.println("In html report ELSE:"+DimHueColorLamp6By30P);
+      this.finalHTMLReportString += BrightenWhiteLampBy20P;
     }
     
     this.reportHeader = "<!DOCTYPE html>\n<html>\n<head>\n<title>GoogleHome-Hue Daily Report</title>\n</head>\n"
