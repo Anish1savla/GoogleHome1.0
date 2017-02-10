@@ -172,7 +172,7 @@ public class HueGoogleHome
     
     tc.BrightenAllLightsBy10P(bridge,driver);
         
-    b100pd.selBrightnessTo100PDummy();
+    //b100pd.selBrightnessTo100PDummy();
     
     tc.DimAllLightsBy20P(bridge,driver);
           
