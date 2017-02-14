@@ -11,6 +11,7 @@ public class selTurnONAllLivingRoomLights {
 
 	
 	public void TurnONAllLivingRoomLights(PHBridge bridge, WebDriver driver) throws FindFailed, InterruptedException{
+		TimeUnit.SECONDS.sleep(2);
 		Pattern commandLineImage = new Pattern("CommandLineImage.PNG");
 	    
 	    Screen turnONLivingRoomLights = new Screen();

@@ -7,7 +7,7 @@ import org.sikuli.script.Screen;
 public class selBrightenWhiteLampBy20P {
 
 	public void BrightenWhiteLampBy20P() throws FindFailed, InterruptedException{
-
+		TimeUnit.SECONDS.sleep(2);
 		Pattern commandLineImage = new Pattern("CommandLineImage.PNG");
 	    
 	    Screen BrightWhiteLamp20P = new Screen();

@@ -1,4 +1,6 @@
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebDriver;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Pattern;
@@ -14,6 +16,7 @@ public class selChangeColorRed
     throws FindFailed, InterruptedException
   {
     System.out.println("Inside selenium change red color");
+    TimeUnit.SECONDS.sleep(2);
     Pattern commandLineImage = new Pattern("CommandLineImage.PNG");
     
     Screen turnOFFAllLightsTestScreen = new Screen();

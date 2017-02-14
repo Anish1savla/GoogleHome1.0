@@ -1,14 +1,7 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Pattern;
 import org.sikuli.script.Screen;
@@ -18,15 +11,15 @@ import com.philips.lighting.model.PHBridge;
 public class selTurnONAll
 {
   String HBTurnONAllLights;
-/*  
+
   public String seleniumTestToTurnAllLightsON(PHBridge bridge, WebDriver driver)
     throws FindFailed, IOException, InterruptedException
   {
-	  
+	/*  
 	  DesiredCapabilities capabilities=DesiredCapabilities.chrome();
 	  capabilities.setCapability(CapabilityType.ForSeleniumServer.ENSURING_CLEAN_SESSION,true);
 	  
-	 /* 
+	 
 	  driver.manage().deleteAllCookies();
     driver.get("https://developers.google.com/actions/tools/web-simulator");
     
@@ -56,9 +49,10 @@ public class selTurnONAll
     driver.findElement(By.xpath("//*[@id='Passwd']")).sendKeys(new CharSequence[] { "HueAutomation" });
     driver.findElement(By.xpath("//*[@id='PersistentCookie']")).click();
     driver.findElement(By.id("signIn")).click();
-    //-------------- Comment here
-    driver.switchTo().window(winHandleBefore);
    
+    driver.switchTo().window(winHandleBefore);
+   */
+	  TimeUnit.SECONDS.sleep(2);
     Pattern commandLineImage = new Pattern("CommandLineImage.PNG");
     
     Screen turnOnAllLightsTestScreen = new Screen();
@@ -73,7 +67,9 @@ public class selTurnONAll
     this.HBTurnONAllLights = hbturnonalllights.HBTurnONAllLight(bridge);
     
     return this.HBTurnONAllLights;
-  }*/
+  }
+  
+  /*
   public String y;
   public String response;
   public String fullLine;
@@ -126,5 +122,5 @@ public class selTurnONAll
 			   System.out.println(response);
 			    return this.HBTurnONAllLights;
 			  }		  
-			
+			*/
 }

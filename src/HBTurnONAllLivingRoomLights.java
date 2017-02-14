@@ -50,6 +50,8 @@ public class HBTurnONAllLivingRoomLights {
 	
     List<String> nonReachableLights = new ArrayList<String>();
     
+    
+    TimeUnit.SECONDS.sleep(20);
     PHBridgeResourcesCache cache = bridge.getResourceCache();
     List<PHLight> allOldLights = cache.getAllLights();
     
@@ -183,9 +185,9 @@ public class HBTurnONAllLivingRoomLights {
     	Status = "FAIL";
     	Result = "All Lights in Living Room Didn't Turned ON.";
     	if(nonReachableLights.isEmpty()==true){
-    		Remarks=FalseLights.toString()+" Lights are still OFF.";
+    		Remarks=FalseLights.toString()+" Light still OFF.";
     	}else{
-    		Remarks=FalseLights.toString()+" Lights are still OFF. "+nonReachableLights.toString()+" Lights are Non Reachable Lights.";
+    		Remarks=FalseLights.toString()+" Light still OFF. "+nonReachableLights.toString()+" Lights are Non Reachable Lights.";
     	}
     	sendToHTML=createHTMLReport(Status,Result,Remarks);
     }else if(FalseLights.isEmpty()==true && FalseNonLivingRoomLights.isEmpty()==false){
@@ -197,7 +199,7 @@ public class HBTurnONAllLivingRoomLights {
     	}else{
     		Remarks="Light Status before providing Command:"+OldAllLightState.toString()+
     				". Light status after providing Command:"+NewAllLightState.toString()
-    				+nonReachableLights.toString()+" Lights are Non Reachable Lights.";
+    				+nonReachableLights.toString()+" Light Non Reachable Lights.";
     	}
     	sendToHTML=createHTMLReport(Status,Result,Remarks);
     }else if(FalseLights.isEmpty()==true && FalseNonLivingRoomLights.isEmpty()==false){
@@ -208,8 +210,8 @@ public class HBTurnONAllLivingRoomLights {
     				". Light status after providing Command:"+NewAllLightState.toString();
     	}else{
     		Remarks="Light Status before providing Command:"+OldAllLightState.toString()+
-    				". Light status after providing Command:"+NewAllLightState.toString()
-    				+nonReachableLights.toString()+" Lights are Non Reachable Lights.";
+    				". Light status after providing Command:"+NewAllLightState.toString()+
+    				"Non Reachable Lights:"+nonReachableLights.toString();
     	}
     	sendToHTML=createHTMLReport(Status,Result,Remarks);
     }

@@ -200,7 +200,7 @@ public class HueGoogleHome
     
     std.SelTurnOFFALLDummy();
    
-    //System.out.println("Calling HTML Report create now");
+    System.out.println("Calling HTML Report create now");
     
     tc.createHTMLReport();
     

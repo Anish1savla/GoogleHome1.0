@@ -1,3 +1,5 @@
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebDriver;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Pattern;
@@ -9,8 +11,8 @@ public class selBrightenAllBy10P {
 	
 	public String BrightenAllLightsBy10P;
 	
-	public String BrightenAllBy10Percent(PHBridge bridge, WebDriver driver) throws FindFailed{
-		
+	public String BrightenAllBy10Percent(PHBridge bridge, WebDriver driver) throws FindFailed, InterruptedException{
+		TimeUnit.SECONDS.sleep(2);
 		 Pattern commandLineImage = new Pattern("CommandLineImage.PNG");
 		    
 		    Screen BrightenBy10Percent = new Screen();
