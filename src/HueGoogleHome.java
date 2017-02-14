@@ -7,12 +7,14 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Pattern;
 import org.sikuli.script.Screen;
 
+import com.gargoylesoftware.htmlunit.javascript.background.JavaScriptExecutor;
 import com.philips.lighting.model.PHBridge;
 
 public class HueGoogleHome
@@ -66,7 +68,8 @@ public class HueGoogleHome
       
        if (BridgeConnectionFile.exists()==true){
        
-    	  BufferedReader br = new BufferedReader(new FileReader("BridgeProperty.txt"));
+    	 // @SuppressWarnings("resource")
+		BufferedReader br = new BufferedReader(new FileReader("BridgeProperty.txt"));
     	  String userNamefromText;
     	  int CounterExecution=0;
     	  while ((userNamefromText = br.readLine()) != null)
@@ -113,7 +116,12 @@ public class HueGoogleHome
       driver.manage().window().maximize();
       System.out.println("Chrome Window Maximized");
       Screen screen = new Screen();
-      TimeUnit.SECONDS.sleep(1);
+      TimeUnit.SECONDS.sleep(3);
+      
+      
+      ((JavascriptExecutor)driver).executeScript("window.scrollTo(0,250)");
+      
+      TimeUnit.SECONDS.sleep(2);
       
       Pattern image1 = new Pattern("Start.PNG");
       //wait(30);
@@ -148,12 +156,15 @@ public class HueGoogleHome
     selBrightness100PDummy b100pd = new selBrightness100PDummy();
     
     
+    
     tc.turnonalllights(bridge, driver);
     
     tc.SetBrightnessTo10Percent(bridge,driver);
     
     tc.turnOFFHueColorLamp1(bridge, driver);
          
+    b100pd.selBrightnessTo100PDummy();
+    
     tc.changeColorToRed(bridge, driver);
     
     tc.changeColorGreen(bridge, driver);
@@ -172,7 +183,7 @@ public class HueGoogleHome
     
     tc.BrightenAllLightsBy10P(bridge,driver);
         
-    //b100pd.selBrightnessTo100PDummy();
+    b100pd.selBrightnessTo100PDummy();
     
     tc.DimAllLightsBy20P(bridge,driver);
           
@@ -182,9 +193,14 @@ public class HueGoogleHome
     
     std.SelTurnOFFALLDummy();
     
+    tc.TurnONAllLivingRoomLights(bridge,driver);
+    
+    
+    std.SelTurnOFFALLDummy();
+    
     std.SelTurnOFFALLDummy();
    
-    System.out.println("Calling HTML Report create now");
+    //System.out.println("Calling HTML Report create now");
     
     tc.createHTMLReport();
     

@@ -68,7 +68,7 @@ public class HBDimHueGo2 {
 		    }	
 		  
 		  selDimHueGo2 sdhg2 = new selDimHueGo2();
-		  sdhg2.selDimHueGo2(bridge, driver);
+		  sdhg2.selDimHueGo2();
 		  
 		  TimeUnit.SECONDS.sleep(30);
 		  PHBridgeResourcesCache cache1 = bridge.getResourceCache();

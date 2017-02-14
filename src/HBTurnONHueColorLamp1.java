@@ -37,7 +37,7 @@ public class HBTurnONHueColorLamp1
       //System.out.println(lightName);
       
       Boolean lightStatus = lightState.isOn();
-      Boolean HCL1 = lightName.contains(HueColorLampName);
+      //Boolean HCL1 = lightName.contains(HueColorLampName);
       //System.out.println("HCL1:"+HCL1);
       Boolean lightReachable = lightState.isReachable();
       if ((lightName.equals("Hue Color Lamp 1")) && (lightReachable.booleanValue()) && (lightStatus.booleanValue()))

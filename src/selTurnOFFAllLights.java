@@ -17,7 +17,7 @@ public class selTurnOFFAllLights
     turnOFFAllLightsTestScreen.mouseMove(commandLineImage);
     turnOFFAllLightsTestScreen.click();
     
-    turnOFFAllLightsTestScreen.type("turn off lights");
+    turnOFFAllLightsTestScreen.type("turn off the lights");
     turnOFFAllLightsTestScreen.type("\n");
     
     HBcheckAllLightsOFF hboff = new HBcheckAllLightsOFF();

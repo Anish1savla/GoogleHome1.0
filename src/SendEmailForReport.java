@@ -41,7 +41,7 @@ public class SendEmailForReport {
 		System.out.println("Port:"+session.getProperty("mail.smtp.port"));
 		
 		try{
-			InternetAddress from = new InternetAddress("HueGHAutomation@gmail.com");
+			//InternetAddress from = new InternetAddress("HueGHAutomation@gmail.com");
 			message.setSubject("Google home daily test report");
 			message.addRecipients(Message.RecipientType.TO, InternetAddress.parse("DL-QAG-US@Philips.com"));
 			//message.addRecipients(Message.RecipientType.TO, InternetAddress.parse("anish.savla@Philips.com"));

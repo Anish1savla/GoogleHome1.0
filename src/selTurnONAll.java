@@ -1,3 +1,7 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -14,7 +18,7 @@ import com.philips.lighting.model.PHBridge;
 public class selTurnONAll
 {
   String HBTurnONAllLights;
-  
+/*  
   public String seleniumTestToTurnAllLightsON(PHBridge bridge, WebDriver driver)
     throws FindFailed, IOException, InterruptedException
   {
@@ -52,9 +56,9 @@ public class selTurnONAll
     driver.findElement(By.xpath("//*[@id='Passwd']")).sendKeys(new CharSequence[] { "HueAutomation" });
     driver.findElement(By.xpath("//*[@id='PersistentCookie']")).click();
     driver.findElement(By.id("signIn")).click();
-    
+    //-------------- Comment here
     driver.switchTo().window(winHandleBefore);
-    */
+   
     Pattern commandLineImage = new Pattern("CommandLineImage.PNG");
     
     Screen turnOnAllLightsTestScreen = new Screen();
@@ -69,5 +73,58 @@ public class selTurnONAll
     this.HBTurnONAllLights = hbturnonalllights.HBTurnONAllLight(bridge);
     
     return this.HBTurnONAllLights;
-  }
+  }*/
+  public String y;
+  public String response;
+  public String fullLine;
+  public String seleniumTestToTurnAllLightsON(PHBridge bridge, WebDriver driver)
+		    throws FindFailed, IOException, InterruptedException
+		  {
+			  
+			  DesiredCapabilities capabilities=DesiredCapabilities.chrome();
+			  capabilities.setCapability(CapabilityType.ForSeleniumServer.ENSURING_CLEAN_SESSION,true);
+			  Pattern commandLineImage = new Pattern("CommandLineImage.PNG");
+			    
+			    Screen turnOnAllLightsTestScreen = new Screen();
+			    driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+			    turnOnAllLightsTestScreen.mouseMove(commandLineImage);
+			    turnOnAllLightsTestScreen.click();
+			    turnOnAllLightsTestScreen.type("Turn on the lights");
+			    turnOnAllLightsTestScreen.type("\n");
+			   
+			    TimeUnit.SECONDS.sleep(10);
+			    
+			   driver.switchTo().frame(driver.findElement(By.tagName("iframe")));
+			   String source=driver.getPageSource();
+			   Boolean x = source.contains("turning 10 lights on");
+			   
+			   //System.out.println(source);
+			   System.out.println(x);
+			   
+			   //String html = "<span class="+"\"Key\""+">"+"\"response\""+":</span> <span class="+"\"string\""+">";
+				//System.out.println(html);	   
+			   File logTextFile = new File("C:\\Users\\310235474\\git\\GoogleHome1.0\\logtextfile.txt");
+			   FileWriter wr = new FileWriter(logTextFile);
+			   wr.write(source);
+			   wr.close();
+			   
+			   FileReader fr = new FileReader("C:\\Users\\310235474\\git\\GoogleHome1.0\\logtextfile.txt");
+			   
+			   BufferedReader br = new BufferedReader(fr);
+			   
+			   while((y=br.readLine())!=null){
+				   if(y.contains("turning 10 lights on")==true){
+					   fullLine=y.toString();
+					   //System.out.println(fullLine);
+					   response= y.substring(63, 96);
+				   }else if(y.contains("Error")==true){
+					   turnOnAllLightsTestScreen.type("Turn on the lights");
+					    turnOnAllLightsTestScreen.type("\n");
+				   }
+			   }
+			   logTextFile.delete();
+			   System.out.println(response);
+			    return this.HBTurnONAllLights;
+			  }		  
+			
 }
