@@ -27,6 +27,7 @@ public class TestCases
   public String DimHueColorLamp6By30P;
   public String BrightenWhiteLampBy20P;
   public String TurnONAllLivingRoomLights;
+  public String TurnOFFAllLivingRoomLights;
   //htmlReport hr = new htmlReport();
   
   public void turnonalllights(PHBridge bridge, WebDriver driver)
@@ -141,7 +142,13 @@ public class TestCases
 			  TurnONAllLivingRoomLights=tonalllr.TurnONAllLivingRoomLights(bridge,driver);
 			  
 }
+
   
+  public void TurnOFFAllLivingRoomLights(PHBridge bridge,WebDriver driver)
+		  	throws FindFailed,InterruptedException{
+	  		HBTurnOFFAllLivingRoomLights tonalllr = new HBTurnOFFAllLivingRoomLights();
+	  		TurnOFFAllLivingRoomLights=tonalllr.TurnOFFAllLivingRoomLights(bridge,driver);
+	}
   
   public void createHTMLReport()
     throws IOException
@@ -150,7 +157,7 @@ public class TestCases
     hr.createHTMLReport(this.turnONAll, this.turnOFFAll, this.changeColorRed, this.changeColorGreen, 
     		this.setBrightness100, this.turnONhueColorLamp1,this.turnOFFhueColorLamp1,DimAll,DimHueGo2,
     		SetBrighteness10Percent,BrightenAllLightsBy10P,TurnLightStripBlue,DimAllLightsBy20P,DimHueColorLamp6By30P,
-    		BrightenWhiteLampBy20P,TurnONAllLivingRoomLights);
+    		BrightenWhiteLampBy20P,TurnONAllLivingRoomLights,TurnOFFAllLivingRoomLights);
   }
 
 

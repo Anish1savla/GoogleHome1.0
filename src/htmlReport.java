@@ -15,7 +15,7 @@ public class htmlReport
   public void createHTMLReport(String turnONAll, String turnOFFAll, String changeColorRed, String changeColorGreen, 
 		  String setBrightness100, String turnONhueColorLamp1, String turnOFFhueColorLamp1,String DimAll, String DimHueGo2, 
 		  String SetBrighteness10Percent,String BrightenAllLightsBy10P, String TurnLightStripBlue,String DimAllLightsBy20P,
-		  String DimHueColorLamp6By30P,String BrightenWhiteLampBy20P, String TurnONAllLivingRoomLights)
+		  String DimHueColorLamp6By30P,String BrightenWhiteLampBy20P, String TurnONAllLivingRoomLights, String TurnOFFAllLivingRoomLights)
     throws IOException
   {
 	  
@@ -89,91 +89,91 @@ public class htmlReport
     /* Turn OFF Hue Color Lamp 1 */
     if (turnOFFhueColorLamp1 == null)
     {
-    	System.out.println("In html report:"+turnOFFhueColorLamp1);
+    	
       turnOFFhueColorLamp1 = "Turn OFF Hue Color Lamp 1";
       this.reportNotes = (this.reportNotes + "<h5>" + turnOFFhueColorLamp1 + "</h5>\n");
     }
     else
     {
-    	System.out.println("In html report ELSE:"+turnOFFhueColorLamp1);
+    	
       this.finalHTMLReportString += turnOFFhueColorLamp1;
     }
     
     /* Dim All Lights */
     if (DimAll == null)
     {
-    	System.out.println("In html report:"+DimAll);
+    	
     	DimAll = "Dim All Lights";
       this.reportNotes = (this.reportNotes + "<h5>" + DimAll + "</h5>\n");
     }
     else
     {
-    	System.out.println("In html report ELSE:"+DimAll);
+    	
       this.finalHTMLReportString += DimAll;
     }
     
     /* Dim Hue Go 2 */
     if (DimHueGo2 == null)
     {
-    	System.out.println("In html report:"+DimHueGo2);
+    	
     	DimHueGo2 = "Dim Hue Go 2";
       this.reportNotes = (this.reportNotes + "<h5>" + DimHueGo2 + "</h5>\n");
     }
     else
     {
-    	System.out.println("In html report ELSE:"+DimHueGo2);
+    	
       this.finalHTMLReportString += DimHueGo2;
     }
     
     /* Set All Lights to 10% */
     if (SetBrighteness10Percent == null)
     {
-    	System.out.println("In html report:"+SetBrighteness10Percent);
+    	
     	DimHueGo2 = "Set Brightness for All lights to 10%";
       this.reportNotes = (this.reportNotes + "<h5>" + SetBrighteness10Percent + "</h5>\n");
     }
     else
     {
-    	System.out.println("In html report ELSE:"+SetBrighteness10Percent);
+    	
       this.finalHTMLReportString += SetBrighteness10Percent;
     }
     
     /* Brighten All Lights By 10% */
     if (BrightenAllLightsBy10P == null)
     {
-    	System.out.println("In html report:"+BrightenAllLightsBy10P);
+    	
     	DimHueGo2 = "Brighten All Lights by 10%";
       this.reportNotes = (this.reportNotes + "<h5>" + BrightenAllLightsBy10P + "</h5>\n");
     }
     else
     {
-    	System.out.println("In html report ELSE:"+BrightenAllLightsBy10P);
+    	
       this.finalHTMLReportString += BrightenAllLightsBy10P;
     }
     
     /* Turn Hue LightStrip Plus 1 Blue*/
     if (TurnLightStripBlue == null)
     {
-    	System.out.println("In html report:"+TurnLightStripBlue);
+    	
     	DimHueGo2 = "Turn Hue LightStrip Plus 1 Blue";
       this.reportNotes = (this.reportNotes + "<h5>" + TurnLightStripBlue + "</h5>\n");
     }
     else
     {
-    	System.out.println("In html report ELSE:"+TurnLightStripBlue);
+    	
       this.finalHTMLReportString += TurnLightStripBlue;
     }
     
     /* Dim The Lights By 20% */
     if (DimAllLightsBy20P == null)
     {
-    	System.out.println("In html report:"+DimAllLightsBy20P);
+    	
     	DimHueGo2 = "Dim the Lights By 20%";
       this.reportNotes = (this.reportNotes + "<h5>" + DimAllLightsBy20P + "</h5>\n");
     }
     else
     {
-    	//System.out.println("In html report ELSE:"+DimAllLightsBy20P);
+    	
       this.finalHTMLReportString += DimAllLightsBy20P;
     }
     
@@ -182,54 +182,57 @@ public class htmlReport
     
     if (DimHueColorLamp6By30P == null)
     {
-    	//System.out.println("In html report:"+DimHueColorLamp6By30P);
+    	
     	DimHueGo2 = "Dim Hue Color Lamp 6 By 30%";
       this.reportNotes = (this.reportNotes + "<h5>" + DimHueColorLamp6By30P + "</h5>\n");
     }
     else
     {
-    	//System.out.println("In html report ELSE:"+DimHueColorLamp6By30P);
-      this.finalHTMLReportString += DimHueColorLamp6By30P;
+       this.finalHTMLReportString += DimHueColorLamp6By30P;
     }
     
     /* Brighten White Lamp By 20% */
       
     if (BrightenWhiteLampBy20P == null)
     {
-    	//System.out.println("In html report:"+DimHueColorLamp6By30P);
-    	DimHueGo2 = "Brighten White Lamp By 20%";
+      DimHueGo2 = "Brighten White Lamp By 20%";
       this.reportNotes = (this.reportNotes + "<h5>" + BrightenWhiteLampBy20P + "</h5>\n");
     }
     else
     {
-    	//System.out.println("In html report ELSE:"+DimHueColorLamp6By30P);
       this.finalHTMLReportString += BrightenWhiteLampBy20P;
     }
     
     /* Turn ON All Lights in Living room*/
     if (BrightenWhiteLampBy20P == null)
     {
-    	//System.out.println("In html report:"+DimHueColorLamp6By30P);
-    	DimHueGo2 = "Brighten White Lamp By 20%";
+      DimHueGo2 = "Brighten White Lamp By 20%";
       this.reportNotes = (this.reportNotes + "<h5>" + BrightenWhiteLampBy20P + "</h5>\n");
     }
     else
     {
-    	//System.out.println("In html report ELSE:"+DimHueColorLamp6By30P);
       this.finalHTMLReportString += BrightenWhiteLampBy20P;
     }
     
     /* Turn ON All lights in Living Room*/
     if (TurnONAllLivingRoomLights == null)
     {
-    	//System.out.println("In html report:"+DimHueColorLamp6By30P);
-    	DimHueGo2 = "Brighten White Lamp By 20%";
+      DimHueGo2 = "Turn ON All Lights in Living Room";
       this.reportNotes = (this.reportNotes + "<h5>" + TurnONAllLivingRoomLights + "</h5>\n");
     }
     else
     {
-    	//System.out.println("In html report ELSE:"+DimHueColorLamp6By30P);
-      this.finalHTMLReportString += TurnONAllLivingRoomLights;
+       this.finalHTMLReportString += TurnONAllLivingRoomLights;
+    }
+    
+    if (TurnOFFAllLivingRoomLights == null)
+    {
+    	DimHueGo2 = "Turn OFF All Lights in Living Room";
+      this.reportNotes = (this.reportNotes + "<h5>" + TurnOFFAllLivingRoomLights + "</h5>\n");
+    }
+    else
+    {
+       this.finalHTMLReportString += TurnOFFAllLivingRoomLights;
     }
     
     
