@@ -69,7 +69,7 @@ public class HBDimAllLights {
 	  selDimAllLights sda = new selDimAllLights();
 	  sda.selDimLights(bridge, driver);
 	  
-	  TimeUnit.SECONDS.sleep(30);
+	  TimeUnit.SECONDS.sleep(27);
 	  PHBridgeResourcesCache cache1 = bridge.getResourceCache();
 	  List<PHLight> allLights1 = cache1.getAllLights();
 	    for(PHLight lights : allLights1)

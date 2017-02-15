@@ -25,7 +25,7 @@ public class HBSetBrightnessTo10Percent {
 	    HashMap<String,Integer> NewFalseBrightness = new HashMap<String,Integer>();
 	    List<String> nonReachableLights = new ArrayList<String>();
 	    
-		 TimeUnit.SECONDS.sleep(30);
+		 TimeUnit.SECONDS.sleep(27);
 		 
 		 PHBridgeResourcesCache cache = bridge.getResourceCache();
 		 

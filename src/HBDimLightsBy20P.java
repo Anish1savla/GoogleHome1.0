@@ -49,7 +49,7 @@ public class HBDimLightsBy20P {
 		    selDimLightsBy20P sdl20p = new selDimLightsBy20P();
 		    sdl20p.selDimAllLightsBy20P();
 		    
-		    TimeUnit.SECONDS.sleep(30);
+		    TimeUnit.SECONDS.sleep(27);
 		    
 		    List<PHLight> allLights1 = cache.getAllLights();
 		    

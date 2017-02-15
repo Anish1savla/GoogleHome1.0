@@ -106,6 +106,8 @@ public class HueGoogleHome
   private static void startTests(PHBridge bridge)
     throws FindFailed, InterruptedException, IOException
   {
+	
+	  System.out.println("Inside start Test");
 	  
 	  System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
       WebDriver driver = new ChromeDriver();
@@ -116,12 +118,12 @@ public class HueGoogleHome
       driver.manage().window().maximize();
       System.out.println("Chrome Window Maximized");
       Screen screen = new Screen();
-      TimeUnit.SECONDS.sleep(3);
+      TimeUnit.SECONDS.sleep(2);
       
       
       ((JavascriptExecutor)driver).executeScript("window.scrollTo(0,250)");
       
-      TimeUnit.SECONDS.sleep(2);
+      TimeUnit.SECONDS.sleep(1);
       
       Pattern image1 = new Pattern("Start.PNG");
       //wait(30);
@@ -147,14 +149,14 @@ public class HueGoogleHome
       
       driver.switchTo().window(winHandleBefore);
       
-	  
-    System.out.println("Inside start Test");
+	System.out.println("Starting Test Case Execution");
+    
     TestCases tc = new TestCases();
     
     selTurnOFFDummy std = new selTurnOFFDummy();
     
     selBrightness100PDummy b100pd = new selBrightness100PDummy();
-   
+   /*
     tc.turnonalllights(bridge, driver);
     
     tc.SetBrightnessTo10Percent(bridge,driver);
@@ -194,6 +196,14 @@ public class HueGoogleHome
     tc.TurnONAllLivingRoomLights(bridge,driver);
     
     tc.TurnOFFAllLivingRoomLights(bridge,driver);
+    
+    tc.TurnONAmbLivingRoomLight(bridge,driver);
+    
+    tc.TurnOFFAmbLivingRoomLight(bridge, driver);
+    */
+    std.SelTurnOFFALLDummy();
+    
+    tc.TurnLivingRoomOrange(bridge, driver);
     
     std.SelTurnOFFALLDummy();
    

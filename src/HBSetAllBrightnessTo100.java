@@ -21,7 +21,7 @@ public class HBSetAllBrightnessTo100
   {
     System.out.println("Inside HBCheck change red color");
     
-    TimeUnit.SECONDS.sleep(30);
+    TimeUnit.SECONDS.sleep(27);
     PHBridgeResourcesCache cache = bridge.getResourceCache();
     
     HashMap<String, Integer> TrueLightListHash = new HashMap<String, Integer>();

@@ -70,7 +70,7 @@ public class HBDimHueGo2 {
 		  selDimHueGo2 sdhg2 = new selDimHueGo2();
 		  sdhg2.selDimHueGo2();
 		  
-		  TimeUnit.SECONDS.sleep(30);
+		  TimeUnit.SECONDS.sleep(27);
 		  PHBridgeResourcesCache cache1 = bridge.getResourceCache();
 		  List<PHLight> allLight1s = cache1.getAllLights();
 		  for(PHLight lights : allLight1s)

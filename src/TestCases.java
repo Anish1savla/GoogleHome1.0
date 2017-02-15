@@ -28,6 +28,9 @@ public class TestCases
   public String BrightenWhiteLampBy20P;
   public String TurnONAllLivingRoomLights;
   public String TurnOFFAllLivingRoomLights;
+  public String TurnONAmbLivingRoom;
+  public String TurnOFFAmbLivingRoom;
+  public String TurnLivingRoomOrange;
   //htmlReport hr = new htmlReport();
   
   public void turnonalllights(PHBridge bridge, WebDriver driver)
@@ -150,6 +153,26 @@ public class TestCases
 	  		TurnOFFAllLivingRoomLights=tonalllr.TurnOFFAllLivingRoomLights(bridge,driver);
 	}
   
+  public void TurnONAmbLivingRoomLight(PHBridge bridge,WebDriver driver)
+		  	throws FindFailed,InterruptedException{
+	  		selTurnONAmbianceLampInLivingRoom tonamblr = new selTurnONAmbianceLampInLivingRoom();
+	  		TurnONAmbLivingRoom=tonamblr.TurnONAmbianceLampInLivingRoom(bridge, driver);
+	}
+
+  public void TurnOFFAmbLivingRoomLight(PHBridge bridge,WebDriver driver)
+		  	throws FindFailed,InterruptedException{
+	  		selTurnOFFAmbianceLampInLivingRoom tonamblr = new selTurnOFFAmbianceLampInLivingRoom();
+	  		TurnOFFAmbLivingRoom=tonamblr.TurnOFFAmbianceLampInLivingRoom(bridge, driver);
+	}
+  
+  
+  public void TurnLivingRoomOrange(PHBridge bridge,WebDriver driver)
+		  	throws FindFailed,InterruptedException{
+	  		selTurnLivingRoomOrange tlrorn = new selTurnLivingRoomOrange();
+	  		TurnLivingRoomOrange=tlrorn.TurnLROrange(bridge, driver);
+	}
+  
+  
   public void createHTMLReport()
     throws IOException
   {
@@ -157,7 +180,8 @@ public class TestCases
     hr.createHTMLReport(this.turnONAll, this.turnOFFAll, this.changeColorRed, this.changeColorGreen, 
     		this.setBrightness100, this.turnONhueColorLamp1,this.turnOFFhueColorLamp1,DimAll,DimHueGo2,
     		SetBrighteness10Percent,BrightenAllLightsBy10P,TurnLightStripBlue,DimAllLightsBy20P,DimHueColorLamp6By30P,
-    		BrightenWhiteLampBy20P,TurnONAllLivingRoomLights,TurnOFFAllLivingRoomLights);
+    		BrightenWhiteLampBy20P,TurnONAllLivingRoomLights,TurnOFFAllLivingRoomLights,TurnONAmbLivingRoom,TurnOFFAmbLivingRoom,
+    		TurnLivingRoomOrange);
   }
 
 

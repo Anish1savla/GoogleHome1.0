@@ -48,7 +48,7 @@ public class HBBrightenWhiteLampBy20P {
 	    selBrightenWhiteLampBy20P bwl20p = new selBrightenWhiteLampBy20P();
 	    bwl20p.BrightenWhiteLampBy20P();
 	    
-	    TimeUnit.SECONDS.sleep(30);
+	    TimeUnit.SECONDS.sleep(27);
 	    
 	    PHBridgeResourcesCache NewCache = bridge.getResourceCache();
 	    

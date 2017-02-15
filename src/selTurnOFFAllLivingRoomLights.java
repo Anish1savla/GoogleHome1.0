@@ -15,7 +15,7 @@ public class selTurnOFFAllLivingRoomLights {
 	    
 	    Screen turnONLivingRoomLights = new Screen();
 	    //driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-	    TimeUnit.SECONDS.sleep(2);
+	    TimeUnit.SECONDS.sleep(1);
 	    turnONLivingRoomLights.mouseMove(commandLineImage);
 	    turnONLivingRoomLights.click();
 	    turnONLivingRoomLights.type("Turn Off Lights in Living Room");

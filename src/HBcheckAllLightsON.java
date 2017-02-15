@@ -20,7 +20,7 @@ public class HBcheckAllLightsON
   {
 	  
 	  System.out.println("/**************************** INSIDE TURN ON ALL LIGHTS **********************************/");
-    TimeUnit.SECONDS.sleep(30);
+    TimeUnit.SECONDS.sleep(27);
     
     PHBridgeResourcesCache cache = bridge.getResourceCache();
     List<PHLight> allLights = cache.getAllLights();

@@ -35,7 +35,7 @@ public class HBTurnLightStripBlue {
 	    
 	    for (PHLight lights : allLights)
 	    {
-	    	System.out.println("Light Name:"+lights.getName());
+	    	//System.out.println("Light Name:"+lights.getName());
 	    	PHLightState lightState = lights.getLastKnownLightState();
 	    	if(lightState.isReachable()==false){
 	    		nonReachableLights.add(lights.getName());

@@ -54,7 +54,7 @@ public class HBDimHueColorLamp6By30P {
 	    selDimHueColorLamp6By30P sdcl630p = new selDimHueColorLamp6By30P();
 	    sdcl630p.selDimHueColorLamp6By30Percent();
 	    
-	    TimeUnit.SECONDS.sleep(30);
+	    TimeUnit.SECONDS.sleep(27);
 	    
 	    PHBridgeResourcesCache Newcache = bridge.getResourceCache();
 	    

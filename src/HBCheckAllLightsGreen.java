@@ -26,7 +26,7 @@ public class HBCheckAllLightsGreen
   {
     //System.out.println("/*************************Inside HBCheck change Green color****************************/");
     
-    TimeUnit.SECONDS.sleep(60);
+    TimeUnit.SECONDS.sleep(50);
     PHBridgeResourcesCache cache = bridge.getResourceCache();
     
     List<PHLight> allLights = cache.getAllLights();

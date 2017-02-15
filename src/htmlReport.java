@@ -15,7 +15,8 @@ public class htmlReport
   public void createHTMLReport(String turnONAll, String turnOFFAll, String changeColorRed, String changeColorGreen, 
 		  String setBrightness100, String turnONhueColorLamp1, String turnOFFhueColorLamp1,String DimAll, String DimHueGo2, 
 		  String SetBrighteness10Percent,String BrightenAllLightsBy10P, String TurnLightStripBlue,String DimAllLightsBy20P,
-		  String DimHueColorLamp6By30P,String BrightenWhiteLampBy20P, String TurnONAllLivingRoomLights, String TurnOFFAllLivingRoomLights)
+		  String DimHueColorLamp6By30P,String BrightenWhiteLampBy20P, String TurnONAllLivingRoomLights, String TurnOFFAllLivingRoomLights,
+		  String TurnONAmbLivingRoom, String TurnOFFAmbLivingRoom, String TurnLivingRoomOrange)
     throws IOException
   {
 	  
@@ -233,6 +234,39 @@ public class htmlReport
     else
     {
        this.finalHTMLReportString += TurnOFFAllLivingRoomLights;
+    }
+    
+    /* Turn ON Hue Ambiance Lamp 1 in Living Room*/ 
+    if (TurnONAmbLivingRoom == null)
+    {
+    	DimHueGo2 = "Turn ON Ambiance Lamp in Living Room";
+      this.reportNotes = (this.reportNotes + "<h5>" + TurnONAmbLivingRoom + "</h5>\n");
+    }
+    else
+    {
+       this.finalHTMLReportString += TurnONAmbLivingRoom;
+    }
+    
+    /*Turn OFF Hue ambiance Lamp 1 in Living Room */
+    if (TurnOFFAmbLivingRoom == null)
+    {
+    	DimHueGo2 = "Turn OFF Ambiance Lamp in Living Room";
+      this.reportNotes = (this.reportNotes + "<h5>" + TurnOFFAmbLivingRoom + "</h5>\n");
+    }
+    else
+    {
+       this.finalHTMLReportString += TurnOFFAmbLivingRoom;
+    }
+    
+    /*Turn Living Room Lights Orange */
+    if (TurnLivingRoomOrange == null)
+    {
+    	DimHueGo2 = "Turn OFF Ambiance Lamp in Living Room";
+      this.reportNotes = (this.reportNotes + "<h5>" + TurnLivingRoomOrange + "</h5>\n");
+    }
+    else
+    {
+       this.finalHTMLReportString += TurnLivingRoomOrange;
     }
     
     

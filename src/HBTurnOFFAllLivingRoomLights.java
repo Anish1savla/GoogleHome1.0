@@ -90,7 +90,7 @@ public class HBTurnOFFAllLivingRoomLights {
     selTurnOFFAllLivingRoomLights stonlrl = new selTurnOFFAllLivingRoomLights();
     stonlrl.TurnOFFAllLivingRoomLights(bridge, driver);
     
-    TimeUnit.SECONDS.sleep(30);
+    TimeUnit.SECONDS.sleep(27);
     
     PHBridgeResourcesCache Newcache = bridge.getResourceCache();
     List<PHLight> allLights = Newcache.getAllLights();

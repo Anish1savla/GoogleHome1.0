@@ -62,7 +62,7 @@ public class HBBrightenAllLightsBy10P {
 			selBrightenAllBy10P  selbaby10p = new selBrightenAllBy10P();
 		    selbaby10p.BrightenAllBy10Percent(bridge,driver);
 		
-		    TimeUnit.SECONDS.sleep(30);
+		    TimeUnit.SECONDS.sleep(27);
 			PHBridgeResourcesCache cache1 = bridge.getResourceCache();
 			List<PHLight> allLights1 = cache1.getAllLights();
 		    

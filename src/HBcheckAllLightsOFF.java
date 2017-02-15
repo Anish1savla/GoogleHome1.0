@@ -20,7 +20,7 @@ public class HBcheckAllLightsOFF
     throws InterruptedException
   {
     //System.out.println("/***************************Inside Hue Bridge Turn OFF All Lights class*********************************/");
-    TimeUnit.SECONDS.sleep(40);
+    TimeUnit.SECONDS.sleep(30);
     PHBridgeResourcesCache cache = bridge.getResourceCache();
     List<PHLight> allLights = cache.getAllLights();
     List<String> lightList = new ArrayList<String>();

@@ -21,7 +21,7 @@ public class HBTurnONHueColorLamp1
     throws InterruptedException
   {
     //System.out.println("/***************************Inside Hue Bridge Turn ON Hue Color Lamp 1 class*********************************/");
-    TimeUnit.SECONDS.sleep(30);
+    TimeUnit.SECONDS.sleep(27);
     PHBridgeResourcesCache cache = bridge.getResourceCache();
     List<PHLight> allLights = cache.getAllLights();
     List<String> TrueLights = new ArrayList<String>();
