@@ -156,7 +156,7 @@ public class HueGoogleHome
     selTurnOFFDummy std = new selTurnOFFDummy();
     
     selBrightness100PDummy b100pd = new selBrightness100PDummy();
-   /*
+   
     tc.turnonalllights(bridge, driver);
     
     tc.SetBrightnessTo10Percent(bridge,driver);
@@ -200,10 +200,10 @@ public class HueGoogleHome
     tc.TurnONAmbLivingRoomLight(bridge,driver);
     
     tc.TurnOFFAmbLivingRoomLight(bridge, driver);
-    */
+    
     std.SelTurnOFFALLDummy();
     
-    tc.TurnLivingRoomOrange(bridge, driver);
+    //tc.TurnLivingRoomOrange(bridge, driver);
     
     std.SelTurnOFFALLDummy();
    
