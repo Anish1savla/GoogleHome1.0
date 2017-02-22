@@ -1,6 +1,9 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 import com.philips.lighting.model.PHBridge;
 import com.philips.lighting.model.PHBridgeResourcesCache;
@@ -18,7 +21,7 @@ public class HBTurnONHueColorLamp1
   public int HueColorLampOneCounter;
   public String HueColorLampName = "Hue Color lamp 20";
   public String HBTurnONhueColorLampOne(PHBridge bridge)
-    throws InterruptedException
+    throws InterruptedException, InvalidFormatException, IOException
   {
     //System.out.println("/***************************Inside Hue Bridge Turn ON Hue Color Lamp 1 class*********************************/");
     TimeUnit.SECONDS.sleep(27);
@@ -92,7 +95,15 @@ public class HBTurnONHueColorLamp1
         this.sendTohtml = createHTMLReport(this.Status, this.results, this.Remarks);
     }
     
-
+    CreateNewDailySummaryReport cdsr = new CreateNewDailySummaryReport();
+    if(results=="PASS")
+    {
+    	System.out.println("Putting data into excel-Inside IF");
+    	cdsr.ReportTurnONHueColorLamp1("PASS");
+    }else if(results=="FAIL"){
+    	System.out.println("Putting data into excel-Inside ELSe");
+    	cdsr.ReportTurnONHueColorLamp1("FAIL");
+    }
     //System.out.println("SendToHTML is:" + this.sendTohtml + "\n");
     return this.sendTohtml;
   }

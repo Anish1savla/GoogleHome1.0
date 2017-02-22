@@ -1,6 +1,8 @@
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.openqa.selenium.WebDriver;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Pattern;
@@ -13,7 +15,7 @@ public class selTurnONAll
   String HBTurnONAllLights;
 
   public String seleniumTestToTurnAllLightsON(PHBridge bridge, WebDriver driver)
-    throws FindFailed, IOException, InterruptedException
+    throws FindFailed, IOException, InterruptedException, EncryptedDocumentException, InvalidFormatException
   {
 	/*  
 	  DesiredCapabilities capabilities=DesiredCapabilities.chrome();

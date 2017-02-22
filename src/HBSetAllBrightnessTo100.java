@@ -1,7 +1,10 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 import com.philips.lighting.model.PHBridge;
 import com.philips.lighting.model.PHBridgeResourcesCache;
@@ -17,7 +20,7 @@ public class HBSetAllBrightnessTo100
   public String Remarks;
   
   public String HBSetBrightnessTo100Percent(PHBridge bridge)
-    throws InterruptedException
+    throws InterruptedException, InvalidFormatException, IOException
   {
     System.out.println("Inside HBCheck change red color");
     
@@ -121,6 +124,15 @@ public class HBSetAllBrightnessTo100
       this.sendtoHTMLsetBrightness100 = createHTMLReport(this.Status, this.results, this.Remarks);
     }
     //System.out.println("HTML Data from Brightness 100%" + this.sendtoHTMLsetBrightness100);
+    CreateNewDailySummaryReport cdsr = new CreateNewDailySummaryReport();
+    if(results=="PASS")
+    {
+    	System.out.println("Putting data into excel-Inside IF");
+    	cdsr.ReportSetAllLightsTo100P("PASS");
+    }else if(results=="FAIL"){
+    	System.out.println("Putting data into excel-Inside ELSe");
+    	cdsr.ReportSetAllLightsTo100P("FAIL");
+    }
     
     return this.sendtoHTMLsetBrightness100;
   }

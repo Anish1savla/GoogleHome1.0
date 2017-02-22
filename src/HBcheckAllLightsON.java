@@ -3,9 +3,14 @@ import com.philips.lighting.model.PHBridge;
 import com.philips.lighting.model.PHBridgeResourcesCache;
 import com.philips.lighting.model.PHLight;
 import com.philips.lighting.model.PHLightState;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 public class HBcheckAllLightsON
 {
@@ -16,7 +21,7 @@ public class HBcheckAllLightsON
   public String Remarks;
   
   public String HBTurnONAllLight(PHBridge bridge)
-    throws InterruptedException
+    throws InterruptedException, EncryptedDocumentException, InvalidFormatException, IOException
   {
 	  
 	  System.out.println("/**************************** INSIDE TURN ON ALL LIGHTS **********************************/");
@@ -72,7 +77,20 @@ public class HBcheckAllLightsON
       this.Remarks = ("Please check Network Connection, Hue Bridge connection in Google Home and Light Status Manually" + nonReachablelightList.toString() + ":Lights are not reachable");
       this.sendtoHTMLturnOFFAll = createHTMLReport(this.results, this.Status, this.Remarks);
     }
+    System.out.println("Putting data into excel");
+    CreateNewDailySummaryReport cdsr = new CreateNewDailySummaryReport();
+    if(Status=="PASS")
+    {
+    	System.out.println("Putting data into excel-Inside IF");
+    	cdsr.ReportTurnONAllLights("PASS");
+    }else if(Status=="FAIL"){
+    	System.out.println("Putting data into excel-Inside ELSe");
+    	cdsr.ReportTurnONAllLights("FAIL");
+    }
     return this.sendtoHTMLturnOFFAll;
+    
+    
+    
   }
   
   public String createHTMLReport(String resultString, String statusString, String resultRemarks)

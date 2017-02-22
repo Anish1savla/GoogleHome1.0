@@ -1,8 +1,10 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.openqa.selenium.WebDriver;
 
 import com.philips.lighting.model.PHBridge;
@@ -18,7 +20,7 @@ public class HBSetBrightnessTo10Percent {
 	public String Remarks;
 	public String sendTohtml;
 	
-	public String SetBrightness10Percent(PHBridge bridge, WebDriver driver) throws InterruptedException{
+	public String SetBrightness10Percent(PHBridge bridge, WebDriver driver) throws InterruptedException, InvalidFormatException, IOException{
 		
 		
 	    HashMap<String,Integer> NewTrueBrightness = new HashMap<String,Integer>();
@@ -82,6 +84,17 @@ public class HBSetBrightnessTo10Percent {
 			 sendTohtml=createHTMLReport(Status,Results,Remarks);
 			 
 		 }
+		 
+		 CreateNewDailySummaryReport cdsr = new CreateNewDailySummaryReport();
+		    if(Status=="PASS")
+		    {
+		    	System.out.println("Putting data into excel-Inside IF");
+		    	cdsr.ReportSetLightsTo10P("PASS");
+		    }else if(Status=="FAIL"){
+		    	System.out.println("Putting data into excel-Inside ELSe");
+		    	cdsr.ReportSetLightsTo10P("FAIL");
+		    }
+		 
 		 return sendTohtml;
 	}
 		 

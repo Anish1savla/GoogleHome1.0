@@ -1,7 +1,9 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.openqa.selenium.WebDriver;
 
 import com.philips.lighting.model.PHBridge;
@@ -18,7 +20,7 @@ public class HBTurnOFFAmbLivingRoom {
 	public String Remarks;
 	public String SendToHTML;
 	
-	public String TurnOFFAmbianceLivingRoom(PHBridge bridge, WebDriver driver) throws InterruptedException{
+	public String TurnOFFAmbianceLivingRoom(PHBridge bridge, WebDriver driver) throws InterruptedException, InvalidFormatException, IOException{
 		
 		System.out.println("******************** TURN OFF AMBIANCE LAMP IN LIVING ROOM **********************");
 		
@@ -66,6 +68,17 @@ public class HBTurnOFFAmbLivingRoom {
 	    	}
 	    	SendToHTML = createHTMLReport(Status,Result,Remarks);
 	    }
+	    
+	    CreateNewDailySummaryReport cdsr = new CreateNewDailySummaryReport();
+	    if(Status=="PASS")
+	    {
+	    	System.out.println("Putting data into excel-Inside IF");
+	    	cdsr.ReportTurnOFFAmbLR("PASS");
+	    }else if(Status=="FAIL"){
+	    	System.out.println("Putting data into excel-Inside ELSe");
+	    	cdsr.ReportTurnOFFAmbLR("FAIL");
+	    }
+	    
 		return SendToHTML;
 	}
 

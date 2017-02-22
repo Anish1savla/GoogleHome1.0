@@ -1,5 +1,7 @@
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.openqa.selenium.WebDriver;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Pattern;
@@ -10,7 +12,7 @@ import com.philips.lighting.model.PHBridge;
 public class selTurnOFFAmbianceLampInLivingRoom {
 	public String TurnONAmbInLR;
 	
-	public String TurnOFFAmbianceLampInLivingRoom(PHBridge bridge, WebDriver driver) throws InterruptedException, FindFailed{
+	public String TurnOFFAmbianceLampInLivingRoom(PHBridge bridge, WebDriver driver) throws InterruptedException, FindFailed, InvalidFormatException, IOException{
 		
 		TimeUnit.SECONDS.sleep(2);
 		Pattern commandLineImage = new Pattern("CommandLineImage.PNG");

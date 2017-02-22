@@ -1,9 +1,11 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.openqa.selenium.WebDriver;
 import org.sikuli.script.FindFailed;
 
@@ -28,7 +30,7 @@ public class HBDimAllLights {
 	public String Remarks;
 	public String sendTohtml;
 	
-	public String HBDimLights(PHBridge bridge, WebDriver driver) throws InterruptedException, FindFailed{
+	public String HBDimLights(PHBridge bridge, WebDriver driver) throws InterruptedException, FindFailed, InvalidFormatException, IOException{
 		
 		System.out.println("/***************************Inside Hue Bridge DIM ALL LIGHTS class*********************************/");
 	    
@@ -147,6 +149,16 @@ public class HBDimAllLights {
 	    		Remarks= "Old Brightness level of lights : "+OldBrightness.toString()+"\n"+"New Brightness level of lights: "+NewBrightness.toString();
 	    		sendTohtml=createHTMLReport(Results,Status,Remarks);
 	    	}
+	    
+	    CreateNewDailySummaryReport cdsr = new CreateNewDailySummaryReport();
+	    if(Results=="PASS")
+	    {
+	    	System.out.println("Putting data into excel-Inside IF");
+	    	cdsr.ReportDimAllLights("PASS");
+	    }else if(Results=="FAIL"){
+	    	System.out.println("Putting data into excel-Inside ELSe");
+	    	cdsr.ReportDimAllLights("FAIL");
+	    }
 	     
     	return sendTohtml;
 	}

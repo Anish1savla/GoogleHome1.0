@@ -1,9 +1,11 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.openqa.selenium.WebDriver;
 import org.sikuli.script.FindFailed;
 
@@ -24,7 +26,7 @@ public class HBBrightenAllLightsBy10P {
 	public String htmlFinalResults;
 
 	
-	public String BrightenAllLights(PHBridge bridge, WebDriver driver) throws FindFailed, InterruptedException{
+	public String BrightenAllLights(PHBridge bridge, WebDriver driver) throws FindFailed, InterruptedException, InvalidFormatException, IOException{
 		
 		System.out.println("/*************************** INSIDE BRIGHTEN ALL LIGHTS By 10% class *********************************/");
 	    
@@ -120,6 +122,17 @@ public class HBBrightenAllLightsBy10P {
 		    	}
 		    	SendToHTML=createHTMLReport(Status,Results,Remarks);
 		    }
+		    
+		    CreateNewDailySummaryReport cdsr = new CreateNewDailySummaryReport();
+		    if(Status=="PASS")
+		    {
+		    	System.out.println("Putting data into excel-Inside IF");
+		    	cdsr.ReportBrightenBy10P("PASS");
+		    }else if(Status=="FAIL"){
+		    	System.out.println("Putting data into excel-Inside ELSe");
+		    	cdsr.ReportBrightenBy10P("FAIL");
+		    }
+		    
 		return SendToHTML;
 	}
 	

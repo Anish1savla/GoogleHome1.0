@@ -1,9 +1,11 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.openqa.selenium.WebDriver;
 import org.sikuli.script.FindFailed;
 
@@ -26,7 +28,7 @@ public class HBTurnOFFAllLivingRoomLights {
 	public int NewCounter;
 	public int NewCounter1;
 	
-	public String TurnOFFAllLivingRoomLights(PHBridge bridge, WebDriver driver) throws InterruptedException, FindFailed{
+	public String TurnOFFAllLivingRoomLights(PHBridge bridge, WebDriver driver) throws InterruptedException, FindFailed, InvalidFormatException, IOException{
 		
 	HashMap<String,Integer> LivingRoomLights = new HashMap<String,Integer>();
 	HashMap<String,Boolean> OldAllLightState = new HashMap<String,Boolean>();
@@ -215,14 +217,25 @@ public class HBTurnOFFAllLivingRoomLights {
     	}
     	sendToHTML=createHTMLReport(Status,Result,Remarks);
     }
+    
+    CreateNewDailySummaryReport cdsr = new CreateNewDailySummaryReport();
+    if(Status=="PASS")
+    {
+    	System.out.println("Putting data into excel-Inside IF");
+    	cdsr.ReportTurnOFFAllLR("PASS");
+    }else if(Status=="FAIL"){
+    	System.out.println("Putting data into excel-Inside ELSe");
+    	cdsr.ReportTurnOFFAllLR("FAIL");
+    }
 		return sendToHTML;
+		
 	}
 	
 	
 	public String createHTMLReport(String htmlStatus, String htmlResult, String htmlRemarks){
 		
 		FinalHTMLString= "<tr>\n<td style=\"border:1px solid black;border-collapse:collapse\">\n17</td>\n"
-			      + "<td style=\"border:1px solid black;border-collapse:collapse\">\nTurn ON Lights in Living Room.</td>\n"
+			      + "<td style=\"border:1px solid black;border-collapse:collapse\">\nTurn OFF Lights in Living Room.</td>\n"
 			      + "<td style=\"border:1px solid black;border-collapse:collapse\">\nAll Lights Should Turn ON in Living Room.</td>\n"
 			      + "<td style=\"border:1px solid black;border-collapse:collapse\">\n" + htmlResult + "</td>\n" 
 			      + "<td style=\"border:1px solid black;border-collapse:collapse\">\n" +htmlStatus+ "</td>\n" 

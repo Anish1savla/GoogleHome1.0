@@ -1,9 +1,11 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.openqa.selenium.WebDriver;
 import org.sikuli.script.FindFailed;
 
@@ -26,7 +28,7 @@ public class HBTurnONAllLivingRoomLights {
 	public int NewCounter;
 	public int NewCounter1;
 	
-	public String TurnONAllLivingRoomLights(PHBridge bridge, WebDriver driver) throws InterruptedException, FindFailed{
+	public String TurnONAllLivingRoomLights(PHBridge bridge, WebDriver driver) throws InterruptedException, FindFailed, InvalidFormatException, IOException{
 		
 	HashMap<String,Integer> LivingRoomLights = new HashMap<String,Integer>();
 	HashMap<String,Boolean> OldAllLightState = new HashMap<String,Boolean>();
@@ -215,6 +217,17 @@ public class HBTurnONAllLivingRoomLights {
     	}
     	sendToHTML=createHTMLReport(Status,Result,Remarks);
     }
+    
+    CreateNewDailySummaryReport cdsr = new CreateNewDailySummaryReport();
+    if(Status=="PASS")
+    {
+    	System.out.println("Putting data into excel-Inside IF");
+    	cdsr.ReportTurnONAllLR("PASS");
+    }else if(Status=="FAIL"){
+    	System.out.println("Putting data into excel-Inside ELSe");
+    	cdsr.ReportTurnONAllLR("FAIL");
+    }
+    
 		return sendToHTML;
 	}
 	

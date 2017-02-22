@@ -1,9 +1,11 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.openqa.selenium.WebDriver;
 import org.sikuli.script.FindFailed;
 
@@ -23,7 +25,7 @@ public class HBBrightenWhiteLampBy20P {
 	public int OldWhiteLampBrightness;
 	public int NewWhiteLampBrightness;
 	
-	public String BrightenWhiteLampBy20P(PHBridge bridge, WebDriver driver) throws FindFailed, InterruptedException{
+	public String BrightenWhiteLampBy20P(PHBridge bridge, WebDriver driver) throws FindFailed, InterruptedException, InvalidFormatException, IOException{
 		
 		PHBridgeResourcesCache cache = bridge.getResourceCache();
 	    
@@ -155,6 +157,17 @@ public class HBBrightenWhiteLampBy20P {
 	    	}
 	    	sendToHTML=createHTMLReport(Status,Results,Remarks);
 	    }
+	    
+	    CreateNewDailySummaryReport cdsr = new CreateNewDailySummaryReport();
+	    if(Status=="PASS")
+	    {
+	    	System.out.println("Putting data into excel-Inside IF");
+	    	cdsr.ReportWhiteLampBy20P("PASS");
+	    }else if(Status=="FAIL"){
+	    	System.out.println("Putting data into excel-Inside ELSe");
+	    	cdsr.ReportWhiteLampBy20P("FAIL");
+	    }
+	    
 		return sendToHTML;
 	}
 	

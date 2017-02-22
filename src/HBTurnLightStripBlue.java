@@ -1,7 +1,9 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.openqa.selenium.WebDriver;
 
 import com.philips.lighting.model.PHBridge;
@@ -20,7 +22,7 @@ public class HBTurnLightStripBlue {
 	public String HTMLFinalResults;
 	public String LightName = "Hue LightStrip Plus 1";
 	
-	public String TurnLightStripToBlue(PHBridge bridge, WebDriver driver) throws InterruptedException{
+	public String TurnLightStripToBlue(PHBridge bridge, WebDriver driver) throws InterruptedException, InvalidFormatException, IOException{
 		
 		System.out.println("******************** TURN LIGHT STRIP BLUE **********************");
 		
@@ -82,6 +84,15 @@ public class HBTurnLightStripBlue {
 	    	sendToHTML=createHTMLReport(Status,Results,Remarks);
 	    }
 	    
+	    CreateNewDailySummaryReport cdsr = new CreateNewDailySummaryReport();
+	    if(Status=="PASS")
+	    {
+	    	System.out.println("Putting data into excel-Inside IF");
+	    	cdsr.ReportTurnLightStrip100P("PASS");
+	    }else if(Status=="FAIL"){
+	    	System.out.println("Putting data into excel-Inside ELSe");
+	    	cdsr.ReportTurnLightStrip100P("FAIL");
+	    }
 	    
 		return sendToHTML;
 	}

@@ -4,8 +4,16 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+import javax.mail.MessagingException;
+
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -31,7 +39,7 @@ public class HueGoogleHome
   
   private static ConnectCallback connectCallback = new ConnectCallback()
   {
-    public void onConnected(PHBridge bridge)
+    public void onConnected(PHBridge bridge) throws EncryptedDocumentException, InvalidFormatException, ParseException, MessagingException
     {
       System.out.println("Inside onConnected and about to start test");
       try
@@ -103,14 +111,12 @@ public class HueGoogleHome
     }
   }
   
-  private static void startTests(PHBridge bridge)
-    throws FindFailed, InterruptedException, IOException
-  {
-	
-	  System.out.println("Inside start Test");
+  
+  public static void InitiateSimulator(WebDriver driver) throws InterruptedException, FindFailed{
 	  
-	  System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
-      WebDriver driver = new ChromeDriver();
+System.out.println("Inside start Test");
+	  
+	 
       
       driver.manage().deleteAllCookies();
       driver.get("https://developers.google.com/actions/tools/web-simulator");
@@ -148,7 +154,33 @@ public class HueGoogleHome
       driver.findElement(By.id("signIn")).click();
       
       driver.switchTo().window(winHandleBefore);
+    
+	  
+  }
+  
+  private static void startTests(PHBridge bridge)
+    throws FindFailed, InterruptedException, IOException, EncryptedDocumentException, InvalidFormatException, ParseException, MessagingException
+  {
+//	 System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+//     WebDriver driver = new ChromeDriver();
+//     InitiateSimulator(driver); 
+      Date date = new Date();
+      SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+      //String time = (sdf.format(date));
       
+      if((sdf.parse(sdf.format(date)).after(sdf.parse("14:45:00"))) && (sdf.parse(sdf.format(date)).before(sdf.parse("16:15:00"))))
+      {	
+    	  System.out.println("Inside IF to create Daily Report");
+    	  DailyReport spreadsheet = new DailyReport();
+          spreadsheet.createSpreadsheetForDailyReport();  
+      }else{
+    	  System.out.println("Inside ELSE to create Daily Report");
+      }
+      
+     
+	
+	 
+	    
 	System.out.println("Starting Test Case Execution");
     
     TestCases tc = new TestCases();
@@ -156,13 +188,13 @@ public class HueGoogleHome
     selTurnOFFDummy std = new selTurnOFFDummy();
     
     selBrightness100PDummy b100pd = new selBrightness100PDummy();
-   
+    /*
     tc.turnonalllights(bridge, driver);
     
     tc.SetBrightnessTo10Percent(bridge,driver);
     
     tc.turnOFFHueColorLamp1(bridge, driver);
-         
+    
     b100pd.selBrightnessTo100PDummy();
     
     tc.changeColorToRed(bridge, driver);
@@ -170,6 +202,7 @@ public class HueGoogleHome
     tc.changeColorGreen(bridge, driver);
     
     tc.turnoffalllights(bridge, driver);
+     
     
     tc.turnONHueColorLamp1(bridge, driver);
     
@@ -193,6 +226,7 @@ public class HueGoogleHome
     
     std.SelTurnOFFALLDummy();
     
+    
     tc.TurnONAllLivingRoomLights(bridge,driver);
     
     tc.TurnOFFAllLivingRoomLights(bridge,driver);
@@ -211,11 +245,13 @@ public class HueGoogleHome
     
     tc.createHTMLReport();
     
-    driver.close();
+    
   
     SendEmailForReport sendEmail = new SendEmailForReport();
     sendEmail.sendEmail();
-    
+
+    driver.close();
+*/  
     System.exit(0);
     
   }

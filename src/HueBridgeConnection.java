@@ -3,7 +3,13 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
+
+import javax.mail.MessagingException;
+
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 import com.philips.lighting.hue.sdk.PHAccessPoint;
 import com.philips.lighting.hue.sdk.PHHueSDK;
@@ -74,7 +80,15 @@ public class HueBridgeConnection
       }
       System.out.println("calling connect call back");
       
-      HueBridgeConnection.this.connectCallback.onConnected(bridge);
+      try {
+		HueBridgeConnection.this.connectCallback.onConnected(bridge);
+	} catch (EncryptedDocumentException | InvalidFormatException | ParseException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (MessagingException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
     }
     
     public void onCacheUpdated(List<Integer> arg0, PHBridge arg1) {}

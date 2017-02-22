@@ -1,9 +1,11 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.openqa.selenium.WebDriver;
 import org.sikuli.script.FindFailed;
 
@@ -37,7 +39,7 @@ public class HBDimHueGo2 {
     //List<String> FalseLights = new ArrayList<String>();
     List<String> nonReachableLights = new ArrayList<String>();
 	
-	public String DimHueGo2(PHBridge bridge, WebDriver driver) throws InterruptedException, FindFailed{
+	public String DimHueGo2(PHBridge bridge, WebDriver driver) throws InterruptedException, FindFailed, InvalidFormatException, IOException{
 		System.out.println("/***************************Inside Hue Bridge Dim Hue Go 2 class*********************************/");
 		
 		HashMap<String,Integer> TrueLights = new HashMap<String,Integer>();
@@ -177,6 +179,17 @@ public class HBDimHueGo2 {
 			  sendTohtml=createHTMLReport(Status,Results,Remarks);
 			  
 		  }
+		  
+		  CreateNewDailySummaryReport cdsr = new CreateNewDailySummaryReport();
+		    if(Status=="PASS")
+		    {
+		    	System.out.println("Putting data into excel-Inside IF");
+		    	cdsr.ReportDimHueGo2("PASS");
+		    }else if(Status=="FAIL"){
+		    	System.out.println("Putting data into excel-Inside ELSe");
+		    	cdsr.ReportDimHueGo2("FAIL");
+		    }
+		  
 		return sendTohtml;
 		
 	}

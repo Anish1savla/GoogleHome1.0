@@ -1,6 +1,9 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 import com.philips.lighting.model.PHBridge;
 import com.philips.lighting.model.PHBridgeResourcesCache;
@@ -22,7 +25,7 @@ public class HBCheckAllLightsGreen
   public double yColor;
   
   public String HBCheckAllLightsToGreen(PHBridge bridge)
-    throws InterruptedException
+    throws InterruptedException, InvalidFormatException, IOException
   {
     //System.out.println("/*************************Inside HBCheck change Green color****************************/");
     
@@ -159,6 +162,17 @@ public class HBCheckAllLightsGreen
       this.Remarks = ("Please check Network Connection, Hue Bridge connection in Google Home and Light Color Status Manually. " + nonReachablelightList.toString() + ":Lights are not reachable");
       this.sendtoHTMLturnOFFAll = createHTMLReport(this.results, this.Status, this.Remarks);
     }
+    
+    CreateNewDailySummaryReport cdsr = new CreateNewDailySummaryReport();
+    if(Status=="PASS")
+    {
+    	System.out.println("Putting data into excel-Inside IF");
+    	cdsr.ReportTurnGreenAllLights("PASS");
+    }else if(Status=="FAIL"){
+    	System.out.println("Putting data into excel-Inside ELSe");
+    	cdsr.ReportTurnGreenAllLights("FAIL");
+    }
+    
     return this.sendtoHTMLturnOFFAll;
   }
   

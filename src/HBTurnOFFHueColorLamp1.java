@@ -1,6 +1,9 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 import com.philips.lighting.model.PHBridge;
 import com.philips.lighting.model.PHBridgeResourcesCache;
@@ -18,7 +21,7 @@ public class HBTurnOFFHueColorLamp1 {
 	  public int HueColorLampOneCounter=0;
 	  public String HueColorLampName = "Hue Color lamp 1";
 
-	public String HBTurnOFFHueColorLampOne(PHBridge bridge) throws InterruptedException {
+	public String HBTurnOFFHueColorLampOne(PHBridge bridge) throws InterruptedException, InvalidFormatException, IOException {
 		   System.out.println("/***************************Inside Hue Bridge Turn OFF Hue Color Lamp 1 class*********************************/");
 		    TimeUnit.SECONDS.sleep(27);
 		    PHBridgeResourcesCache cache = bridge.getResourceCache();
@@ -43,7 +46,7 @@ public class HBTurnOFFHueColorLamp1 {
 		    	  HueColorLampOneCounter++;
 		    	  
 		      }
-		      System.out.println("Hue Color Lamp Counter Value:"+HueColorLampOneCounter);
+		      //System.out.println("Hue Color Lamp Counter Value:"+HueColorLampOneCounter);
 		      Boolean lightReachable = lightState.isReachable();
 		      //System.out.println(lightReachable+": Light Reachable");
 		      Boolean lightNameCheck=lightName.equals(HueColorLampName);
@@ -83,13 +86,23 @@ public class HBTurnOFFHueColorLamp1 {
 		    //System.out.println(Status);
 		    //System.out.println(Remarks);
 		    
-		    System.out.println("Send To HTML:"+sendTohtml);
+		    //System.out.println("Send To HTML:"+sendTohtml);
+		    CreateNewDailySummaryReport cdsr = new CreateNewDailySummaryReport();
+		    if(results=="PASS")
+		    {
+		    	System.out.println("Putting data into excel-Inside IF");
+		    	cdsr.ReportTurnOFFHueColorLamp1("PASS");
+		    }else if(results=="FAIL"){
+		    	System.out.println("Putting data into excel-Inside ELSe");
+		    	cdsr.ReportTurnOFFHueColorLamp1("FAIL");
+		    }
+		    
 		return sendTohtml;
 		
 	}
 	
 	public String createHTMLReport(String results, String Status, String Remarks){
-		System.out.println("htmlResults: " + results + " htmlStatus: " + Status + " htmlRemarks :" + Remarks);
+		//System.out.println("htmlResults: " + results + " htmlStatus: " + Status + " htmlRemarks :" + Remarks);
 		 String htmlString1 = 
 			      "<tr>\n<td style=\"border:1px solid black;border-collapse:collapse\">\n7</td>\n"
 			      + "<td style=\"border:1px solid black;border-collapse:collapse\">\nTurn OFF Hue color Lamp 1</td>\n"
