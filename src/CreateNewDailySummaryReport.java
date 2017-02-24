@@ -33,7 +33,7 @@ public class CreateNewDailySummaryReport {
 	public HSSFSheet sheet17;
 	public HSSFSheet sheet18;
 	public HSSFSheet sheet19;
-	public HSSFSheet sheet101;
+	public HSSFSheet sheet20;
 	public SimpleDateFormat sdftime; 
 	
 	 
@@ -239,6 +239,14 @@ public class CreateNewDailySummaryReport {
 			row36.createCell(1).setCellValue("PASS");
 			row36.createCell(2).setCellValue("FAIL");
 			
+			
+		sheet20 = workbook.createSheet("Turn LR Orange");
+			
+			HSSFRow row37;
+			row37=sheet20.createRow((short)0);
+			row37.createCell(0).setCellValue("Time");
+			row37.createCell(1).setCellValue("PASS");
+			row37.createCell(2).setCellValue("FAIL");
 		
 		FileOutputStream fileOut = new FileOutputStream(fileName);
 		workbook.write(fileOut);
@@ -1014,6 +1022,45 @@ public void ReportSetAllLightsTo100P(String result) throws  InvalidFormatExcepti
 			return;
 			}
 		
+		
+		public void TurnLivingRoomOrange(String result) throws  InvalidFormatException, IOException{
+			
+			Date date = new Date();
+		    sdftime = new SimpleDateFormat("HH:mm:ss");
+		    //SimpleDateFormat sdfdate = new SimpleDateFormat("MMddyyyy");
+		    String newtime = sdftime.format(date);
+			
+			FileInputStream file = new FileInputStream(new File("C:\\Users\\310235474\\git\\GoogleHome1.0\\DailyReportSpreadsheet.xls"));
+			
+			HSSFWorkbook workbook = new HSSFWorkbook(file);
+			
+		     HSSFSheet sheet = workbook.getSheetAt(19);
+		    
+		     int lastrow = sheet.getLastRowNum();
+		     int newrow = sheet.getLastRowNum()+1;
+		     System.out.println(lastrow);
+		     System.out.println(newrow);
+		    
+		     Row row = sheet.createRow(newrow);
+		     row.createCell(0).setCellValue(newtime);
+		     if(result.contains("PASS")==true){
+		    	 
+			     row.createCell(1).setCellValue(1);
+			     row.createCell(2).setCellValue(0);
+		     }else if(result.contains("FAIL")==true){
+			     
+			     row.createCell(1).setCellValue(0);
+			     row.createCell(2).setCellValue(1);
+		     }
+		
+		    file.close();
+		    FileOutputStream outFile =new FileOutputStream(new File("C:\\Users\\310235474\\git\\GoogleHome1.0\\DailyReportSpreadsheet.xls"));
+		    workbook.write(outFile);
+		    outFile.close();
+		    
+			return;
+			}
+		
 	
 	public void createTotalField() throws IOException{
 		System.out.println("Inside creating Total Field function");
@@ -1189,6 +1236,14 @@ public void ReportSetAllLightsTo100P(String result) throws  InvalidFormatExcepti
 		    row18.createCell(0).setCellValue("Total");
 			row18.createCell(1).setCellFormula("SUM(B2:B51)");
 			row18.createCell(2).setCellFormula("SUM(C2:C51)");
+			
+		HSSFSheet sheet19 = workbook.getSheetAt(19);
+		     
+		Row row19 = sheet19.createRow((short)55);
+																				     
+			row19.createCell(0).setCellValue("Total");
+			row19.createCell(1).setCellFormula("SUM(B2:B51)");
+			row19.createCell(2).setCellFormula("SUM(C2:C51)");
 		
 		
 	    file.close();

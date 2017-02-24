@@ -40,10 +40,6 @@ public class HBTurnONAllLivingRoomLights {
 	HashMap<String,Boolean> FalseNonLivingRoomLights = new HashMap<String,Boolean>();
 	HashMap<String,Boolean> TrueNonLivingRoomLights = new HashMap<String,Boolean>();
 	
-
-	
-	
-		
 	LivingRoomLights.put("Hue ambiance lamp 1",1);
 	LivingRoomLights.put("Hue Color lamp 1",2);
 	LivingRoomLights.put("Hue Color lamp 2",3);

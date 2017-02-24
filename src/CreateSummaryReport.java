@@ -351,6 +351,24 @@ public class CreateSummaryReport {
 
 		dataset.addValue(FAIL18,"FAIL","Turn OFF Hue Amb in LR");
 		dataset.addValue(PASS18,"PASS","Turn OFF Hue Amb in LR");
+
+		//Turn LR Lights Orange
+		
+		HSSFSheet sheet19 = workbook.getSheetAt(19);
+		
+		Cell cell38 = sheet19.getRow(55).getCell(1);
+		//System.out.println("Cell"+cell);
+		
+		int PASS19 =(int)evaluator.evaluate(cell38).getNumberValue();
+		System.out.println(PASS19+":PASS19");
+		
+		Cell cell39 = sheet19.getRow(55).getCell(2);
+		int FAIL19 =(int)evaluator.evaluate(cell39).getNumberValue();
+		System.out.println(FAIL19+":FAIL19");
+
+		dataset.addValue(FAIL19,"FAIL","Turn LR Lights Orange");
+		dataset.addValue(PASS19,"PASS","Turn LR Lights Orange");
+
 		
 		//Archiving old JPEG files
 		

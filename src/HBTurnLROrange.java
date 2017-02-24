@@ -1,9 +1,11 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.openqa.selenium.WebDriver;
 
 import com.philips.lighting.model.PHBridge;
@@ -24,9 +26,10 @@ public class HBTurnLROrange {
 	public float maxXRange;
 	public float minYRange;
 	public float maxYRange;
+	public String lightType = "CT_COLOR_LIGHT";
 	
 	
-	public String TurnLivingRoomOrange(PHBridge bridge, WebDriver driver) throws InterruptedException{
+	public String TurnLivingRoomOrange(PHBridge bridge, WebDriver driver) throws InterruptedException, InvalidFormatException, IOException{
 		
 		HashMap<String,Integer> LRLights = new HashMap<String,Integer>();
 		LRLights.put("Hue ambiance lamp 1", 1);
@@ -47,14 +50,25 @@ public class HBTurnLROrange {
 		  for(PHLight lights:allLights){
 			  
 			  PHLightState lightState = lights.getLastKnownLightState();
-			  
+			  System.out.println(lights.getName());
 			  for(Entry<String, Integer> MapKey : LRLights.entrySet()){
+				  System.out.println(MapKey.getKey());
+				  System.out.println(MapKey.getValue());
 				  
+				  System.out.println("Light Type:"+lights.getLightType());
+				  
+				  
+				  
+				  
+				  if(lights.getLightType().toString().equals(lightType)==true){
 				  xValue=lightState.getX();
 				  yValue=lightState.getY();
 				  
-				  //System.out.println("xValue:"+xValue);
-				  //System.out.println("yValue:"+yValue);
+				  System.out.println("Light Name:"+lights.getName());
+				  
+				  
+				  System.out.println("xValue:"+xValue);
+				  System.out.println("yValue:"+yValue);
 				  
 				  minXRange = xValue-1;
 				  maxXRange = xValue+1;
@@ -76,7 +90,10 @@ public class HBTurnLROrange {
 				  {
 					  nonReachableLights.add(lights.getName());
 				  }
-				  
+				  }else{
+					  break;
+				  }
+				 
 			  }
 			  
 		  }
@@ -104,6 +121,17 @@ public class HBTurnLROrange {
 			  }
 			  SendToHTML=createHTMLReport(Status,Result,Remarks);
 		  }
+		  
+		  CreateNewDailySummaryReport cdsr = new CreateNewDailySummaryReport();
+		    if(Status=="PASS")
+		    {
+		    	System.out.println("Putting data into excel-Inside IF");
+		    	cdsr.TurnLivingRoomOrange("PASS");
+		    }else if(Status=="FAIL"){
+		    	System.out.println("Putting data into excel-Inside ELSe");
+		    	cdsr.TurnLivingRoomOrange("FAIL");
+		    }
+		  
 		return SendToHTML;
 	}
 	

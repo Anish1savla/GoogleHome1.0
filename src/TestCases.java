@@ -169,10 +169,11 @@ public class TestCases
   
   
   public void TurnLivingRoomOrange(PHBridge bridge,WebDriver driver)
-		  	throws FindFailed,InterruptedException{
+		  	throws FindFailed,InterruptedException, InvalidFormatException, IOException{
 	  		selTurnLivingRoomOrange tlrorn = new selTurnLivingRoomOrange();
 	  		TurnLivingRoomOrange=tlrorn.TurnLROrange(bridge, driver);
 	}
+  
   
   
   public void createHTMLReport()

@@ -132,9 +132,7 @@ System.out.println("Inside start Test");
       TimeUnit.SECONDS.sleep(1);
       
       Pattern image1 = new Pattern("Start.PNG");
-      //wait(30);
       
-      //wait(30);
       screen.click(image1);
       
       String winHandleBefore = driver.getWindowHandle();
@@ -161,14 +159,14 @@ System.out.println("Inside start Test");
   private static void startTests(PHBridge bridge)
     throws FindFailed, InterruptedException, IOException, EncryptedDocumentException, InvalidFormatException, ParseException, MessagingException
   {
-//	 System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
-//     WebDriver driver = new ChromeDriver();
-//     InitiateSimulator(driver); 
+	 System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+     WebDriver driver = new ChromeDriver();
+     InitiateSimulator(driver); 
       Date date = new Date();
       SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
       //String time = (sdf.format(date));
       
-      if((sdf.parse(sdf.format(date)).after(sdf.parse("14:45:00"))) && (sdf.parse(sdf.format(date)).before(sdf.parse("16:15:00"))))
+      if((sdf.parse(sdf.format(date)).after(sdf.parse("15:00:00"))) && (sdf.parse(sdf.format(date)).before(sdf.parse("16:35:00"))))
       {	
     	  System.out.println("Inside IF to create Daily Report");
     	  DailyReport spreadsheet = new DailyReport();
@@ -177,10 +175,6 @@ System.out.println("Inside start Test");
     	  System.out.println("Inside ELSE to create Daily Report");
       }
       
-     
-	
-	 
-	    
 	System.out.println("Starting Test Case Execution");
     
     TestCases tc = new TestCases();
@@ -188,7 +182,7 @@ System.out.println("Inside start Test");
     selTurnOFFDummy std = new selTurnOFFDummy();
     
     selBrightness100PDummy b100pd = new selBrightness100PDummy();
-    /*
+    
     tc.turnonalllights(bridge, driver);
     
     tc.SetBrightnessTo10Percent(bridge,driver);
@@ -203,7 +197,7 @@ System.out.println("Inside start Test");
     
     tc.turnoffalllights(bridge, driver);
      
-    
+    /*
     tc.turnONHueColorLamp1(bridge, driver);
     
     tc.SetBrightnessTo100(bridge, driver);
@@ -234,6 +228,8 @@ System.out.println("Inside start Test");
     tc.TurnONAmbLivingRoomLight(bridge,driver);
     
     tc.TurnOFFAmbLivingRoomLight(bridge, driver);
+    */
+    tc.TurnLivingRoomOrange(bridge,driver);
     
     std.SelTurnOFFALLDummy();
     
@@ -247,11 +243,11 @@ System.out.println("Inside start Test");
     
     
   
-    SendEmailForReport sendEmail = new SendEmailForReport();
-    sendEmail.sendEmail();
-
+    //SendEmailForReport sendEmail = new SendEmailForReport();
+    //sendEmail.sendEmail();
+    
     driver.close();
-*/  
+  
     System.exit(0);
     
   }

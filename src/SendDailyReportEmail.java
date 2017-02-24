@@ -14,7 +14,7 @@ public class SendDailyReportEmail {
 		
 		System.out.println("Sending Daily Report via Email");
 		
-		File f = new File("C:\\Users\\310235474\\git\\GoogleHome1.0\\BarChart.jpeg");
+		/*File f = new File("C:\\Users\\310235474\\git\\GoogleHome1.0\\BarChart.jpeg");
 		if(f.exists()==true){
 		System.out.println("File Exist");
 		Properties prop = new Properties();
@@ -44,12 +44,18 @@ public class SendDailyReportEmail {
 		transport.sendMessage(message,message.getRecipients(Message.RecipientType.TO));
 		transport.close();
 		System.out.println("Daily Report Email Sent");
+	    
+	    
+	    
 		return;
 		}
 		else{
 			System.out.println("Bar Chart Doesnt exist");
 			return;
-		}
+		}*/
+		
+		
+		
 		
 	}
 	
