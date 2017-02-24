@@ -166,7 +166,7 @@ System.out.println("Inside start Test");
       SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
       //String time = (sdf.format(date));
       
-      if((sdf.parse(sdf.format(date)).after(sdf.parse("15:00:00"))) && (sdf.parse(sdf.format(date)).before(sdf.parse("16:35:00"))))
+      if((sdf.parse(sdf.format(date)).after(sdf.parse("16:00:00"))) && (sdf.parse(sdf.format(date)).before(sdf.parse("16:35:00"))))
       {	
     	  System.out.println("Inside IF to create Daily Report");
     	  DailyReport spreadsheet = new DailyReport();
