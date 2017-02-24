@@ -243,8 +243,8 @@ System.out.println("Inside start Test");
     
     
   
-    //SendEmailForReport sendEmail = new SendEmailForReport();
-    //sendEmail.sendEmail();
+    SendEmailForReport sendEmail = new SendEmailForReport();
+    sendEmail.sendEmail();
     
     driver.close();
   
