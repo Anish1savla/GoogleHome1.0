@@ -97,9 +97,9 @@ public class HueGoogleHome
             CounterExecution++;
             System.out.println(CounterExecution+": Counter Execution");
           }
-    	  bh.connectToBridgeWithIp(ipAddressStored,userNameStored,connectCallback);
+    	  bh.connectToBridgeWithIp(ipAddressStored,connectCallback);
       }else {
-    	  bh.connectToBridgeWithIp("192.168.86.23"," ",connectCallback);
+    	  bh.connectToBridgeWithIp("192.168.84.25",connectCallback);
     	    TimeUnit.SECONDS.sleep(5);
     	   // System.out.println("Hue Bridge connection is done");
       }
@@ -197,7 +197,7 @@ System.out.println("Inside start Test");
     
     tc.turnoffalllights(bridge, driver);
      
-    /*
+    
     tc.turnONHueColorLamp1(bridge, driver);
     
     tc.SetBrightnessTo100(bridge, driver);
@@ -228,7 +228,7 @@ System.out.println("Inside start Test");
     tc.TurnONAmbLivingRoomLight(bridge,driver);
     
     tc.TurnOFFAmbLivingRoomLight(bridge, driver);
-    */
+    
     tc.TurnLivingRoomOrange(bridge,driver);
     
     std.SelTurnOFFALLDummy();
