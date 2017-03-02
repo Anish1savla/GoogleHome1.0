@@ -112,9 +112,9 @@ public class HueGoogleHome
   }
   
   
-  public static void InitiateSimulator(WebDriver driver) throws InterruptedException, FindFailed{
+public static void InitiateSimulator(WebDriver driver) throws InterruptedException, FindFailed{
 	  
-System.out.println("Inside start Test");
+	System.out.println("Inside start Test");
 	  
 	 
       
@@ -162,11 +162,14 @@ System.out.println("Inside start Test");
 	 System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
      WebDriver driver = new ChromeDriver();
      InitiateSimulator(driver); 
-      Date date = new Date();
+      
+     
+     Date date = new Date();
       SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
       //String time = (sdf.format(date));
       
-      if((sdf.parse(sdf.format(date)).after(sdf.parse("16:00:00"))) && (sdf.parse(sdf.format(date)).before(sdf.parse("16:35:00"))))
+      if((sdf.parse(sdf.format(date)).after(sdf.parse("16:00:00"))) 
+    		  && (sdf.parse(sdf.format(date)).before(sdf.parse("16:35:00"))))
       {	
     	  System.out.println("Inside IF to create Daily Report");
     	  DailyReport spreadsheet = new DailyReport();

@@ -261,7 +261,7 @@ public class htmlReport
     /*Turn Living Room Lights Orange */
     if (TurnLivingRoomOrange == null)
     {
-    	DimHueGo2 = "Turn OFF Ambiance Lamp in Living Room";
+    	DimHueGo2 = "Turn Living Room lights Orange";
       this.reportNotes = (this.reportNotes + "<h5>" + TurnLivingRoomOrange + "</h5>\n");
     }
     else

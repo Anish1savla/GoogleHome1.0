@@ -42,12 +42,12 @@ public class CreateNewDailySummaryReport {
 	HSSFWorkbook workbook = new HSSFWorkbook();
 	public void NewDailyReport() throws IOException, EncryptedDocumentException, InvalidFormatException{
 		
-	
-		Date date = new Date();
-	    sdftime = new SimpleDateFormat("HH:mm:ss");
-	    SimpleDateFormat sdfdate = new SimpleDateFormat("MMddyyyy");
-	    String time = sdftime.format(date);
-	    String date1 = sdfdate.format(date);
+//PREPARE LIST OR ARRAY LIST FOR NAME OF TEST CASE AND USE FOR LOOP TO CREATE SPREADSHEET	
+//		Date date = new Date();
+//	    sdftime = new SimpleDateFormat("HH:mm:ss");
+//	    SimpleDateFormat sdfdate = new SimpleDateFormat("MMddyyyy");
+//	    String time = sdftime.format(date);
+//	    String date1 = sdfdate.format(date);
 		
 		String fileName = "C:\\Users\\310235474\\git\\GoogleHome1.0\\DailyReportSpreadsheet.xls";
 	    	
@@ -259,7 +259,7 @@ public class CreateNewDailySummaryReport {
 	}
 	
 	
-		public void ReportTurnONAllLights(String result) throws  InvalidFormatException, IOException{
+public void ReportTurnONAllLights(String result) throws  InvalidFormatException, IOException{
 			
 			Date date = new Date();
 		    sdftime = new SimpleDateFormat("HH:mm:ss");

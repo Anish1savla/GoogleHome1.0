@@ -236,13 +236,11 @@ public class HBTurnOFFAllLivingRoomLights {
 		
 		FinalHTMLString= "<tr>\n<td style=\"border:1px solid black;border-collapse:collapse\">\n17</td>\n"
 			      + "<td style=\"border:1px solid black;border-collapse:collapse\">\nTurn OFF Lights in Living Room.</td>\n"
-			      + "<td style=\"border:1px solid black;border-collapse:collapse\">\nAll Lights Should Turn ON in Living Room.</td>\n"
+			      + "<td style=\"border:1px solid black;border-collapse:collapse\">\nAll Lights Should Turn OFF in Living Room.</td>\n"
 			      + "<td style=\"border:1px solid black;border-collapse:collapse\">\n" + htmlResult + "</td>\n" 
 			      + "<td style=\"border:1px solid black;border-collapse:collapse\">\n" +htmlStatus+ "</td>\n" 
 			      +"<td style=\"border:1px solid black;border-collapse:collapse\">\n" + htmlRemarks + "</td>\n" + "</tr>\n";
 		
 		return FinalHTMLString;
 	}
-
-	
 }

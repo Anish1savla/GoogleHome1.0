@@ -76,7 +76,8 @@ public class HBBrightenWhiteLampBy20P {
 	    	
 	    	for(Entry<String, Integer> NewKey : NewBrightnessLevel.entrySet()){
 	    		
-	    		if((NewKey.getKey().equals(OldKey.getKey())==true) && (NewKey.getKey().equalsIgnoreCase(LightName)==true)){
+	    		if((NewKey.getKey().equals(OldKey.getKey())==true) 
+	    				&& (NewKey.getKey().equalsIgnoreCase(LightName)==true)){
 	    			
 	    			OldWhiteLampBrightness=OldKey.getValue();
 	    			NewWhiteLampBrightness=NewKey.getValue();
@@ -88,7 +89,8 @@ public class HBBrightenWhiteLampBy20P {
 	    			}else {
 	    				FalseLights.put(NewKey.getKey(), NewKey.getValue());
 	    			}
-	    		}else if(NewKey.getKey().equalsIgnoreCase(LightName)==false && (NewKey.getKey().equalsIgnoreCase(OldKey.getKey())==true)){
+	    		}else if(NewKey.getKey().equalsIgnoreCase(LightName)==false 
+	    				&& (NewKey.getKey().equalsIgnoreCase(OldKey.getKey())==true)){
 	    			System.out.println("New Light Name:"+NewKey.getKey());
 	    			System.out.println("New Brightness:"+NewKey.getValue());
 	    			

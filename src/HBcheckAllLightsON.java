@@ -31,6 +31,7 @@ public class HBcheckAllLightsON
     List<PHLight> allLights = cache.getAllLights();
     List<String> lightList = new ArrayList<String>();
     List<String> nonReachablelightList = new ArrayList<String>();
+    
     for (PHLight lights : allLights)
     {
       PHLightState lightState = lights.getLastKnownLightState();
@@ -39,18 +40,18 @@ public class HBcheckAllLightsON
       System.out.println(x);
       
       Boolean y = lightState.isReachable();
-      if ((!x.booleanValue()) || (!y.booleanValue())) {
-        if ((y.booleanValue()) && (!x.booleanValue()))
-        {
+      
+      if (x==false && y==true) {
+        
           lightList.add(lights.getName());
           
           counter += 1;
         }
-        else if (!y.booleanValue())
+        else if (y==false)
         {
           nonReachablelightList.add(lights.getName());
         }
-      }
+      
     }
     
     
@@ -83,8 +84,8 @@ public class HBcheckAllLightsON
     {
     	System.out.println("Putting data into excel-Inside IF");
     	cdsr.ReportTurnONAllLights("PASS");
-    }else if(Status=="FAIL"){
-    	System.out.println("Putting data into excel-Inside ELSe");
+    }else {
+    	System.out.println("Putting data into excel-Inside ELSE");
     	cdsr.ReportTurnONAllLights("FAIL");
     }
     return this.sendtoHTMLturnOFFAll;
@@ -106,7 +107,7 @@ public class HBcheckAllLightsON
     String htmlString1 = //htmlString + 
       "<tr>\n" + 
       "<td style=\"border:1px solid black;border-collapse:collapse\"><font face=\"Verdana\">\n" + "1" + "</td>\n"+"</font>\n" + 
-      "<td style=\"border:1px solid black;border-collapse:collapse\"><font face=\"Verdana\">\n" + "TurnONAllLights" + "</td>\n" +"</font>\n" + 
+      "<td style=\"border:1px solid black;border-collapse:collapse\"><font face=\"Verdana\">\n" + "Turn ON All Lights" + "</td>\n" +"</font>\n" + 
       "<td style=\"border:1px solid black;border-collapse:collapse\">\n" + "All lights Present on Bridge should Turn ON" + "</td>\n" + 
       "<td style=\"border:1px solid black;border-collapse:collapse\">\n" + resultString + "</td>\n" + 
       "<td style=\"border:1px solid black;border-collapse:collapse\">\n" + statusString + "</td>\n" + 
