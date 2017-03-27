@@ -167,8 +167,8 @@ public static void InitiateSimulator(WebDriver driver) throws InterruptedExcepti
       SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
       //String time = (sdf.format(date));
       
-      if((sdf.parse(sdf.format(date)).after(sdf.parse("11:00:00"))) 
-    		  && (sdf.parse(sdf.format(date)).before(sdf.parse("23:35:00"))))
+      if((sdf.parse(sdf.format(date)).after(sdf.parse("09:00:00"))) 
+    		  && (sdf.parse(sdf.format(date)).before(sdf.parse("09:50:00"))))
       {	
     	  System.out.println("Inside IF to create Daily Report");
     	  DailyReport spreadsheet = new DailyReport();
