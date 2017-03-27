@@ -55,6 +55,8 @@ public class HBTurnOFFAllLivingRoomLights {
     
     //TimeUnit.SECONDS.sleep(20);
     PHBridgeResourcesCache cache = bridge.getResourceCache();
+    
+    
     List<PHLight> allOldLights = cache.getAllLights();
     
     for(PHLight OldLights:allOldLights){
@@ -149,10 +151,7 @@ public class HBTurnOFFAllLivingRoomLights {
     	
     	for(Entry<String,Boolean> NewNonKey : NewNonLivingRoomLightState.entrySet()){
     		for(Entry<String,Boolean> OldNonKey : OldNonLivingRoomLightState.entrySet()){
-    			//System.out.println("New Non Key:"+NewNonKey.getKey());
-    			//System.out.println("Old Non Key:"+OldNonKey.getKey());
-    			//System.out.println("New Non Value:"+NewNonKey.getValue());
-    			//System.out.println("Old Non Value:"+OldNonKey.getValue());
+    			
     			if((OldNonKey.getKey().equalsIgnoreCase(NewNonKey.getKey())==true) 
     						&& (OldNonKey.getValue()==NewNonKey.getValue())){
     					//System.out.println("Inside IF");
@@ -164,15 +163,6 @@ public class HBTurnOFFAllLivingRoomLights {
     			}
     		}
     	}
-    	
-   // System.out.println("True Lights:"+TrueLights.toString());
-    //System.out.println("False Lights:"+FalseLights.toString());
-    
-    //System.out.println("New Non Living Room LightState:"+NewNonLivingRoomLightState.toString());
-    //System.out.println("Old Non Living Room LightState:"+OldNonLivingRoomLightState.toString());
-    
-    //System.out.println("True Non Living Room Lights:"+TrueNonLivingRoomLights.toString());
-    //System.out.println("False Non Living Room Lights:"+FalseNonLivingRoomLights.toString());
     
     if(FalseLights.isEmpty()==true && FalseNonLivingRoomLights.isEmpty()==true){
     	Status = "PASS";

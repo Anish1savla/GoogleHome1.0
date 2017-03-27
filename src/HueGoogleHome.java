@@ -71,13 +71,13 @@ public class HueGoogleHome
     {
     	
       HueBridgeConnection bh = new HueBridgeConnection();
-      File BridgeConnectionFile = new File("BridgeProperty.txt");
+      File BridgeConnectionFile = new File("C:\\Users\\310235474\\git\\GoogleHome1.0\\BridgeProperty.txt");
        
       
        if (BridgeConnectionFile.exists()==true){
        
     	 // @SuppressWarnings("resource")
-		BufferedReader br = new BufferedReader(new FileReader("BridgeProperty.txt"));
+		BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\310235474\\git\\GoogleHome1.0\\BridgeProperty.txt"));
     	  String userNamefromText;
     	  int CounterExecution=0;
     	  while ((userNamefromText = br.readLine()) != null)
@@ -97,9 +97,9 @@ public class HueGoogleHome
             CounterExecution++;
             System.out.println(CounterExecution+": Counter Execution");
           }
-    	  bh.connectToBridgeWithIp(ipAddressStored,connectCallback);
+    	  bh.connectToBridgeWithIp(ipAddressStored,userNameStored,connectCallback);
       }else {
-    	  bh.connectToBridgeWithIp("192.168.84.25",connectCallback);
+    	  bh.connectToBridgeWithIp("192.168.84.47"," ",connectCallback);
     	    TimeUnit.SECONDS.sleep(5);
     	   // System.out.println("Hue Bridge connection is done");
       }
@@ -163,13 +163,12 @@ public static void InitiateSimulator(WebDriver driver) throws InterruptedExcepti
      WebDriver driver = new ChromeDriver();
      InitiateSimulator(driver); 
       
-     
      Date date = new Date();
       SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
       //String time = (sdf.format(date));
       
-      if((sdf.parse(sdf.format(date)).after(sdf.parse("16:00:00"))) 
-    		  && (sdf.parse(sdf.format(date)).before(sdf.parse("16:35:00"))))
+      if((sdf.parse(sdf.format(date)).after(sdf.parse("11:00:00"))) 
+    		  && (sdf.parse(sdf.format(date)).before(sdf.parse("23:35:00"))))
       {	
     	  System.out.println("Inside IF to create Daily Report");
     	  DailyReport spreadsheet = new DailyReport();

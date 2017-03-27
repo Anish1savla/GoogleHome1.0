@@ -34,12 +34,14 @@ public class CreateNewDailySummaryReport {
 	public HSSFSheet sheet18;
 	public HSSFSheet sheet19;
 	public HSSFSheet sheet20;
+	public HSSFSheet sheet21;
 	public SimpleDateFormat sdftime; 
 	
 	 
 	
 	//public HSSFCell cellType=row.createCell(1);
 	HSSFWorkbook workbook = new HSSFWorkbook();
+	
 	public void NewDailyReport() throws IOException, EncryptedDocumentException, InvalidFormatException{
 		
 //PREPARE LIST OR ARRAY LIST FOR NAME OF TEST CASE AND USE FOR LOOP TO CREATE SPREADSHEET	
@@ -53,6 +55,15 @@ public class CreateNewDailySummaryReport {
 	    	
 		HSSFWorkbook workbook = new HSSFWorkbook();
 		
+		/*sheet21 = workbook.createSheet("Total");
+			
+		HSSFRow row22;
+		
+		row22=sheet21.createRow((short)0);
+		row22.createCell(0).setCellValue("Time");
+		row22.createCell(1).setCellValue("PASS");
+		row22.createCell(2).setCellValue("FAIL");*/
+			
 		sheet1 = workbook.createSheet("Turn ON All Lights");
 		
 			HSSFRow row;
@@ -163,12 +174,12 @@ public class CreateNewDailySummaryReport {
 			
 		sheet12 = workbook.createSheet("Turn Hue Light Strip Plus 1 Blue");
 		
-			HSSFRow row22;
+			HSSFRow row221;
 				
-			row22=sheet12.createRow((short)0);
-			row22.createCell(0).setCellValue("Time");
-			row22.createCell(1).setCellValue("PASS");
-			row22.createCell(2).setCellValue("FAIL");
+			row221=sheet12.createRow((short)0);
+			row221.createCell(0).setCellValue("Time");
+			row221.createCell(1).setCellValue("PASS");
+			row221.createCell(2).setCellValue("FAIL");
 		
 		
 		sheet13 = workbook.createSheet("Dim the Lights By 20%");

@@ -67,7 +67,7 @@ public class SendEmailForReport {
 		    for (int i = 0; i < oldFiles.length; i++)
 		    {
 		      
-		      if (oldFiles[i].getName().contains("Report")) {
+		      if (oldFiles[i].getName().contains("html")) {
 		    	  filename = oldFiles[i].getName();
 		    	  break;
 		    	  

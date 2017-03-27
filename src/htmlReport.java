@@ -297,7 +297,7 @@ public class htmlReport
     for (int i = 0; i < oldFiles.length; i++)
     {
     	
-    	if(oldFiles[i].getName().contains("Report")){
+    	if(oldFiles[i].getName().contains("html")){
     		System.out.println("File:"+oldFiles[i].getName());
     		oldFiles[i].renameTo(new File(ArchiveFolder + "\\" + oldFiles[i].getName()));
     	}

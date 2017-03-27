@@ -24,19 +24,19 @@ public class HueBridgeConnection
   public String lastknownUserName = "lastusername";
   public String lastKnownIPAddress = "lastIPAddress";
   
-  public void connectToBridgeWithIp(String ipAddress,ConnectCallback connectCallback)
+  public void connectToBridgeWithIp(String ipAddress,String userNameStored, ConnectCallback connectCallback)
   {
-    this.phHueSDK = PHHueSDK.create();
-    phHueSDK.getNotificationManager().registerSDKListener(this.listener);
+    phHueSDK = PHHueSDK.create();
+    phHueSDK.getNotificationManager().registerSDKListener(listener);
     
     this.connectCallback = connectCallback;
     
-    System.out.println("Inside Hue bridge connection and IP address is:"+ipAddress);
-    //System.out.println("Inside Hue bridge conection and username is:"+userNameStored);
+    //System.out.println("Inside Hue bridge connection and IP address is:"+ipAddress);
+    //System.out.println("Inside Hue Bridge connection and username is :"+userNameStored);
     PHAccessPoint accessPoint = new PHAccessPoint();
     
     accessPoint.setIpAddress(ipAddress);
-    //accessPoint.setUsername(userNameStored);
+    accessPoint.setUsername(userNameStored);
     //System.out.println("Access Point is :"+accessPoint.getUsername());
     phHueSDK.connect(accessPoint);
 	//System.out.println("Before push link");
@@ -48,17 +48,16 @@ public class HueBridgeConnection
     
     public void onAuthenticationRequired(PHAccessPoint accessPoint)
     {
-    
-      HueBridgeConnection.this.phHueSDK.startPushlinkAuthentication(accessPoint);
+      phHueSDK.startPushlinkAuthentication(accessPoint);
       System.out.println("Press pushlink Button");
     }
     
     public void onBridgeConnected(PHBridge bridge, String username)
     {
       System.out.println("Bridge Connected");
-      
-      HueBridgeConnection.this.phHueSDK.setSelectedBridge(bridge);
-      HueBridgeConnection.this.phHueSDK.enableHeartbeat(bridge, 10000L);
+      //HueBridgeConnection.this.
+      phHueSDK.setSelectedBridge(bridge);
+      phHueSDK.enableHeartbeat(bridge, 10000L);
       String lastConnectedUsername = bridge.getResourceCache().getBridgeConfiguration().getUsername();
       String lastConnectedipAddress = bridge.getResourceCache().getBridgeConfiguration().getIpAddress();
       
@@ -81,7 +80,7 @@ public class HueBridgeConnection
       System.out.println("calling connect call back");
       
       try {
-		HueBridgeConnection.this.connectCallback.onConnected(bridge);
+		connectCallback.onConnected(bridge);
 	} catch (EncryptedDocumentException | InvalidFormatException | ParseException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
