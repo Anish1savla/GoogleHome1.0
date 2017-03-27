@@ -44,17 +44,12 @@ public class CreateNewDailySummaryReport {
 	
 	public void NewDailyReport() throws IOException, EncryptedDocumentException, InvalidFormatException{
 		
-//PREPARE LIST OR ARRAY LIST FOR NAME OF TEST CASE AND USE FOR LOOP TO CREATE SPREADSHEET	
-//		Date date = new Date();
-//	    sdftime = new SimpleDateFormat("HH:mm:ss");
-//	    SimpleDateFormat sdfdate = new SimpleDateFormat("MMddyyyy");
-//	    String time = sdftime.format(date);
-//	    String date1 = sdfdate.format(date);
-		
+		System.out.println("Test1");
 		String fileName = "C:\\Users\\310235474\\git\\GoogleHome1.0\\DailyReportSpreadsheet.xls";
 	    	
 		HSSFWorkbook workbook = new HSSFWorkbook();
 		
+		System.out.println("Test2");
 		/*sheet21 = workbook.createSheet("Total");
 			
 		HSSFRow row22;
@@ -65,7 +60,7 @@ public class CreateNewDailySummaryReport {
 		row22.createCell(2).setCellValue("FAIL");*/
 			
 		sheet1 = workbook.createSheet("Turn ON All Lights");
-		
+		System.out.println("Test3");
 			HSSFRow row;
 			
 		
@@ -74,7 +69,7 @@ public class CreateNewDailySummaryReport {
 			row.createCell(1).setCellValue("PASS");
 			row.createCell(2).setCellValue("FAIL");
 		
-						
+			System.out.println("Test4");				
 		sheet2 = workbook.createSheet("Turn OFF All Lights");
 		
 			HSSFRow row2;
