@@ -203,17 +203,7 @@ public class htmlReport
     {
       this.finalHTMLReportString += BrightenWhiteLampBy20P;
     }
-    
-    /* Turn ON All Lights in Living room*/
-    if (BrightenWhiteLampBy20P == null)
-    {
-      DimHueGo2 = "Brighten White Lamp By 20%";
-      this.reportNotes = (this.reportNotes + "<h5>" + BrightenWhiteLampBy20P + "</h5>\n");
-    }
-    else
-    {
-      this.finalHTMLReportString += BrightenWhiteLampBy20P;
-    }
+
     
     /* Turn ON All lights in Living Room*/
     if (TurnONAllLivingRoomLights == null)
