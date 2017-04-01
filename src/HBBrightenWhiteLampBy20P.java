@@ -1,7 +1,13 @@
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.TimeZone;
 import java.util.Map.Entry;
 import java.util.concurrent.TimeUnit;
 
@@ -161,14 +167,48 @@ public class HBBrightenWhiteLampBy20P {
 	    }
 	    
 	    CreateNewDailySummaryReport cdsr = new CreateNewDailySummaryReport();
-	    if(Status=="PASS")
+	    
+	    try{
+	    	 String BridgeAPIVersion = bridge.getResourceCache().getBridgeConfiguration().getAPIVersion();
+	    	TimeZone timeZone = TimeZone.getTimeZone("UTC");
+			Calendar calendar = Calendar.getInstance(timeZone);
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String utcdate = sdf.format(calendar.getTime());
+	    	
+			Connection myConn = DriverManager.getConnection("jdbc:mysql://yy019992.code1.emi.philips.com:3306/iv_us", 
+					"iv_us_user","PaloAltoTeam");
+			System.out.println("Connection with MYSQL Complete");
+			
+			Statement myStmt = myConn.createStatement();
+			
+			if(Status=="PASS")
+		    {
+				String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
+						"Values('"+utcdate+"','15','1','White Lamp Brightned By 20%','"+Remarks+"','"+BridgeAPIVersion+"')";
+				myStmt.executeUpdate(sql);
+				/*System.out.println("Putting data into excel-Inside IF");
+		    	
+		    	cdsr.ReportTurnONAllLights("PASS");*/
+		    }else {
+				String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
+						"Values('"+utcdate+"','15','0','White Lamp Didnt Brightned By 20%','"+Remarks+"','"+BridgeAPIVersion+"')";
+				myStmt.executeUpdate(sql);
+		    /*	System.out.println("Putting data into excel-Inside ELSE");
+		    	cdsr.ReportTurnONAllLights("FAIL");*/
+		    }
+
+	    }catch (Exception e){
+	    	e.printStackTrace();
+	    }
+	    
+	    /*if(Status=="PASS")
 	    {
 	    	System.out.println("Putting data into excel-Inside IF");
 	    	cdsr.ReportWhiteLampBy20P("PASS");
 	    }else if(Status=="FAIL"){
 	    	System.out.println("Putting data into excel-Inside ELSe");
 	    	cdsr.ReportWhiteLampBy20P("FAIL");
-	    }
+	    }*/
 	    
 		return sendToHTML;
 	}

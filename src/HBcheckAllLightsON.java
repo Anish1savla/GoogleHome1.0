@@ -6,12 +6,17 @@ import com.philips.lighting.model.PHLightState;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
+import java.util.Properties;
+import java.util.TimeZone;
+import java.sql.*;
+import java.text.SimpleDateFormat;
 public class HBcheckAllLightsON
 {
   public static int counter = 0;
@@ -60,34 +65,64 @@ public class HBcheckAllLightsON
       this.Status = "PASS";
       if (nonReachablelightList.isEmpty())
       {
-        this.results = "All lights turned ON";
-        this.Remarks = "";
+        results = "All lights turned ON";
+        Remarks = "";
       }
       else
       {
-        this.results = "All lights are ON. However few lights are Not Reachable.";
-        this.Remarks = (nonReachablelightList.toString() + " : Lights are not reachable, please check Hue Bridge and Lights Settings.");
+        results = "All lights are ON. However few lights are Not Reachable.";
+        Remarks = (nonReachablelightList.toString() + " : Lights are not reachable, please check Hue Bridge and Lights Settings.");
       }
-      this.sendtoHTMLturnOFFAll = createHTMLReport(this.results, this.Status, this.Remarks);
+      sendtoHTMLturnOFFAll = createHTMLReport(results, Status, Remarks);
     }
     else
     {
-      this.results = (lightList.toString() + ": Lights are Still OFF");
+      results = (lightList.toString() + ": Lights are Still OFF");
       
-      this.Status = "FAIL";
-      this.Remarks = ("Please check Network Connection, Hue Bridge connection in Google Home and Light Status Manually" + nonReachablelightList.toString() + ":Lights are not reachable");
-      this.sendtoHTMLturnOFFAll = createHTMLReport(this.results, this.Status, this.Remarks);
+      Status = "FAIL";
+      Remarks = ("Please check Network Connection, Hue Bridge connection in Google Home and Light Status Manually" + nonReachablelightList.toString() + ":Lights are not reachable");
+      sendtoHTMLturnOFFAll = createHTMLReport(results, Status, Remarks);
     }
     System.out.println("Putting data into excel");
     CreateNewDailySummaryReport cdsr = new CreateNewDailySummaryReport();
-    if(Status=="PASS")
-    {
-    	System.out.println("Putting data into excel-Inside IF");
-    	cdsr.ReportTurnONAllLights("PASS");
-    }else {
-    	System.out.println("Putting data into excel-Inside ELSE");
-    	cdsr.ReportTurnONAllLights("FAIL");
+    
+    try{
+    	 String BridgeAPIVersion = bridge.getResourceCache().getBridgeConfiguration().getAPIVersion();
+    	TimeZone timeZone = TimeZone.getTimeZone("UTC");
+		Calendar calendar = Calendar.getInstance(timeZone);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String utcdate = sdf.format(calendar.getTime());
+    	
+		Connection myConn = DriverManager.getConnection("jdbc:mysql://yy019992.code1.emi.philips.com:3306/iv_us", 
+				"iv_us_user","PaloAltoTeam");
+		System.out.println("Connection with MYSQL Complete");
+		
+		Statement myStmt = myConn.createStatement();
+		
+		if(Status=="PASS")
+	    {
+			String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
+					"Values('"+utcdate+"','1','1','All Lights Turned ON','"+Remarks+"','"+BridgeAPIVersion+"')";
+			myStmt.executeUpdate(sql);
+			/*System.out.println("Putting data into excel-Inside IF");
+	    	
+	    	cdsr.ReportTurnONAllLights("PASS");*/
+	    }else {
+			String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
+					"Values('"+utcdate+"','1','0','All Lights Didnt Turned ON','"+Remarks+"','"+BridgeAPIVersion+"')";
+			myStmt.executeUpdate(sql);
+	    	/*System.out.println("Putting data into excel-Inside ELSE");
+	    	cdsr.ReportTurnONAllLights("FAIL");*/
+	    }
+
+    }catch (Exception e){
+    	e.printStackTrace();
     }
+    
+    
+    
+    
+    
     return this.sendtoHTMLturnOFFAll;
     
     

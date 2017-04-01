@@ -1,6 +1,12 @@
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -53,13 +59,13 @@ public class HBCheckAllLightsGreen
       //System.out.println("Light is Reachable?:" + x);
       if ((colorX != null) && (colorY != null))
       {
-        this.xColor = colorX.floatValue();
-        this.yColor = colorY.floatValue();
+        xColor = colorX.floatValue();
+        yColor = colorY.floatValue();
       }
       else
       {
-        this.xColor = -1.0D;
-        this.yColor = -1.0D;
+        xColor = -1.0D;
+        yColor = -1.0D;
       }
       //System.out.println(this.xColor);
       //System.out.println(this.yColor);
@@ -70,54 +76,54 @@ public class HBCheckAllLightsGreen
       if (((lightversion.equals("1.15.2_r19181")) || ((lights.getName().contains("lightstrip")) && (lightversion == "5.50.1.19085"))) && 
         (colorX != null) && (colorY != null))
       {
-        if ((this.xColor >= 0.17) && (this.xColor <= 0.173) && (this.yColor >= 0.69998) && (this.yColor <= 0.75))
+        if ((xColor >= 0.17) && (xColor <= 0.173) && (yColor >= 0.69998) && (yColor <= 0.75))
         {
-          this.OldintX = 1;
-          this.OldintY = 1;
+          OldintX = 1;
+          OldintY = 1;
         }
         else
         {
-          this.OldintX = 0;
-          this.OldintY = 0;
+          OldintX = 0;
+          OldintY = 0;
         }
       }
       else if ((lightversion.equals("5.50.1.19085")) && (colorX != null) && (colorY != null) && (!lights.getName().contains("lightstrip")))
       {
-        if ((this.xColor >= 0.409) && (this.xColor <= 0.41) && (this.yColor >= 0.517) && (this.yColor <= 0.519))
+        if ((xColor >= 0.409) && (xColor <= 0.41) && (yColor >= 0.517) && (yColor <= 0.519))
         {
-          this.NewintX = 1;
-          this.NewintY = 1;
+          NewintX = 1;
+          NewintY = 1;
         }
         else
         {
-          this.NewintX = 0;
-          this.NewintY = 0;
+          NewintX = 0;
+          NewintY = 0;
         }
       }
       else if (lights.getName().contains("lightstrip"))
       {
     	 // System.out.println("Inside lightstrip IF check");
-        if ((this.xColor >= 0.17) && (this.xColor <= 0.173) && (this.yColor >= 0.69555) && (this.yColor <= 0.75005))
+        if ((xColor >= 0.17) && (xColor <= 0.173) && (yColor >= 0.69555) && (yColor <= 0.75005))
         {
-          this.NewintX = 1;
-          this.NewintY = 1;
+          NewintX = 1;
+          NewintY = 1;
         }
         else
         {
-          this.NewintX = 0;
-          this.NewintY = 0;
+          NewintX = 0;
+          NewintY = 0;
         }
       }
       else {
         nonColorLights.add(lights.getName());
       }
       if ((!lightType.toString().equals("CT_LIGHT")) && (!lightType.toString().equals("DIM_LIGHT")) && 
-        ((this.OldintX == 1) || (this.NewintX == 1)) && ((this.OldintY == 1) || (this.NewintY == 1)) && (x.booleanValue()))
+        ((OldintX == 1) || (NewintX == 1)) && ((OldintY == 1) || (NewintY == 1)) && (x.booleanValue()))
       {
         //System.out.println("Inside IF to check RED x Y values");
         reachablelightList.add(lights.getName());
       }
-      else if ((x.booleanValue()) && (this.OldintX != 1) && (this.NewintX != 1) && (this.OldintY != 1) && (this.NewintY != 1) && 
+      else if ((x.booleanValue()) && (OldintX != 1) && (NewintX != 1) && (OldintY != 1) && (NewintY != 1) && 
         (!lightType.toString().equals("CT_LIGHT")) && (!lightType.toString().equals("DIM_LIGHT")))
       {
         //System.out.println("Inside 1st ELSE IF to check RED x Y values");
@@ -140,38 +146,73 @@ public class HBCheckAllLightsGreen
     if (lightList.isEmpty())
     {
       //System.out.println("Inside IF to PASS");
-      this.Status = "PASS";
+      Status = "PASS";
       if (nonReachablelightList.isEmpty())
       {
-        this.results = "All lights turned GREEN";
-        this.Remarks = (nonColorLights.toString() + ": Are Not Color Lights");
+        results = "All lights turned GREEN";
+        Remarks = (nonColorLights.toString() + ": Are Not Color Lights");
       }
       else
       {
         //System.out.println("Inside IF to FAIL");
-        this.results = "All lights turned GREEN. However few lights are Not Reachable.";
-        this.Remarks = (nonReachablelightList.toString() + " : Lights are not reachable, please check Hue Bridge and Lights Settings." + nonColorLights.toString() + ": Are Not Color Lights");
+        results = "All lights turned GREEN. However few lights are Not Reachable.";
+        Remarks = (nonReachablelightList.toString() + " : Lights are not reachable, please check Hue Bridge and Lights Settings." + nonColorLights.toString() + ": Are Not Color Lights");
       }
-      this.sendtoHTMLturnOFFAll = createHTMLReport(this.results, this.Status, this.Remarks);
+      sendtoHTMLturnOFFAll = createHTMLReport(results, Status, Remarks);
     }
     else
     {
-      this.results = (lightList.toString() + ": Lights didn't Turn GREEN");
+      results = (lightList.toString() + ": Lights didn't Turn GREEN");
       
-      this.Status = "FAIL";
-      this.Remarks = ("Please check Network Connection, Hue Bridge connection in Google Home and Light Color Status Manually. " + nonReachablelightList.toString() + ":Lights are not reachable");
-      this.sendtoHTMLturnOFFAll = createHTMLReport(this.results, this.Status, this.Remarks);
+      Status = "FAIL";
+      Remarks = ("Please check Network Connection, Hue Bridge connection in Google Home and Light Color Status Manually. " + nonReachablelightList.toString() + ":Lights are not reachable");
+      sendtoHTMLturnOFFAll = createHTMLReport(results, Status, Remarks);
     }
     
     CreateNewDailySummaryReport cdsr = new CreateNewDailySummaryReport();
-    if(Status=="PASS")
+    
+    try{
+      	 String BridgeAPIVersion = bridge.getResourceCache().getBridgeConfiguration().getAPIVersion();
+      	TimeZone timeZone = TimeZone.getTimeZone("UTC");
+   		Calendar calendar = Calendar.getInstance(timeZone);
+   		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+   		String utcdate = sdf.format(calendar.getTime());
+      	
+   		Connection myConn = DriverManager.getConnection("jdbc:mysql://yy019992.code1.emi.philips.com:3306/iv_us", 
+   				"iv_us_user","PaloAltoTeam");
+   		System.out.println("Connection with MYSQL Complete");
+   		
+   		Statement myStmt = myConn.createStatement();
+   		
+   		if(Status=="PASS")
+   	    {
+   			String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
+   					"Values('"+utcdate+"','4','1','All Lights Turned GREEN','"+Remarks+"','"+BridgeAPIVersion+"')";
+   			myStmt.executeUpdate(sql);
+   			/*System.out.println("Putting data into excel-Inside IF");
+   	    	
+   	    	cdsr.ReportTurnONAllLights("PASS");*/
+   	    }else {
+   			String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
+   					"Values('"+utcdate+"','4','0','All Lights Didnt Turned GREEN','"+Remarks+"','"+BridgeAPIVersion+"')";
+   			myStmt.executeUpdate(sql);
+   	    	/*System.out.println("Putting data into excel-Inside ELSE");
+   	    	cdsr.ReportTurnONAllLights("FAIL");*/
+   	    }
+
+      }catch (Exception e){
+      	e.printStackTrace();
+      }
+    
+    
+/*    if(Status=="PASS")
     {
     	System.out.println("Putting data into excel-Inside IF");
     	cdsr.ReportTurnGreenAllLights("PASS");
     }else if(Status=="FAIL"){
     	System.out.println("Putting data into excel-Inside ELSe");
     	cdsr.ReportTurnGreenAllLights("FAIL");
-    }
+    }*/
     
     return this.sendtoHTMLturnOFFAll;
   }

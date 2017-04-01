@@ -1,6 +1,12 @@
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -71,14 +77,48 @@ public class HBTurnONAmbLivingRoom {
 	    }
 	    
 	    CreateNewDailySummaryReport cdsr = new CreateNewDailySummaryReport();
-	    if(Status=="PASS")
+	    
+	    try{
+	    	 String BridgeAPIVersion = bridge.getResourceCache().getBridgeConfiguration().getAPIVersion();
+	    	TimeZone timeZone = TimeZone.getTimeZone("UTC");
+			Calendar calendar = Calendar.getInstance(timeZone);
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String utcdate = sdf.format(calendar.getTime());
+	    	
+			Connection myConn = DriverManager.getConnection("jdbc:mysql://yy019992.code1.emi.philips.com:3306/iv_us", 
+					"iv_us_user","PaloAltoTeam");
+			System.out.println("Connection with MYSQL Complete");
+			
+			Statement myStmt = myConn.createStatement();
+			
+			if(Status=="PASS")
+		    {
+				String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
+						"Values('"+utcdate+"','18','1','Hue Ambiance Lamp 1 in Living Room is Turned ON','"+Remarks+"','"+BridgeAPIVersion+"')";
+				myStmt.executeUpdate(sql);
+				/*System.out.println("Putting data into excel-Inside IF");
+		    	
+		    	cdsr.ReportTurnONAllLights("PASS");*/
+		    }else {
+				String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
+						"Values('"+utcdate+"','18','0','Hue Ambiance Lamp 1 in Living Room Didnt Turned ON','"+Remarks+"','"+BridgeAPIVersion+"')";
+				myStmt.executeUpdate(sql);
+		    /*	System.out.println("Putting data into excel-Inside ELSE");
+		    	cdsr.ReportTurnONAllLights("FAIL");*/
+		    }
+
+	    }catch (Exception e){
+	    	e.printStackTrace();
+	    }
+	    
+	    /*if(Status=="PASS")
 	    {
 	    	System.out.println("Putting data into excel-Inside IF");
 	    	cdsr.ReportTONAmbLR("PASS");
 	    }else if(Status=="FAIL"){
 	    	System.out.println("Putting data into excel-Inside ELSe");
 	    	cdsr.ReportTONAmbLR("FAIL");
-	    }
+	    }*/
 	    
 		return SendToHTML;
 	}

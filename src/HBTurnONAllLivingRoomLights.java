@@ -1,7 +1,13 @@
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.TimeZone;
 import java.util.Map.Entry;
 import java.util.concurrent.TimeUnit;
 
@@ -94,9 +100,9 @@ public class HBTurnONAllLivingRoomLights {
     List<PHLight> allLights = Newcache.getAllLights();
     
     
-    
+    System.out.println("Stating FOR Loop after command");
     for(PHLight Lights:allLights){
-    	    	
+    	    
     	PHLightState lightState = Lights.getLastKnownLightState();
     	
     	if(lightState.isReachable()==false){
@@ -108,6 +114,8 @@ public class HBTurnONAllLivingRoomLights {
     	for (Entry<String, Integer> MapKey : LivingRoomLights.entrySet()){
     		
     		if(Lights.getName().equalsIgnoreCase(MapKey.getKey())==true){
+    			System.out.println("MapKey"+MapKey.getKey());
+    			System.out.println("True OR False:"+Lights.getName().equalsIgnoreCase(MapKey.getKey()));
     			TurnONIndicator = lightState.isOn();
     			
     			if(TurnONIndicator==true){
@@ -121,13 +129,13 @@ public class HBTurnONAllLivingRoomLights {
     	
     }
     
-    
+    	System.out.println("True Lights:"+TrueLights.toString());
+    	System.out.println("False Lights:"+FalseLights.toString());
     	for(Entry<String, Boolean> NewKey : NewAllLightState.entrySet()){
     		for (Entry<String, Integer> MapKey : LivingRoomLights.entrySet()){
-    			//System.out.println("Map Key:"+MapKey.getKey());
-    			//System.out.println("New Key:"+NewKey.getKey());
+    			
     			if(!MapKey.getKey().equalsIgnoreCase(NewKey.getKey())){
-    				//System.out.println("Inside IF");
+    				
     				NewCounter++;
     			}else {
     				NewCounter=0;
@@ -161,16 +169,20 @@ public class HBTurnONAllLivingRoomLights {
     		}
     	}
     	
+    	System.out.println("True Non Living Room Lights:"+TrueNonLivingRoomLights.toString());
+    	System.out.println("False Non Living Room Lights:"+FalseNonLivingRoomLights.toString());
+    	
    // System.out.println("True Lights:"+TrueLights.toString());
     //System.out.println("False Lights:"+FalseLights.toString());
     
-    System.out.println("New Non Living Room LightState:"+NewNonLivingRoomLightState.toString());
+ /*   System.out.println("New Non Living Room LightState:"+NewNonLivingRoomLightState.toString());
     System.out.println("Old Non Living Room LightState:"+OldNonLivingRoomLightState.toString());
     
     System.out.println("True Non Living Room Lights:"+TrueNonLivingRoomLights.toString());
-    System.out.println("False Non Living Room Lights:"+FalseNonLivingRoomLights.toString());
+    System.out.println("False Non Living Room Lights:"+FalseNonLivingRoomLights.toString());*/
     
     if(FalseLights.isEmpty()==true && FalseNonLivingRoomLights.isEmpty()==true){
+    	System.out.println("Inside If Statement");
     	Status = "PASS";
     	Result = "All Lights in Living Room Turned ON.";
     	if(nonReachableLights.isEmpty()==true){
@@ -180,6 +192,7 @@ public class HBTurnONAllLivingRoomLights {
     	}
     	sendToHTML=createHTMLReport(Status,Result,Remarks);
     }else if(FalseLights.isEmpty()==false && FalseNonLivingRoomLights.isEmpty()==true){
+    	System.out.println("Inside 1st Else");
     	Status = "FAIL";
     	Result = "All Lights in Living Room Didn't Turned ON.";
     	if(nonReachableLights.isEmpty()==true){
@@ -188,7 +201,8 @@ public class HBTurnONAllLivingRoomLights {
     		Remarks=FalseLights.toString()+" Light still OFF. "+nonReachableLights.toString()+" Lights are Non Reachable Lights.";
     	}
     	sendToHTML=createHTMLReport(Status,Result,Remarks);
-    }else if(FalseLights.isEmpty()==true && FalseNonLivingRoomLights.isEmpty()==false){
+    }else if(FalseLights.isEmpty()==false && FalseNonLivingRoomLights.isEmpty()==false){
+    	System.out.println("Inside 2nd Else");
     	Status = "FAIL";
     	Result = "All Lights in Living Room Turned ON. However Status of other Lights also changed.";
     	if(nonReachableLights.isEmpty()==true){
@@ -201,6 +215,7 @@ public class HBTurnONAllLivingRoomLights {
     	}
     	sendToHTML=createHTMLReport(Status,Result,Remarks);
     }else if(FalseLights.isEmpty()==true && FalseNonLivingRoomLights.isEmpty()==false){
+    	System.out.println("Inside 3rd Else");
     	Status = "FAIL";
     	Result = "All Lights in Living Room Didn't Turned ON. However Status of other Lights also changed.";
     	if(nonReachableLights.isEmpty()==true){
@@ -214,21 +229,57 @@ public class HBTurnONAllLivingRoomLights {
     	sendToHTML=createHTMLReport(Status,Result,Remarks);
     }
     
-    CreateNewDailySummaryReport cdsr = new CreateNewDailySummaryReport();
-    if(Status=="PASS")
+    
+    
+    try{
+   	 String BridgeAPIVersion = bridge.getResourceCache().getBridgeConfiguration().getAPIVersion();
+   	TimeZone timeZone = TimeZone.getTimeZone("UTC");
+		Calendar calendar = Calendar.getInstance(timeZone);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String utcdate = sdf.format(calendar.getTime());
+   	
+		Connection myConn = DriverManager.getConnection("jdbc:mysql://yy019992.code1.emi.philips.com:3306/iv_us", 
+				"iv_us_user","PaloAltoTeam");
+		System.out.println("Connection with MYSQL Complete");
+		
+		Statement myStmt = myConn.createStatement();
+		
+		if(Status=="PASS")
+	    {
+			String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
+					"Values('"+utcdate+"','16','1','All Lights Turned ON in Living Room','"+Remarks+"','"+BridgeAPIVersion+"')";
+			myStmt.executeUpdate(sql);
+			/*System.out.println("Putting data into excel-Inside IF");
+	    	
+	    	cdsr.ReportTurnONAllLights("PASS");*/
+	    }else {
+			String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
+					"Values('"+utcdate+"','16','0','All Lights Didnt Turned ON in Living Room','"+Remarks+"','"+BridgeAPIVersion+"')";
+			myStmt.executeUpdate(sql);
+	    /*	System.out.println("Putting data into excel-Inside ELSE");
+	    	cdsr.ReportTurnONAllLights("FAIL");*/
+	    }
+
+   }catch (Exception e){
+   	e.printStackTrace();
+   }
+    
+    /*if(Status=="PASS")
     {
     	System.out.println("Putting data into excel-Inside IF");
     	cdsr.ReportTurnONAllLR("PASS");
     }else if(Status=="FAIL"){
     	System.out.println("Putting data into excel-Inside ELSe");
     	cdsr.ReportTurnONAllLR("FAIL");
-    }
+    }*/
     
 		return sendToHTML;
 	}
 	
 	
 	public String createHTMLReport(String htmlStatus, String htmlResult, String htmlRemarks){
+		
+		System.out.println("htmlStatus:"+htmlStatus+"htmlResult:"+htmlResult+"htmlRemarks:"+htmlRemarks);
 		
 		FinalHTMLString= "<tr>\n<td style=\"border:1px solid black;border-collapse:collapse\">\n16</td>\n"
 			      + "<td style=\"border:1px solid black;border-collapse:collapse\">\nTurn ON Lights in Living Room.</td>\n"

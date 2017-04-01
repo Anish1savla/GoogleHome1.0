@@ -1,7 +1,13 @@
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -67,65 +73,99 @@ public class HBSetAllBrightnessTo100
     }
     if ((FalselightList.isEmpty()) && (nonDimmingLights.isEmpty()) && (nonReachablelightList.isEmpty()))
     {
-      this.results = "PASS";
-      this.Status = "Brightness for All Lights is 100%.";
-      this.Remarks = "";
-      this.sendtoHTMLsetBrightness100 = createHTMLReport(this.Status, this.results, this.Remarks);
+      results = "PASS";
+      Status = "Brightness for All Lights is 100%.";
+      Remarks = "";
+      sendtoHTMLsetBrightness100 = createHTMLReport(Status, results, Remarks);
     }
     else if ((FalselightList.isEmpty()) && (!nonDimmingLights.isEmpty()) && (nonReachablelightList.isEmpty()))
     {
-      this.results = "PASS";
-      this.Status = "Brightness for All Lights is 100%.";
-      this.Remarks = (nonDimmingLights.toString() + ": Are Non Dimming Lights.");
-      this.sendtoHTMLsetBrightness100 = createHTMLReport(this.Status, this.results, this.Remarks);
+      results = "PASS";
+      Status = "Brightness for All Lights is 100%.";
+      Remarks = (nonDimmingLights.toString() + ": Are Non Dimming Lights.");
+      sendtoHTMLsetBrightness100 = createHTMLReport(Status, results, Remarks);
     }
     else if ((FalselightList.isEmpty()) && (nonDimmingLights.isEmpty()) && (!nonReachablelightList.isEmpty()))
     {
-      this.results = "PASS";
-      this.Status = "Brightness for All Lights is 100%.";
-      this.Remarks = (nonReachablelightList.toString() + ": Lights are Not Reachable");
-      this.sendtoHTMLsetBrightness100 = createHTMLReport(this.Status, this.results, this.Remarks);
+      results = "PASS";
+      Status = "Brightness for All Lights is 100%.";
+      Remarks = (nonReachablelightList.toString() + ": Lights are Not Reachable");
+      sendtoHTMLsetBrightness100 = createHTMLReport(Status, results, Remarks);
     }
     else if ((FalselightList.isEmpty()) && (!nonDimmingLights.isEmpty()) && (!nonReachablelightList.isEmpty()))
     {
-      this.results = "PASS";
-      this.Status = "Brightness for All Lights is 100%. However few lights are not reachable.";
-      this.Remarks = (nonDimmingLights.toString() + ": Are Non Dimming Lights." + nonReachablelightList.toString() + " : Are Non Reachable Lights.");
-      this.sendtoHTMLsetBrightness100 = createHTMLReport(this.Status, this.results, this.Remarks);
+      results = "PASS";
+      Status = "Brightness for All Lights is 100%. However few lights are not reachable.";
+      Remarks = (nonDimmingLights.toString() + ": Are Non Dimming Lights." + nonReachablelightList.toString() + " : Are Non Reachable Lights.");
+      sendtoHTMLsetBrightness100 = createHTMLReport(Status, results, Remarks);
     }
     else if ((!FalselightList.isEmpty()) && (nonDimmingLights.isEmpty()) && (nonReachablelightList.isEmpty()))
     {
-      this.results = "FAIL";
-      this.Status = ("Brightness for lights: " + FalselightList.toString() + " are not 100%." + FalseLightListHash.toString());
-      this.Remarks = ("Please check Hue Lights and Bridge Connection. Manually Test Command \"Set Brightness to 100%\" " + FalseLightListHash.toString());
-      this.sendtoHTMLsetBrightness100 = createHTMLReport(this.Status, this.results, this.Remarks);
+      results = "FAIL";
+      Status = ("Brightness for lights: " + FalselightList.toString() + " are not 100%." + FalseLightListHash.toString());
+      Remarks = ("Please check Hue Lights and Bridge Connection. Manually Test Command \"Set Brightness to 100%\" " + FalseLightListHash.toString());
+      sendtoHTMLsetBrightness100 = createHTMLReport(Status, results, Remarks);
     }
     else if ((!FalselightList.isEmpty()) && (!nonDimmingLights.isEmpty()) && (nonReachablelightList.isEmpty()))
     {
-      this.results = "FAIL";
-      this.Status = ("Brightness for lights: " + FalselightList.toString() + " are not 100%. ");
-      this.Remarks = 
+      results = "FAIL";
+      Status = ("Brightness for lights: " + FalselightList.toString() + " are not 100%. ");
+      Remarks = 
         ("Brightness Level :" + FalseLightListHash.toString() + nonDimmingLights.toString() + ": Lights are Not Dimming Lights.");
-      this.sendtoHTMLsetBrightness100 = createHTMLReport(this.Status, this.results, this.Remarks);
+      sendtoHTMLsetBrightness100 = createHTMLReport(Status, results, Remarks);
     }
     else if ((!FalselightList.isEmpty()) && (nonDimmingLights.isEmpty()) && (!nonReachablelightList.isEmpty()))
     {
-      this.results = "FAIL";
-      this.Status = ("Brightness for lights: " + FalselightList.toString() + " are not 100%. ");
-      this.Remarks = ("Brightness Level :" + FalseLightListHash.toString() + nonReachablelightList.toString() + ": Lights are Not Reachable.");
-      this.sendtoHTMLsetBrightness100 = createHTMLReport(this.Status, this.results, this.Remarks);
+      results = "FAIL";
+      Status = ("Brightness for lights: " + FalselightList.toString() + " are not 100%. ");
+      Remarks = ("Brightness Level :" + FalseLightListHash.toString() + nonReachablelightList.toString() + ": Lights are Not Reachable.");
+      sendtoHTMLsetBrightness100 = createHTMLReport(Status, results, Remarks);
     }
     else if ((!FalselightList.isEmpty()) && (!nonDimmingLights.isEmpty()) && (!nonReachablelightList.isEmpty()))
     {
-      this.results = "FAIL";
-      this.Status = ("Brightness for lights: " + FalselightList.toString() + " are not 100%. ");
-      this.Remarks = 
+      results = "FAIL";
+      Status = ("Brightness for lights: " + FalselightList.toString() + " are not 100%. ");
+      Remarks = 
         ("Brightness Level :" + FalseLightListHash.toString() + nonReachablelightList.toString() + ": Lights are Not Reachable." + nonDimmingLights.toString() + ": Lights are Non Dimmable Lights.");
-      this.sendtoHTMLsetBrightness100 = createHTMLReport(this.Status, this.results, this.Remarks);
+      sendtoHTMLsetBrightness100 = createHTMLReport(Status, results, Remarks);
     }
     //System.out.println("HTML Data from Brightness 100%" + this.sendtoHTMLsetBrightness100);
     CreateNewDailySummaryReport cdsr = new CreateNewDailySummaryReport();
-    if(results=="PASS")
+    
+    try{
+   	 String BridgeAPIVersion = bridge.getResourceCache().getBridgeConfiguration().getAPIVersion();
+   	TimeZone timeZone = TimeZone.getTimeZone("UTC");
+		Calendar calendar = Calendar.getInstance(timeZone);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String utcdate = sdf.format(calendar.getTime());
+   	
+		Connection myConn = DriverManager.getConnection("jdbc:mysql://yy019992.code1.emi.philips.com:3306/iv_us", 
+				"iv_us_user","PaloAltoTeam");
+		System.out.println("Connection with MYSQL Complete");
+		
+		Statement myStmt = myConn.createStatement();
+		
+		if(results=="PASS")
+	    {
+			String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
+					"Values('"+utcdate+"','5','1','Brightness for All Lights Set to 100%','"+Remarks+"','"+BridgeAPIVersion+"')";
+			myStmt.executeUpdate(sql);
+			/*System.out.println("Putting data into excel-Inside IF");
+	    	
+	    	cdsr.ReportTurnONAllLights("PASS");*/
+	    }else {
+			String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
+					"Values('"+utcdate+"','5','0','Brightness for All Lights Set to 100%','"+Remarks+"','"+BridgeAPIVersion+"')";
+			myStmt.executeUpdate(sql);
+	    	/*System.out.println("Putting data into excel-Inside ELSE");
+	    	cdsr.ReportTurnONAllLights("FAIL");*/
+	    }
+
+   }catch (Exception e){
+   	e.printStackTrace();
+   }
+    
+    /*if(results=="PASS")
     {
     	System.out.println("Putting data into excel-Inside IF");
     	cdsr.ReportSetAllLightsTo100P("PASS");
@@ -133,7 +173,7 @@ public class HBSetAllBrightnessTo100
     	System.out.println("Putting data into excel-Inside ELSe");
     	cdsr.ReportSetAllLightsTo100P("FAIL");
     }
-    
+    */
     return this.sendtoHTMLsetBrightness100;
   }
   

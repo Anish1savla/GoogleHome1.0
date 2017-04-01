@@ -62,5 +62,6 @@
 	<classpathentry kind="lib" path="C:/Users/310235474/Desktop/eclipse/jfreechart-1.0.1/jfreechart-1.0.1/lib/jfreechart-1.0.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/310235474/Desktop/eclipse/jfreechart-1.0.1/jfreechart-1.0.1/lib/junit.jar"/>
 	<classpathentry kind="lib" path="C:/Users/310235474/Desktop/eclipse/jfreechart-1.0.1/jfreechart-1.0.1/lib/servlet.jar"/>
+	<classpathentry kind="lib" path="C:/Users/310235474/Desktop/eclipse/mysql-connector-java-5.1.41/mysql-connector-java-5.1.41/mysql-connector-java-5.1.41-bin.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -180,8 +180,8 @@ public class TestCases
     throws IOException
   {
     htmlReport hr = new htmlReport();
-    hr.createHTMLReport(this.turnONAll, this.turnOFFAll, this.changeColorRed, this.changeColorGreen, 
-    		this.setBrightness100, this.turnONhueColorLamp1,this.turnOFFhueColorLamp1,DimAll,DimHueGo2,
+    hr.createHTMLReport(turnONAll, turnOFFAll, changeColorRed, changeColorGreen, 
+    		setBrightness100, turnONhueColorLamp1,turnOFFhueColorLamp1,DimAll,DimHueGo2,
     		SetBrighteness10Percent,BrightenAllLightsBy10P,TurnLightStripBlue,DimAllLightsBy20P,DimHueColorLamp6By30P,
     		BrightenWhiteLampBy20P,TurnONAllLivingRoomLights,TurnOFFAllLivingRoomLights,TurnONAmbLivingRoom,TurnOFFAmbLivingRoom,
     		TurnLivingRoomOrange);

@@ -1,6 +1,12 @@
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -25,84 +31,75 @@ public class HBTurnOFFHueColorLamp1 {
 		   System.out.println("/***************************Inside Hue Bridge Turn OFF Hue Color Lamp 1 class*********************************/");
 		    TimeUnit.SECONDS.sleep(27);
 		    PHBridgeResourcesCache cache = bridge.getResourceCache();
-		    List<PHLight> allLights = cache.getAllLights();
-		    List<String> TrueLights = new ArrayList<String>();
-		    List<String> FalseLights = new ArrayList<String>();
-		    List<String> nonReachableHuecolorLamp1 = new ArrayList<String>();
-		    //List<String> nonReachableLights = new ArrayList<String>();
 		    
+		    //List<String> nonReachableLights = new ArrayList<String>();
+		    List<PHLight> allLights = cache.getAllLights();
 		    for (PHLight lights : allLights)
 		    {
 		      PHLightState lightState = lights.getLastKnownLightState();
+		      Boolean x = lightState.isOn();
+		      System.out.println(lights.getName());
+		      System.out.println(x);
 		      
 		      String lightName = lights.getName();
-		      System.out.println(lightName);
 		      
-		      Boolean lightStatus = lightState.isOn();
-		      //System.out.println(lightStatus + ": is Light Status");
-		      //Boolean HCL1 = lightName.contains(HueColorLampName);
-		      //System.out.println("HCL1:"+HCL1);
-		      if(lightName.equalsIgnoreCase(HueColorLampName)==true){
-		    	  HueColorLampOneCounter++;
-		    	  
+		      if(lightName.equalsIgnoreCase("Hue Color lamp 1")==true && x==false){
+		    	  System.out.println("Inside IF");
+		    	  results = "PASS";
+		    	  Status = "Hue color Lamp 1 Turned OFF";
+		    	  Remarks = " ";
+		    	  sendTohtml = createHTMLReport(results,Status,Remarks);
 		      }
-		      //System.out.println("Hue Color Lamp Counter Value:"+HueColorLampOneCounter);
-		      Boolean lightReachable = lightState.isReachable();
-		      //System.out.println(lightReachable+": Light Reachable");
-		      Boolean lightNameCheck=lightName.equals(HueColorLampName);
-		      //System.out.println(lightNameCheck);
-		      if(lightStatus==false && lightName.equals(HueColorLampName)==true && lightReachable==true){
-		    	  //System.out.println("Inside IF");
-		    	  TrueLights.add(lightName);
-		    	  //System.out.println(TrueLights.isEmpty());
-		      } else if(lightStatus==true && lightName.equals(HueColorLampName)==true && lightReachable==true){
-		    	  FalseLights.add(lightName);
-		      }else if(lightReachable==false && lightName.equals(HueColorLampName)){
-		    	  nonReachableHuecolorLamp1.add(lightName);
+		      else if(lightName.equalsIgnoreCase("Hue Color lamp 1")==true && x==true){
+		    	  System.out.println("Inside ELSE");
+		    	  results = "FAIL";
+		    	  Status = "Hue color Lamp 1 is Still ON";
+		    	  Remarks = "Please check Hue Bridge network and Lights Configuration and Manually Verify the Test.";
+		    	   sendTohtml = createHTMLReport(results,Status,Remarks);
 		      }
 		      
 		    }
 		    
-		    if(HueColorLampOneCounter ==1){
-		    	if(FalseLights.isEmpty()==true && nonReachableHuecolorLamp1.isEmpty()==true && TrueLights.isEmpty()==false){
-		    		results="PASS";
-		    		Status="Hue Color Lamp 1 Turned OFF";
-		    		Remarks=" ";
-		    		sendTohtml=createHTMLReport(results,Status,Remarks);
-		    	}
-		    	else if(FalseLights.isEmpty()==false && nonReachableHuecolorLamp1.isEmpty()==true && TrueLights.isEmpty()==true){
-		    		results="FAIL";
-		    		Status="Hue Color Lamp 1 is Still ON";
-		    		Remarks="Please check Hue Bridge connection and Light Configuration. Manually Verify control of Hue Color Lamp 1.";
-		    		sendTohtml=createHTMLReport(results,Status,Remarks);
-		    	}
-		    }else if (HueColorLampOneCounter==0){
-		    	results="FAIL";
-		    	Status="Hue Color Lamp 1 doesn't exist on Hue Bridge.";
-		    	Remarks="Hue Color Lamp 1 is not present on Hue Bridge. Please check Bridge Configuration.";
-		    	sendTohtml=createHTMLReport(results,Status,Remarks);
-		    }
-		    //System.out.println(results);
-		    //System.out.println(Status);
-		    //System.out.println(Remarks);
-		    
-		    //System.out.println("Send To HTML:"+sendTohtml);
 		    CreateNewDailySummaryReport cdsr = new CreateNewDailySummaryReport();
-		    if(results=="PASS")
-		    {
-		    	System.out.println("Putting data into excel-Inside IF");
-		    	cdsr.ReportTurnOFFHueColorLamp1("PASS");
-		    }else if(results=="FAIL"){
-		    	System.out.println("Putting data into excel-Inside ELSe");
-		    	cdsr.ReportTurnOFFHueColorLamp1("FAIL");
-		    }
 		    
+		    try{
+		    	 String BridgeAPIVersion = bridge.getResourceCache().getBridgeConfiguration().getAPIVersion();
+		    	TimeZone timeZone = TimeZone.getTimeZone("UTC");
+				Calendar calendar = Calendar.getInstance(timeZone);
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				String utcdate = sdf.format(calendar.getTime());
+		    	
+				Connection myConn = DriverManager.getConnection("jdbc:mysql://yy019992.code1.emi.philips.com:3306/iv_us", 
+						"iv_us_user","PaloAltoTeam");
+				System.out.println("Connection with MYSQL Complete");
+				
+				Statement myStmt = myConn.createStatement();
+				
+				if(Status=="PASS")
+			    {
+					String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
+							"Values('"+utcdate+"','7','1','Hue Color Lamp 1 Is OFF','"+Remarks+"','"+BridgeAPIVersion+"')";
+					myStmt.executeUpdate(sql);
+					/*System.out.println("Putting data into excel-Inside IF");
+			    	
+			    	cdsr.ReportTurnONAllLights("PASS");*/
+			    }else {
+					String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
+							"Values('"+utcdate+"','7','0','Hue Color Lamp 1 Is Still ON','"+Remarks+"','"+BridgeAPIVersion+"')";
+					myStmt.executeUpdate(sql);
+			    	/*System.out.println("Putting data into excel-Inside ELSE");
+			    	cdsr.ReportTurnONAllLights("FAIL");*/
+			    }
+
+		    }catch (Exception e){
+		    	e.printStackTrace();
+		    }
 		return sendTohtml;
 		
-	}
+}
 	
 	public String createHTMLReport(String results, String Status, String Remarks){
-		//System.out.println("htmlResults: " + results + " htmlStatus: " + Status + " htmlRemarks :" + Remarks);
+		System.out.println("htmlResults: " + results + " htmlStatus: " + Status + " htmlRemarks :" + Remarks);
 		 String htmlString1 = 
 			      "<tr>\n<td style=\"border:1px solid black;border-collapse:collapse\">\n7</td>\n"
 			      + "<td style=\"border:1px solid black;border-collapse:collapse\">\nTurn OFF Hue color Lamp 1</td>\n"

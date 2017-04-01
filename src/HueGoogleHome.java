@@ -6,7 +6,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -22,7 +21,6 @@ import org.sikuli.script.FindFailed;
 import org.sikuli.script.Pattern;
 import org.sikuli.script.Screen;
 
-import com.gargoylesoftware.htmlunit.javascript.background.JavaScriptExecutor;
 import com.philips.lighting.model.PHBridge;
 
 public class HueGoogleHome
@@ -76,14 +74,14 @@ public class HueGoogleHome
       
        if (BridgeConnectionFile.exists()==true){
        
-    	 // @SuppressWarnings("resource")
+
 		BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\310235474\\git\\GoogleHome1.0\\BridgeProperty.txt"));
     	  String userNamefromText;
     	  int CounterExecution=0;
     	  while ((userNamefromText = br.readLine()) != null)
           {
     		  System.out.println("Inside While Loop");
-            //String userNamefromText;
+            
             if (userNamefromText.length() >= 15)
             {
               userNameStored = userNamefromText.toString();
@@ -106,18 +104,17 @@ public class HueGoogleHome
       
     }
       
-        catch (IOException localIOException) {
-    	
-    }
+        catch (IOException localIOException) 
+    	{
+        	System.out.println("Inside Catch");
+        }
   }
   
   
 public static void InitiateSimulator(WebDriver driver) throws InterruptedException, FindFailed{
 	  
 	System.out.println("Inside start Test");
-	  
-	 
-      
+	
       driver.manage().deleteAllCookies();
       driver.get("https://developers.google.com/actions/tools/web-simulator");
       
@@ -152,8 +149,7 @@ public static void InitiateSimulator(WebDriver driver) throws InterruptedExcepti
       driver.findElement(By.id("signIn")).click();
       
       driver.switchTo().window(winHandleBefore);
-    
-	  
+  
   }
   
   private static void startTests(PHBridge bridge)
@@ -167,7 +163,7 @@ public static void InitiateSimulator(WebDriver driver) throws InterruptedExcepti
       SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
       //String time = (sdf.format(date));
       
-      if((sdf.parse(sdf.format(date)).after(sdf.parse("16:00:00"))) 
+    /*  if((sdf.parse(sdf.format(date)).after(sdf.parse("16:00:00"))) 
     		  && (sdf.parse(sdf.format(date)).before(sdf.parse("16:50:00"))))
       {	
     	  System.out.println("Inside IF to create Daily Report");
@@ -175,7 +171,7 @@ public static void InitiateSimulator(WebDriver driver) throws InterruptedExcepti
           spreadsheet.createSpreadsheetForDailyReport();  
       }else{
     	  System.out.println("Inside ELSE to create Daily Report");
-      }
+      }*/
       
 	System.out.println("Starting Test Case Execution");
     
@@ -184,49 +180,54 @@ public static void InitiateSimulator(WebDriver driver) throws InterruptedExcepti
     selTurnOFFDummy std = new selTurnOFFDummy();
     
     selBrightness100PDummy b100pd = new selBrightness100PDummy();
+    //String APIVersion = bridge.getResourceCache().getBridgeConfiguration().getAPIVersion();
+    //System.out.println("API Version of Bridge:"+APIVersion);
+    std.SelTurnOFFALLDummy();
+    
+
     
     tc.turnonalllights(bridge, driver);
     
-    tc.SetBrightnessTo10Percent(bridge,driver);
-    
-    tc.turnOFFHueColorLamp1(bridge, driver);
-    
-    b100pd.selBrightnessTo100PDummy();
-    
+    tc.turnoffalllights(bridge, driver);
+   
     tc.changeColorToRed(bridge, driver);
     
     tc.changeColorGreen(bridge, driver);
     
-    tc.turnoffalllights(bridge, driver);
-     
-    
-    tc.turnONHueColorLamp1(bridge, driver);
-    
     tc.SetBrightnessTo100(bridge, driver);
-    
-    tc.TurnLightStripBlue(bridge,driver);
 
-    tc.DimHueGo2(bridge,driver);
+    std.SelTurnOFFALLDummy();
+
+    tc.turnONHueColorLamp1(bridge, driver);
+
+	tc.turnOFFHueColorLamp1(bridge, driver);
     
+    b100pd.selBrightnessTo100PDummy();
+	
     tc.DimAllLights(bridge,driver);
     
+    tc.DimHueGo2(bridge,driver);
+    
+    tc.SetBrightnessTo10Percent(bridge,driver);
+
     tc.BrightenAllLightsBy10P(bridge,driver);
-        
+
+    tc.TurnLightStripBlue(bridge,driver);
+
     b100pd.selBrightnessTo100PDummy();
-    
+
     tc.DimAllLightsBy20P(bridge,driver);
-          
+    
     tc.DimHueColorLamp6By30P(bridge,driver);
-       
+
     tc.BrightenWhiteLampBy20P(bridge,driver);
-    
+
     std.SelTurnOFFALLDummy();
-    
     
     tc.TurnONAllLivingRoomLights(bridge,driver);
     
     tc.TurnOFFAllLivingRoomLights(bridge,driver);
-    
+
     tc.TurnONAmbLivingRoomLight(bridge,driver);
     
     tc.TurnOFFAmbLivingRoomLight(bridge, driver);
@@ -234,17 +235,9 @@ public static void InitiateSimulator(WebDriver driver) throws InterruptedExcepti
     tc.TurnLivingRoomOrange(bridge,driver);
     
     std.SelTurnOFFALLDummy();
-    
-    //tc.TurnLivingRoomOrange(bridge, driver);
-    
-    std.SelTurnOFFALLDummy();
    
-    System.out.println("Calling HTML Report create now");
-    
     tc.createHTMLReport();
-    
-    
-  
+   
     SendEmailForReport sendEmail = new SendEmailForReport();
     sendEmail.sendEmail();
     

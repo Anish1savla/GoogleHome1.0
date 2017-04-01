@@ -58,6 +58,7 @@ public class HueBridgeConnection
       //HueBridgeConnection.this.
       phHueSDK.setSelectedBridge(bridge);
       phHueSDK.enableHeartbeat(bridge, 10000L);
+      
       String lastConnectedUsername = bridge.getResourceCache().getBridgeConfiguration().getUsername();
       String lastConnectedipAddress = bridge.getResourceCache().getBridgeConfiguration().getIpAddress();
       
