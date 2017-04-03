@@ -150,30 +150,25 @@ public class HBSetAllBrightnessTo100
 			String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
 					"Values('"+utcdate+"','5','1','Brightness for All Lights Set to 100%','"+Remarks+"','"+BridgeAPIVersion+"')";
 			myStmt.executeUpdate(sql);
-			/*System.out.println("Putting data into excel-Inside IF");
-	    	
-	    	cdsr.ReportTurnONAllLights("PASS");*/
 	    }else {
 			String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
 					"Values('"+utcdate+"','5','0','Brightness for All Lights Set to 100%','"+Remarks+"','"+BridgeAPIVersion+"')";
 			myStmt.executeUpdate(sql);
-	    	/*System.out.println("Putting data into excel-Inside ELSE");
-	    	cdsr.ReportTurnONAllLights("FAIL");*/
 	    }
 
    }catch (Exception e){
    	e.printStackTrace();
    }
     
-    /*if(results=="PASS")
+/*    if(results=="PASS")
     {
     	System.out.println("Putting data into excel-Inside IF");
     	cdsr.ReportSetAllLightsTo100P("PASS");
     }else if(results=="FAIL"){
     	System.out.println("Putting data into excel-Inside ELSe");
     	cdsr.ReportSetAllLightsTo100P("FAIL");
-    }
-    */
+    }*/
+    
     return this.sendtoHTMLsetBrightness100;
   }
   

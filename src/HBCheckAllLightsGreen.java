@@ -189,15 +189,12 @@ public class HBCheckAllLightsGreen
    			String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
    					"Values('"+utcdate+"','4','1','All Lights Turned GREEN','"+Remarks+"','"+BridgeAPIVersion+"')";
    			myStmt.executeUpdate(sql);
-   			/*System.out.println("Putting data into excel-Inside IF");
-   	    	
-   	    	cdsr.ReportTurnONAllLights("PASS");*/
+   	
    	    }else {
    			String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
    					"Values('"+utcdate+"','4','0','All Lights Didnt Turned GREEN','"+Remarks+"','"+BridgeAPIVersion+"')";
    			myStmt.executeUpdate(sql);
-   	    	/*System.out.println("Putting data into excel-Inside ELSE");
-   	    	cdsr.ReportTurnONAllLights("FAIL");*/
+   	    	
    	    }
 
       }catch (Exception e){

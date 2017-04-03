@@ -183,22 +183,17 @@ public class HBDimHueColorLamp6By30P {
 				String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
 						"Values('"+utcdate+"','14','1','Hue Color Lamp 6 Dimmed by 30%','"+Remarks+"','"+BridgeAPIVersion+"')";
 				myStmt.executeUpdate(sql);
-				/*System.out.println("Putting data into excel-Inside IF");
-		    	
-		    	cdsr.ReportTurnONAllLights("PASS");*/
 		    }else {
 				String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
 						"Values('"+utcdate+"','14','0','Hue Color Lamp 6 Dimmed by 30%','"+Remarks+"','"+BridgeAPIVersion+"')";
 				myStmt.executeUpdate(sql);
-		    	/*System.out.println("Putting data into excel-Inside ELSE");
-		    	cdsr.ReportTurnONAllLights("FAIL");*/
 		    }
 
 	    }catch (Exception e){
 	    	e.printStackTrace();
 	    }
 	    
-	    /*if(Status=="PASS")
+/*	    if(Status=="PASS")
 	    {
 	    	System.out.println("Putting data into excel-Inside IF");
 	    	cdsr.ReportDimHueColorLamp6By30P("PASS");

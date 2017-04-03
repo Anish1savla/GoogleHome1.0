@@ -111,15 +111,11 @@ public class HBSetBrightnessTo10Percent {
 					String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
 							"Values('"+utcdate+"','10','1','Brightness for All Lights set to 10%','"+Remarks+"','"+BridgeAPIVersion+"')";
 					myStmt.executeUpdate(sql);
-		/*			System.out.println("Putting data into excel-Inside IF");
-			    	
-			    	cdsr.ReportTurnONAllLights("PASS");*/
 			    }else {
 					String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
 							"Values('"+utcdate+"','10','0','Brightness for all lights is not 10%','"+Remarks+"','"+BridgeAPIVersion+"')";
 					myStmt.executeUpdate(sql);
-			    /*	System.out.println("Putting data into excel-Inside ELSE");
-			    	cdsr.ReportTurnONAllLights("FAIL");*/
+
 			    }
 
 		    }catch (Exception e){

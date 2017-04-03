@@ -120,15 +120,11 @@ public class HBTurnONHueColorLamp1
 			String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
 					"Values('"+utcdate+"','6','1','Hue Color Lamp 1 Turned ON','"+Remarks+"','"+BridgeAPIVersion+"')";
 			myStmt.executeUpdate(sql);
-			/*System.out.println("Putting data into excel-Inside IF");
-	    	
-	    	cdsr.ReportTurnONAllLights("PASS");*/
 	    }else {
 			String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
 					"Values('"+utcdate+"','6','0','Hue Color Lamp 1 Didnt Turned ON','"+Remarks+"','"+BridgeAPIVersion+"')";
 			myStmt.executeUpdate(sql);
-	    	/*System.out.println("Putting data into excel-Inside ELSE");
-	    	cdsr.ReportTurnONAllLights("FAIL");*/
+
 	    }
 
    }catch (Exception e){
@@ -142,8 +138,9 @@ public class HBTurnONHueColorLamp1
     }else if(results=="FAIL"){
     	System.out.println("Putting data into excel-Inside ELSe");
     	cdsr.ReportTurnONHueColorLamp1("FAIL");
-    }
-    *///System.out.println("SendToHTML is:" + this.sendTohtml + "\n");
+    }*/
+    
+    //System.out.println("SendToHTML is:" + this.sendTohtml + "\n");
     return sendTohtml;
   }
   

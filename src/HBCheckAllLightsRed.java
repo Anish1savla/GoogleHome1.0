@@ -153,15 +153,12 @@ public class HBCheckAllLightsRed
 			String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
 					"Values('"+utcdate+"','3','1','All Lights Turned RED','"+Remarks+"','"+BridgeAPIVersion+"')";
 			myStmt.executeUpdate(sql);
-			/*System.out.println("Putting data into excel-Inside IF");
-	    	
-	    	cdsr.ReportTurnONAllLights("PASS");*/
+		
 	    }else {
 			String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
 					"Values('"+utcdate+"','3','0','All Lights Didnt Turned RED','"+Remarks+"','"+BridgeAPIVersion+"')";
 			myStmt.executeUpdate(sql);
-	   /* 	System.out.println("Putting data into excel-Inside ELSE");
-	    	cdsr.ReportTurnONAllLights("FAIL");*/
+	
 	    }
 
    }catch (Exception e){
@@ -169,7 +166,7 @@ public class HBCheckAllLightsRed
    }
     
     
- /*   if(Status=="PASS")
+/*    if(Status=="PASS")
     {
     	System.out.println("Putting data into excel-Inside IF");
     	cdsr.ReportTurnAllLightsRED("PASS");

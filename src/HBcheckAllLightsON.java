@@ -118,15 +118,8 @@ public class HBcheckAllLightsON
     }catch (Exception e){
     	e.printStackTrace();
     }
-    
-    
-    
-    
-    
+   
     return this.sendtoHTMLturnOFFAll;
-    
-    
-    
   }
   
   public String createHTMLReport(String resultString, String statusString, String resultRemarks)

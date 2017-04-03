@@ -149,30 +149,27 @@ public class HBBrightenAllLightsBy10P {
 					String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
 							"Values('"+utcdate+"','11','1','All Lights brightned by 10%','"+Remarks+"','"+BridgeAPIVersion+"')";
 					myStmt.executeUpdate(sql);
-					/*System.out.println("Putting data into excel-Inside IF");
-			    	
-			    	cdsr.ReportTurnONAllLights("PASS");*/
+					
 			    }else {
 					String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
 							"Values('"+utcdate+"','11','0','All Lights Didnt brightned by 10%','"+Remarks+"','"+BridgeAPIVersion+"')";
 					myStmt.executeUpdate(sql);
-			    	/*System.out.println("Putting data into excel-Inside ELSE");
-			    	cdsr.ReportTurnONAllLights("FAIL");*/
+			    
 			    }
 
 		    }catch (Exception e){
 		    	e.printStackTrace();
 		    }
 		    
-		    /*if(Status=="PASS")
+		/*    if(Status=="PASS")
 		    {
 		    	System.out.println("Putting data into excel-Inside IF");
 		    	cdsr.ReportBrightenBy10P("PASS");
 		    }else if(Status=="FAIL"){
 		    	System.out.println("Putting data into excel-Inside ELSe");
 		    	cdsr.ReportBrightenBy10P("FAIL");
-		    }*/
-		    
+		    }
+		    */
 		return SendToHTML;
 	}
 	

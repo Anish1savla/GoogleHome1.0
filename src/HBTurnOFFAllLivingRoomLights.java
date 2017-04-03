@@ -51,10 +51,10 @@ public class HBTurnOFFAllLivingRoomLights {
 	
 		
 	LivingRoomLights.put("Hue ambiance lamp 1",1);
-	LivingRoomLights.put("Hue Color lamp 1",2);
+	LivingRoomLights.put("Hue color lamp 1",2);
 	LivingRoomLights.put("Hue Color lamp 2",3);
 	LivingRoomLights.put("Hue Color lamp 3",4);
-	LivingRoomLights.put("Hue go 2",5);
+	LivingRoomLights.put("Hue Go 2",5);
 	
     List<String> nonReachableLights = new ArrayList<String>();
     
@@ -234,22 +234,19 @@ public class HBTurnOFFAllLivingRoomLights {
 			String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
 					"Values('"+utcdate+"','17','1','All Lights Turned OFF in Living Room','"+Remarks+"','"+BridgeAPIVersion+"')";
 			myStmt.executeUpdate(sql);
-			/*System.out.println("Putting data into excel-Inside IF");
-	    	
-	    	cdsr.ReportTurnONAllLights("PASS");*/
+			
 	    }else {
 			String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
 					"Values('"+utcdate+"','17','0','All Lights Didnt Turned OFF in Living Room','"+Remarks+"','"+BridgeAPIVersion+"')";
 			myStmt.executeUpdate(sql);
-	    /*	System.out.println("Putting data into excel-Inside ELSE");
-	    	cdsr.ReportTurnONAllLights("FAIL");*/
+	  
 	    }
 
    }catch (Exception e){
    	e.printStackTrace();
    }
     
-    /*if(Status=="PASS")
+/*    if(Status=="PASS")
     {
     	System.out.println("Putting data into excel-Inside IF");
     	cdsr.ReportTurnOFFAllLR("PASS");

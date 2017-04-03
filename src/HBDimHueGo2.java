@@ -206,22 +206,22 @@ public class HBDimHueGo2 {
 					String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
 							"Values('"+utcdate+"','9','1','Hue Go 2 Dimmed by 40% of original Brightness level','"+Remarks+"','"+BridgeAPIVersion+"')";
 					myStmt.executeUpdate(sql);
-				/*	System.out.println("Putting data into excel-Inside IF");
+					System.out.println("Putting data into excel-Inside IF");
 			    	
-			    	cdsr.ReportTurnONAllLights("PASS");*/
+			    	cdsr.ReportTurnONAllLights("PASS");
 			    }else {
 					String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
 							"Values('"+utcdate+"','9','0','Hue Go 2 Dimmed by 40% of original Brightness level','"+Remarks+"','"+BridgeAPIVersion+"')";
 					myStmt.executeUpdate(sql);
-			    	/*System.out.println("Putting data into excel-Inside ELSE");
-			    	cdsr.ReportTurnONAllLights("FAIL");*/
+			    	System.out.println("Putting data into excel-Inside ELSE");
+			    	cdsr.ReportTurnONAllLights("FAIL");
 			    }
 
 		    }catch (Exception e){
 		    	e.printStackTrace();
 		    }
 		  
-		    /*if(Status=="PASS")
+		 /*   if(Status=="PASS")
 		    {
 		    	System.out.println("Putting data into excel-Inside IF");
 		    	cdsr.ReportDimHueGo2("PASS");

@@ -110,15 +110,12 @@ public class HBTurnLightStripBlue {
 				String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
 						"Values('"+utcdate+"','12','1','Hue Light Strip Plus 1 Turned Blue','"+Remarks+"','"+BridgeAPIVersion+"')";
 				myStmt.executeUpdate(sql);
-			/*	System.out.println("Putting data into excel-Inside IF");
-		    	
-		    	cdsr.ReportTurnONAllLights("PASS");*/
+
 		    }else {
 				String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
 						"Values('"+utcdate+"','12','0','Hue Light Strip Plus 1 Didnt Turned Blue','"+Remarks+"','"+BridgeAPIVersion+"')";
 				myStmt.executeUpdate(sql);
-		    	/*System.out.println("Putting data into excel-Inside ELSE");
-		    	cdsr.ReportTurnONAllLights("FAIL");*/
+
 		    }
 
 	    }catch (Exception e){
@@ -126,7 +123,7 @@ public class HBTurnLightStripBlue {
 	    }
 	    
 	    
-	    /*if(Status=="PASS")
+	   /* if(Status=="PASS")
 	    {
 	    	System.out.println("Putting data into excel-Inside IF");
 	    	cdsr.ReportTurnLightStrip100P("PASS");

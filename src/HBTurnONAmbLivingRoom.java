@@ -96,22 +96,18 @@ public class HBTurnONAmbLivingRoom {
 				String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
 						"Values('"+utcdate+"','18','1','Hue Ambiance Lamp 1 in Living Room is Turned ON','"+Remarks+"','"+BridgeAPIVersion+"')";
 				myStmt.executeUpdate(sql);
-				/*System.out.println("Putting data into excel-Inside IF");
-		    	
-		    	cdsr.ReportTurnONAllLights("PASS");*/
 		    }else {
 				String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
 						"Values('"+utcdate+"','18','0','Hue Ambiance Lamp 1 in Living Room Didnt Turned ON','"+Remarks+"','"+BridgeAPIVersion+"')";
 				myStmt.executeUpdate(sql);
-		    /*	System.out.println("Putting data into excel-Inside ELSE");
-		    	cdsr.ReportTurnONAllLights("FAIL");*/
+
 		    }
 
 	    }catch (Exception e){
 	    	e.printStackTrace();
 	    }
 	    
-	    /*if(Status=="PASS")
+	 /*   if(Status=="PASS")
 	    {
 	    	System.out.println("Putting data into excel-Inside IF");
 	    	cdsr.ReportTONAmbLR("PASS");

@@ -75,20 +75,21 @@ public class HBTurnOFFHueColorLamp1 {
 				
 				Statement myStmt = myConn.createStatement();
 				
+				
 				if(Status=="PASS")
 			    {
 					String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
 							"Values('"+utcdate+"','7','1','Hue Color Lamp 1 Is OFF','"+Remarks+"','"+BridgeAPIVersion+"')";
 					myStmt.executeUpdate(sql);
-					/*System.out.println("Putting data into excel-Inside IF");
+				/*	System.out.println("Putting data into excel-Inside IF");
 			    	
-			    	cdsr.ReportTurnONAllLights("PASS");*/
+			    	cdsr.ReportTurnOFFHueColorLamp1("PASS");*/
 			    }else {
 					String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
 							"Values('"+utcdate+"','7','0','Hue Color Lamp 1 Is Still ON','"+Remarks+"','"+BridgeAPIVersion+"')";
 					myStmt.executeUpdate(sql);
 			    	/*System.out.println("Putting data into excel-Inside ELSE");
-			    	cdsr.ReportTurnONAllLights("FAIL");*/
+			    	cdsr.ReportTurnOFFHueColorLamp1("FAIL");*/
 			    }
 
 		    }catch (Exception e){

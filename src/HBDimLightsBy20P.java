@@ -131,22 +131,19 @@ public class HBDimLightsBy20P {
 					String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
 							"Values('"+utcdate+"','13','1','All Lights are Dimmed by 20%','"+Remarks+"','"+BridgeAPIVersion+"')";
 					myStmt.executeUpdate(sql);
-					/*System.out.println("Putting data into excel-Inside IF");
-			    	
-			    	cdsr.ReportTurnONAllLights("PASS");*/
+					
 			    }else {
 					String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
 							"Values('"+utcdate+"','13','0','All Lights are Not Dimmed by 20%,'"+Remarks+"','"+BridgeAPIVersion+"')";
 					myStmt.executeUpdate(sql);
-			    	/*System.out.println("Putting data into excel-Inside ELSE");
-			    	cdsr.ReportTurnONAllLights("FAIL");*/
+			
 			    }
 
 		    }catch (Exception e){
 		    	e.printStackTrace();
 		    }
 		    
-		    /*if(Status=="PASS")
+		/*    if(Status=="PASS")
 		    {
 		    	System.out.println("Putting data into excel-Inside IF");
 		    	cdsr.ReportDimLightsBy20P("PASS");

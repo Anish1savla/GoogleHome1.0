@@ -98,13 +98,13 @@ public class HBcheckAllLightsOFF
 			myStmt.executeUpdate(sql);
 		/*	System.out.println("Putting data into excel-Inside IF");
 	    	
-	    	cdsr.ReportTurnONAllLights("PASS");*/
+	    	cdsr.ReportTurnOFFAllLights("PASS");*/
 	    }else {
 			String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
 					"Values('"+utcdate+"','2','0','All Lights Didnt Turned OFF','"+Remarks+"','"+BridgeAPIVersion+"')";
 			myStmt.executeUpdate(sql);
 	    /*	System.out.println("Putting data into excel-Inside ELSE");
-	    	cdsr.ReportTurnONAllLights("FAIL");*/
+	    	cdsr.ReportTurnOFFAllLights("FAIL");*/
 	    }
 	    
 		

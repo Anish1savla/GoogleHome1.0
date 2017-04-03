@@ -148,30 +148,26 @@ public class HBTurnLROrange {
 					String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
 							"Values('"+utcdate+"','20','1','All Lights Turned Orange in Living Room','"+Remarks+"','"+BridgeAPIVersion+"')";
 					myStmt.executeUpdate(sql);
-					/*System.out.println("Putting data into excel-Inside IF");
-			    	
-			    	cdsr.ReportTurnONAllLights("PASS");*/
 			    }else {
 					String sql = "INSERT INTO IV_US.RESULTS"+"(runDateTime,testCaseId,isPassed,actualResult,failureReason,bridgeVersion)"+
 							"Values('"+utcdate+"','20','0','All Lights Didnt Turned Orange in Living Room','"+Remarks+"','"+BridgeAPIVersion+"')";
 					myStmt.executeUpdate(sql);
-			    	/*System.out.println("Putting data into excel-Inside ELSE");
-			    	cdsr.ReportTurnONAllLights("FAIL");*/
+
 			    }
 
 		    }catch (Exception e){
 		    	e.printStackTrace();
 		    }
 		  
-		 /*   if(Status=="PASS")
+/*		    if(Status=="PASS")
 		    {
 		    	System.out.println("Putting data into excel-Inside IF");
 		    	cdsr.TurnLivingRoomOrange("PASS");
 		    }else if(Status=="FAIL"){
 		    	System.out.println("Putting data into excel-Inside ELSe");
 		    	cdsr.TurnLivingRoomOrange("FAIL");
-		    }
-		  */
+		    }*/
+		  
 		return SendToHTML;
 	}
 	
