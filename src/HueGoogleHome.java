@@ -114,7 +114,7 @@ public class HueGoogleHome
   
 public static void InitiateSimulator(WebDriver driver) throws InterruptedException, FindFailed{
 	  
-	System.out.println("Inside start Test");
+	;
 	
       driver.manage().deleteAllCookies();
       driver.get("https://developers.google.com/actions/tools/web-simulator");
@@ -156,6 +156,7 @@ public static void InitiateSimulator(WebDriver driver) throws InterruptedExcepti
   private static void startTests(PHBridge bridge)
     throws FindFailed, InterruptedException, IOException, EncryptedDocumentException, InvalidFormatException, ParseException, MessagingException
   {
+	  System.out.println("Inside start Test");
 	 System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
      WebDriver driver = new ChromeDriver();
      InitiateSimulator(driver); 
