@@ -114,13 +114,12 @@ public class HueGoogleHome
   
 public static void InitiateSimulator(WebDriver driver) throws InterruptedException, FindFailed{
 	  
-	;
+	System.out.println("Inside start Test");
 	
       driver.manage().deleteAllCookies();
-      driver.manage().window().maximize();
       driver.get("https://developers.google.com/actions/tools/web-simulator");
       
-      
+      driver.manage().window().maximize();
       System.out.println("Chrome Window Maximized");
       Screen screen = new Screen();
       TimeUnit.SECONDS.sleep(2);
@@ -142,8 +141,7 @@ public static void InitiateSimulator(WebDriver driver) throws InterruptedExcepti
       driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
       driver.findElement(By.xpath("//*[@id='Email']")).click();
       driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-      driver.finturn off lights
-      Element(By.xpath("//*[@id='Email']")).sendKeys(new CharSequence[] { "HueGHAutomation@gmail.com" });
+      driver.findElement(By.xpath("//*[@id='Email']")).sendKeys(new CharSequence[] { "HueGHAutomation@gmail.com" });
       driver.manage().timeouts().implicitlyWait(1L, TimeUnit.SECONDS);
       driver.findElement(By.id("next")).click();
       driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
@@ -158,7 +156,6 @@ public static void InitiateSimulator(WebDriver driver) throws InterruptedExcepti
   private static void startTests(PHBridge bridge)
     throws FindFailed, InterruptedException, IOException, EncryptedDocumentException, InvalidFormatException, ParseException, MessagingException
   {
-	  System.out.println("Inside start Test");
 	 System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
      WebDriver driver = new ChromeDriver();
      InitiateSimulator(driver); 
@@ -186,7 +183,9 @@ public static void InitiateSimulator(WebDriver driver) throws InterruptedExcepti
     selBrightness100PDummy b100pd = new selBrightness100PDummy();
     //String APIVersion = bridge.getResourceCache().getBridgeConfiguration().getAPIVersion();
     //System.out.println("API Version of Bridge:"+APIVersion);
-
+    
+    
+    
     std.SelTurnOFFALLDummy();
     
     tc.turnonalllights(bridge, driver);
